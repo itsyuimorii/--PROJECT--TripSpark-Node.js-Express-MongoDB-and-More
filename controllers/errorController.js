@@ -72,3 +72,7 @@ module.exports = (err, req, res, next) => {
     sendErrorProd(error, res);
   }
 };
+
+/* This checks the value of the NODE_ENV environment variable. If it is set to 'development', it calls the sendErrorDev function to send a detailed error response with the error stack trace. If it is set to 'production', it creates a copy of the err object and performs some error handling based on the type of error. Then it calls the sendErrorProd function to send a generic error response without the error stack trace.
+
+The handleCastErrorDB, handleDuplicateFieldsDB, and handleValidationErrorDB functions are not shown in the code snippet and are presumably defined elsewhere in the application. They handle specific types of errors that can occur in the database layer. */
