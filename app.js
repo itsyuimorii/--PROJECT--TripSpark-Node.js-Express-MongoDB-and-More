@@ -1,11 +1,13 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable node/no-missing-require */
+/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
-
+const rateLimit = require('express-rate-limit');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
