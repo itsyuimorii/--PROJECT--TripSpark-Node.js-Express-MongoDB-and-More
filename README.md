@@ -16,16 +16,16 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
 
 |Section|Topic|Problem Sets|
 |-----|-----------|----|
-|Section 0 | Functions / Variables|[cash](https://github.com/5ah1n/CS50_Python/blob/main/tasks/indoor/indoor.py) - [credit]( ) - [hello]() - [mario-more]() - [population]()|
-|Section 1| Conditionals |[readability]() - [scrabbble]() - [substitution]()|
-|Section 2 | Algorithms ||
-|Section 3| Exceptions |  |
-|Section 4 | Libraries |  |
-| Section 5 | Unit Tests |  |
-|Section 6 | File I/O |  |
-|Section 7 | Regular Expressions |  |
-|Section 8 | OOP |  |
-|Section 9 | ET Cetera | [Final Project](https://github.com/5ah1n/CS50_Python/tree/main/tasks/project)|
+|Week 0 | Functions / Variables|[cash](https://github.com/5ah1n/CS50_Python/blob/main/tasks/indoor/indoor.py) - [credit]( ) - [hello]() - [mario-more]() - [population]()|
+|Week 1| Conditionals |[readability]() - [scrabbble]() - [substitution]()|
+|Week 2 | Algorithms ||
+|Week 3| Exceptions |  |
+|Week 4 | Libraries |  |
+| Week 5 | Unit Tests |  |
+|Week 6 | File I/O |  |
+|Week 7 | Regular Expressions |  |
+|Week 8 | OOP |  |
+|Week 9 | ET Cetera | [Final Project](https://github.com/5ah1n/CS50_Python/tree/main/tasks/project)|
 
 
 
