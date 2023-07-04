@@ -5,8 +5,8 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
-const app = express();
 
+const app = express();
 // middleware, to read the body data, from the body into req.body, and then we can access it in the request handler, so that we can then create a new tour based on that data, and then add it to our tours array.
 app.use(express.json());
 
@@ -21,6 +21,31 @@ app.get('/api/v1/tours', (req, res) => {
   });
 });
 
+
+////////////////////////////////////////////////
+app.get('/api/v1/tours/:id', (req, res) => {
+  console.log(req.params);
+  const id = req.params.id * 1;
+
+  const tour = tours.find(ele => ele.id === id)
+
+  if (!tour) {
+    return res.status(404).json({
+      status: 'failed',
+      message: 'Invalid ID'
+    });
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour
+    }
+  });
+});
+
+
+////////////////////////////////////////////////
 app.post('/api/v1/tours', (req, res) => {
   // console.log(req.body);
   const newId = tours[tours.length - 1].id + 1;
@@ -40,15 +65,13 @@ app.post('/api/v1/tours', (req, res) => {
   // res.send('Done');
 });
 
-app.get('/api/v1/tours/:id', (req, res) => {
-  console.log(req.params);
-  const id = req.params.id * 1;
-  
-  const tour = tours.find(ele => ele.id === id)
 
-  if (!tour) {
+////////////////////////////////////////////////
+app.patch('/api/v1/tours/:id', (req, res) => {
+  const id = req.params.id * 1;
+  if (id * 1 > tours.length) {
     return res.status(404).json({
-      status: 'failed',
+      status: 'fail',
       message: 'Invalid ID'
     });
   }
@@ -56,12 +79,10 @@ app.get('/api/v1/tours/:id', (req, res) => {
   res.status(200).json({
     status: 'success',
     data: {
-      tour
+      tour: '<update tour here...>'
     }
   });
 });
-
-
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
