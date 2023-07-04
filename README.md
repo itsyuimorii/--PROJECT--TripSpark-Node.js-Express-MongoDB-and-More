@@ -16,16 +16,16 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
 
 |Section|Topic|Problem Sets|
 |-----|-----------|----|
-|Week 0 | restfulAPI ||
-|Week 1| mongodb & mongoose ||
-|Week 2 |  ||
-|Week 3|  |  |
-|Week 4 | Libraries |  |
-| Week 5 | Unit Tests |  |
-|Week 6 | File I/O |  |
-|Week 7 | Regular Expressions |  |
-|Week 8 | OOP |  |
-|Week 9 | ET Cetera |  |
+|Section 0 | RestfulAPI |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/01_restfulapi)|
+|Section 1| Mongodb & mongoose |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/02_mongodb)|
+|Section 2 | Error handling |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/03_error_handling)|
+|Section 3|  |  |
+|Section 4 | Libraries |  |
+| Section 5 | Unit Tests |  |
+|Section 6 | File I/O |  |
+|Section 7 | Regular Expressions |  |
+|Section 8 | OOP |  |
+|Section 9 | ET Cetera |  |
 
 
 
