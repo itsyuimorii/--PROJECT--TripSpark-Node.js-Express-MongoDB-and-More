@@ -1,90 +1,31 @@
 const express = require('express');
-const fs = require('fs');
+const morgan = require('morgan');
 
-const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
-);
-
+const tourRouter = require('./routes/tourRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
-// middleware, to read the body data, from the body into req.body, and then we can access it in the request handler, so that we can then create a new tour based on that data, and then add it to our tours array.
+
+// 1) MIDDLEWARES
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
 
-app.get('/api/v1/tours', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    // get the length of the tours array
-    results: tours.length,
-    data: {
-      tours
-    }
-  });
+app.use((req, res, next) => {
+  console.log('Hello from the middleware 👋');
+  next();
 });
 
-
-////////////////////////////////////////////////
-app.get('/api/v1/tours/:id', (req, res) => {
-  console.log(req.params);
-  const id = req.params.id * 1;
-
-  const tour = tours.find(ele => ele.id === id)
-
-  if (!tour) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'Invalid ID'
-    });
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour
-    }
-  });
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
 });
 
+// 3) ROUTES
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
 
-////////////////////////////////////////////////
-app.post('/api/v1/tours', (req, res) => {
-  // console.log(req.body);
-  const newId = tours[tours.length - 1].id + 1;
-  // Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will return the target object.
-  const newTour = Object.assign({ id: newId }, req.body);
-  tours.push(newTour);
-  // write the new tours array to the file
-  fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`, JSON.stringify(tours),
-    err => {
-      res.status(201).json({
-        status: 'success',
-        data: {
-          tour: newTour
-        }
-      });
-    });
-  // res.send('Done');
-});
-
-
-////////////////////////////////////////////////
-app.patch('/api/v1/tours/:id', (req, res) => {
-  const id = req.params.id * 1;
-  if (id * 1 > tours.length) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID'
-    });
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour: '<update tour here...>'
-    }
-  });
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
+module.exports = app;
