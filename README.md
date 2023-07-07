@@ -1,5 +1,5 @@
 <div align=center>
-    <img src="https://img-c.udemycdn.com/course/750x422/1672410_9ff1_5.jpg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png">
     <h1> Node.js, Express, MongoDB & More: The Complete Bootcamp 2023 </h1>
 </div>
 
