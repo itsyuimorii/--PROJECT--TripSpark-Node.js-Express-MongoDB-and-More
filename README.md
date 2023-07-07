@@ -31,4 +31,17 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
 
 
 
+start server
+```
+npm server.js
+
+```
+
+
+config eslint and prettier
+
+```
+npm install eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react --save-dev
+
+```
 
