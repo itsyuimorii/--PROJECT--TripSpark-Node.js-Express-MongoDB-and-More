@@ -122,3 +122,30 @@ npm install eslint prettier eslint-config-prettier eslint-plugin-prettier eslint
 11. Copy the connection string from the "Connection String Only" tab.
 
 ### [MVC architecture](https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/)
+
+**APPLICATION LOGIC** (controller)
+
+- 👉  Codethatisonlyconcernedabouttheapplication’s implementation, not the underlying business problem we’re trying to solve (e.g. showing and selling tours);
+- 👉  Concernedaboutmanagingrequestsandresponses;
+- 👉  Abouttheapp’smoretechnicalaspects;
+- 👉  Bridgebetweenmodelandviewlayers.
+
+**BUSINESS LOGIC**(model)
+
+- 👉 Codethatactuallysolvesthebusinessproblemweset
+
+out to solve;
+
+- 👉 Directlyrelatedtobusinessrules,howthebusiness works,andbusinessneeds;
+
+- 👉 Examples:
+
+  - 👉  Creating new tours in the database;
+
+  - 👉  Checking if user’s password is correct;
+
+  - 👉  Validating user input data;
+
+  - 👉  Ensuring only users who bought a tour can review it.
+
+**Fat models/thin controllers:** offload as much logic as possible into the models, and keep the controllers as simple and lean as possible.
