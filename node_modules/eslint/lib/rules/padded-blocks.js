@@ -15,15 +15,15 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Require or disallow padding within blocks",
+            description: "require or disallow padding within blocks",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/padded-blocks"
+            url: "https://eslint.org/docs/rules/padded-blocks"
         },
 
         fixable: "whitespace",
@@ -96,7 +96,7 @@ module.exports = {
             options.allowSingleLineBlocks = exceptOptions.allowSingleLineBlocks === true;
         }
 
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
 
         /**
          * Gets the open brace token from a given node.
@@ -107,12 +107,6 @@ module.exports = {
             if (node.type === "SwitchStatement") {
                 return sourceCode.getTokenBefore(node.cases[0]);
             }
-
-            if (node.type === "StaticBlock") {
-                return sourceCode.getFirstToken(node, { skip: 1 }); // skip the `static` token
-            }
-
-            // `BlockStatement` or `ClassBody`
             return sourceCode.getFirstToken(node);
         }
 
@@ -173,20 +167,18 @@ module.exports = {
         /**
          * Checks if a node should be padded, according to the rule config.
          * @param {ASTNode} node The AST node to check.
-         * @throws {Error} (Unreachable)
          * @returns {boolean} True if the node should be padded, false otherwise.
          */
         function requirePaddingFor(node) {
             switch (node.type) {
                 case "BlockStatement":
-                case "StaticBlock":
                     return options.blocks;
                 case "SwitchStatement":
                     return options.switches;
                 case "ClassBody":
                     return options.classes;
 
-                /* c8 ignore next */
+                /* istanbul ignore next */
                 default:
                     throw new Error("unreachable");
             }
@@ -290,7 +282,6 @@ module.exports = {
                 }
                 checkPadding(node);
             };
-            rule.StaticBlock = rule.BlockStatement;
         }
 
         if (Object.prototype.hasOwnProperty.call(options, "classes")) {

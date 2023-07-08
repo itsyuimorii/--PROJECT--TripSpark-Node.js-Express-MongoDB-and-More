@@ -19,23 +19,32 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Enforce or disallow parentheses when invoking a constructor with no arguments",
+            description: "enforce or disallow parentheses when invoking a constructor with no arguments",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/new-parens"
+            url: "https://eslint.org/docs/rules/new-parens"
         },
 
         fixable: "code",
-        schema: [
-            {
-                enum: ["always", "never"]
-            }
-        ],
+        schema: {
+            anyOf: [
+                {
+                    type: "array",
+                    items: [
+                        {
+                            enum: ["always", "never"]
+                        }
+                    ],
+                    minItems: 0,
+                    maxItems: 1
+                }
+            ]
+        },
         messages: {
             missing: "Missing '()' invoking a constructor.",
             unnecessary: "Unnecessary '()' invoking a constructor with no arguments."
@@ -46,7 +55,7 @@ module.exports = {
         const options = context.options;
         const always = options[0] !== "never"; // Default is always
 
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
 
         return {
             NewExpression(node) {

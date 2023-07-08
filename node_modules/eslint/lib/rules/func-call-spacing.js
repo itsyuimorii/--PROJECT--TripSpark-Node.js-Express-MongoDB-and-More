@@ -15,15 +15,15 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Require or disallow spacing between function identifiers and their invocations",
+            description: "require or disallow spacing between function identifiers and their invocations",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/func-call-spacing"
+            url: "https://eslint.org/docs/rules/func-call-spacing"
         },
 
         fixable: "whitespace",
@@ -73,7 +73,7 @@ module.exports = {
 
         const never = context.options[0] !== "always";
         const allowNewlines = !never && context.options[1] && context.options[1].allowNewlines;
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
         const text = sourceCode.getText();
 
         /**

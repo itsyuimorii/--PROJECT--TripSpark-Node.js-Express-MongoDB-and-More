@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 const astUtils = require("./utils/ast-utils");
-const regexpp = require("@eslint-community/regexpp");
+const regexpp = require("regexpp");
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -33,15 +33,15 @@ function isString(node) {
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "suggestion",
 
         docs: {
-            description: "Disallow multiple spaces in regular expressions",
+            description: "disallow multiple spaces in regular expressions",
+            category: "Possible Errors",
             recommended: true,
-            url: "https://eslint.org/docs/latest/rules/no-regex-spaces"
+            url: "https://eslint.org/docs/rules/no-regex-spaces"
         },
 
         schema: [],
@@ -53,8 +53,6 @@ module.exports = {
     },
 
     create(context) {
-
-        const sourceCode = context.sourceCode;
 
         /**
          * Validate regular expression
@@ -151,7 +149,7 @@ module.exports = {
          * @private
          */
         function checkFunction(node) {
-            const scope = sourceCode.getScope(node);
+            const scope = context.getScope();
             const regExpVar = astUtils.getVariableByName(scope, "RegExp");
             const shadowed = regExpVar && regExpVar.defs.length > 0;
             const patternNode = node.arguments[0];

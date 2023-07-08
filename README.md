@@ -150,6 +150,46 @@ out to solve;
 
 **Fat models/thin controllers:** offload as much logic as possible into the models, and keep the controllers as simple and lean as possible.
 
-### mongoose query method
+### [Mongoose](https://mongoosejs.com/docs/guide.html)
 
-[Queries methods](https://mongoosejs.com/docs/queries.html)
+- [Model methods](https://mongoosejs.com/docs/models.html)
+
+- [Queries methods](https://mongoosejs.com/docs/queries.html)
+
+### [Mongoose query middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
+
+- [Document middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
+- [Query middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
+- [Aggregate middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
+
+### `toJSON` and `toObject` 
+ 
+This code sets the `toJSON` and `toObject` options on the `tourSchema` object, enabling it to include virtual properties when converting to a JSON string or a regular JavaScript object.
+
+Here are the comments for this code:
+
+```javascript
+const tourSchema = new mongoose.Schema(
+  {
+    // Schema definitions...
+  },
+  {
+    toJSON: { virtuals: true },   // Include virtual properties when converting to JSON string
+    toObject: { virtuals: true }  // Include virtual properties when converting to regular JavaScript object
+  }
+);
+```
+
+This code is typically used within the Mongoose schema definition. By setting the `virtuals` property of the `toJSON` and `toObject` options to `true`, it instructs Mongoose to include the defined virtual properties when converting the document to a JSON string or a regular JavaScript object.
+
+Virtual properties are properties that are not stored in the database but are computed or derived based on existing properties. They can be used to provide additional data or calculated property values without the need to explicitly store them in the database.
+
+With the `toJSON` and `toObject` options set, when you convert the document to a JSON string using `JSON.stringify()` or to a regular JavaScript object using the `toObject()` method, the virtual properties will be included in the result.
+ 
+
+### import import-dev-data.js into mongodb
+
+```bash
+
+node dev-data/data/import-dev-data.js --import
+```

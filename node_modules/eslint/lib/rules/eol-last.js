@@ -8,15 +8,15 @@
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Require or disallow newline at the end of files",
+            description: "require or disallow newline at the end of files",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/eol-last"
+            url: "https://eslint.org/docs/rules/eol-last"
         },
 
         fixable: "whitespace",
@@ -40,7 +40,7 @@ module.exports = {
 
         return {
             Program: function checkBadEOF(node) {
-                const sourceCode = context.sourceCode,
+                const sourceCode = context.getSourceCode(),
                     src = sourceCode.getText(),
                     lastLine = sourceCode.lines[sourceCode.lines.length - 1],
                     location = {
@@ -86,15 +86,10 @@ module.exports = {
                     });
                 } else if (mode === "never" && endsWithNewline) {
 
-                    const secondLastLine = sourceCode.lines[sourceCode.lines.length - 2];
-
                     // File is newline-terminated, but shouldn't be
                     context.report({
                         node,
-                        loc: {
-                            start: { line: sourceCode.lines.length - 1, column: secondLastLine.length },
-                            end: { line: sourceCode.lines.length, column: 0 }
-                        },
+                        loc: location,
                         messageId: "unexpected",
                         fix(fixer) {
                             const finalEOLs = /(?:\r?\n)+$/u,

@@ -9,15 +9,15 @@
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Disallow multiple empty lines",
+            description: "disallow multiple empty lines",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/no-multiple-empty-lines"
+            url: "https://eslint.org/docs/rules/no-multiple-empty-lines"
         },
 
         fixable: "whitespace",
@@ -64,7 +64,7 @@ module.exports = {
             maxBOF = typeof context.options[0].maxBOF !== "undefined" ? context.options[0].maxBOF : max;
         }
 
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
 
         // Swallow the final newline, as some editors add it automatically and we don't want it to cause an issue
         const allLines = sourceCode.lines[sourceCode.lines.length - 1] === "" ? sourceCode.lines.slice(0, -1) : sourceCode.lines;

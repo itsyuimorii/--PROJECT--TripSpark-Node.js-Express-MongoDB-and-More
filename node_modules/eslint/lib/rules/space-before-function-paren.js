@@ -14,15 +14,15 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Enforce consistent spacing before `function` definition opening parenthesis",
+            description: "enforce consistent spacing before `function` definition opening parenthesis",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/space-before-function-paren"
+            url: "https://eslint.org/docs/rules/space-before-function-paren"
         },
 
         fixable: "whitespace",
@@ -59,7 +59,7 @@ module.exports = {
     },
 
     create(context) {
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
         const baseConfig = typeof context.options[0] === "string" ? context.options[0] : "always";
         const overrideConfig = typeof context.options[0] === "object" ? context.options[0] : {};
 

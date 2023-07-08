@@ -14,15 +14,15 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Disallow whitespace before properties",
+            description: "disallow whitespace before properties",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/no-whitespace-before-property"
+            url: "https://eslint.org/docs/rules/no-whitespace-before-property"
         },
 
         fixable: "whitespace",
@@ -34,7 +34,7 @@ module.exports = {
     },
 
     create(context) {
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
 
         //--------------------------------------------------------------------------
         // Helpers

@@ -8,15 +8,15 @@
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Disallow mixed spaces and tabs for indentation",
+            description: "disallow mixed spaces and tabs for indentation",
+            category: "Stylistic Issues",
             recommended: true,
-            url: "https://eslint.org/docs/latest/rules/no-mixed-spaces-and-tabs"
+            url: "https://eslint.org/docs/rules/no-mixed-spaces-and-tabs"
         },
 
         schema: [
@@ -31,7 +31,7 @@ module.exports = {
     },
 
     create(context) {
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
 
         let smartTabs;
 

@@ -11,15 +11,15 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Enforce consistent comma style",
+            description: "enforce consistent comma style",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/comma-style"
+            url: "https://eslint.org/docs/rules/comma-style"
         },
 
         fixable: "code",
@@ -51,7 +51,7 @@ module.exports = {
 
     create(context) {
         const style = context.options[0] || "last",
-            sourceCode = context.sourceCode;
+            sourceCode = context.getSourceCode();
         const exceptions = {
             ArrayPattern: true,
             ArrowFunctionExpression: true,

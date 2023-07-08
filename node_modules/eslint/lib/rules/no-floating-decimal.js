@@ -15,15 +15,15 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "suggestion",
 
         docs: {
-            description: "Disallow leading or trailing decimal points in numeric literals",
+            description: "disallow leading or trailing decimal points in numeric literals",
+            category: "Best Practices",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/no-floating-decimal"
+            url: "https://eslint.org/docs/rules/no-floating-decimal"
         },
 
         schema: [],
@@ -35,7 +35,7 @@ module.exports = {
     },
 
     create(context) {
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
 
         return {
             Literal(node) {

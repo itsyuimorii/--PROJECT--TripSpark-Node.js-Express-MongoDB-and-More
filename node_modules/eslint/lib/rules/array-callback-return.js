@@ -16,7 +16,7 @@ const astUtils = require("./utils/ast-utils");
 //------------------------------------------------------------------------------
 
 const TARGET_NODE_TYPE = /^(?:Arrow)?FunctionExpression$/u;
-const TARGET_METHODS = /^(?:every|filter|find(?:Last)?(?:Index)?|flatMap|forEach|map|reduce(?:Right)?|some|sort|toSorted)$/u;
+const TARGET_METHODS = /^(?:every|filter|find(?:Index)?|flatMap|forEach|map|reduce(?:Right)?|some|sort)$/u;
 
 /**
  * Checks a given code path segment is reachable.
@@ -125,7 +125,7 @@ function getArrayMethodName(node) {
         }
     }
 
-    /* c8 ignore next */
+    /* istanbul ignore next: unreachable */
     return null;
 }
 
@@ -133,15 +133,15 @@ function getArrayMethodName(node) {
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "problem",
 
         docs: {
-            description: "Enforce `return` statements in callbacks of array methods",
+            description: "enforce `return` statements in callbacks of array methods",
+            category: "Best Practices",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/array-callback-return"
+            url: "https://eslint.org/docs/rules/array-callback-return"
         },
 
         schema: [
@@ -172,7 +172,7 @@ module.exports = {
     create(context) {
 
         const options = context.options[0] || { allowImplicit: false, checkForEach: false };
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
 
         let funcInfo = {
             arrayMethodName: null,

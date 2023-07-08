@@ -15,15 +15,15 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "suggestion",
 
         docs: {
-            description: "Disallow the use of `console`",
+            description: "disallow the use of `console`",
+            category: "Possible Errors",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/no-console"
+            url: "https://eslint.org/docs/rules/no-console"
         },
 
         schema: [
@@ -51,7 +51,6 @@ module.exports = {
     create(context) {
         const options = context.options[0] || {};
         const allowed = options.allow || [];
-        const sourceCode = context.sourceCode;
 
         /**
          * Checks whether the given reference is 'console' or not.
@@ -73,7 +72,7 @@ module.exports = {
         function isAllowed(node) {
             const propertyName = astUtils.getStaticPropertyName(node);
 
-            return propertyName && allowed.includes(propertyName);
+            return propertyName && allowed.indexOf(propertyName) !== -1;
         }
 
         /**
@@ -110,8 +109,8 @@ module.exports = {
         }
 
         return {
-            "Program:exit"(node) {
-                const scope = sourceCode.getScope(node);
+            "Program:exit"() {
+                const scope = context.getScope();
                 const consoleVar = astUtils.getVariableByName(scope, "console");
                 const shadowed = consoleVar && consoleVar.defs.length > 0;
 

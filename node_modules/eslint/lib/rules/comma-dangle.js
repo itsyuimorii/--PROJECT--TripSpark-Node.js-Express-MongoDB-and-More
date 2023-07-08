@@ -50,7 +50,7 @@ function normalizeOptions(optionValue, ecmaVersion) {
             objects: optionValue,
             imports: optionValue,
             exports: optionValue,
-            functions: ecmaVersion < 2017 ? "ignore" : optionValue
+            functions: (!ecmaVersion || ecmaVersion < 8) ? "ignore" : optionValue
         };
     }
     if (typeof optionValue === "object" && optionValue !== null) {
@@ -70,15 +70,15 @@ function normalizeOptions(optionValue, ecmaVersion) {
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Require or disallow trailing commas",
+            description: "require or disallow trailing commas",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/comma-dangle"
+            url: "https://eslint.org/docs/rules/comma-dangle"
         },
 
         fixable: "code",
@@ -123,8 +123,7 @@ module.exports = {
                         }
                     ]
                 }
-            ],
-            additionalItems: false
+            ]
         },
 
         messages: {
@@ -134,9 +133,9 @@ module.exports = {
     },
 
     create(context) {
-        const options = normalizeOptions(context.options[0], context.languageOptions.ecmaVersion);
+        const options = normalizeOptions(context.options[0], context.parserOptions.ecmaVersion);
 
-        const sourceCode = context.sourceCode;
+        const sourceCode = context.getSourceCode();
 
         /**
          * Gets the last item of the given node.
@@ -243,18 +242,8 @@ module.exports = {
                     node: lastItem,
                     loc: trailingToken.loc,
                     messageId: "unexpected",
-                    *fix(fixer) {
-                        yield fixer.remove(trailingToken);
-
-                        /*
-                         * Extend the range of the fix to include surrounding tokens to ensure
-                         * that the element after which the comma is removed stays _last_.
-                         * This intentionally makes conflicts in fix ranges with rules that may be
-                         * adding or removing elements in the same autofix pass.
-                         * https://github.com/eslint/eslint/issues/15660
-                         */
-                        yield fixer.insertTextBefore(sourceCode.getTokenBefore(trailingToken), "");
-                        yield fixer.insertTextAfter(sourceCode.getTokenAfter(trailingToken), "");
+                    fix(fixer) {
+                        return fixer.remove(trailingToken);
                     }
                 });
             }
@@ -292,18 +281,8 @@ module.exports = {
                         end: astUtils.getNextLocation(sourceCode, trailingToken.loc.end)
                     },
                     messageId: "missing",
-                    *fix(fixer) {
-                        yield fixer.insertTextAfter(trailingToken, ",");
-
-                        /*
-                         * Extend the range of the fix to include surrounding tokens to ensure
-                         * that the element after which the comma is inserted stays _last_.
-                         * This intentionally makes conflicts in fix ranges with rules that may be
-                         * adding or removing elements in the same autofix pass.
-                         * https://github.com/eslint/eslint/issues/15660
-                         */
-                        yield fixer.insertTextBefore(trailingToken, "");
-                        yield fixer.insertTextAfter(sourceCode.getTokenAfter(trailingToken), "");
+                    fix(fixer) {
+                        return fixer.insertTextAfter(trailingToken, ",");
                     }
                 });
             }
@@ -346,7 +325,7 @@ module.exports = {
             "always-multiline": forceTrailingCommaIfMultiline,
             "only-multiline": allowTrailingCommaIfMultiline,
             never: forbidTrailingComma,
-            ignore() {}
+            ignore: () => {}
         };
 
         return {

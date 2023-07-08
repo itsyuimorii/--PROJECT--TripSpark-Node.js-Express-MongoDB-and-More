@@ -10,15 +10,15 @@ const astUtils = require("./utils/ast-utils");
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('../shared/types').Rule} */
 module.exports = {
     meta: {
         type: "layout",
 
         docs: {
-            description: "Enforce consistent spacing inside array brackets",
+            description: "enforce consistent spacing inside array brackets",
+            category: "Stylistic Issues",
             recommended: false,
-            url: "https://eslint.org/docs/latest/rules/array-bracket-spacing"
+            url: "https://eslint.org/docs/rules/array-bracket-spacing"
         },
 
         fixable: "whitespace",
@@ -53,7 +53,7 @@ module.exports = {
     },
     create(context) {
         const spaced = context.options[0] === "always",
-            sourceCode = context.sourceCode;
+            sourceCode = context.getSourceCode();
 
         /**
          * Determines whether an option is set, relative to the spacing option.
