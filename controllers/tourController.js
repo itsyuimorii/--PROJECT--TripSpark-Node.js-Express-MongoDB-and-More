@@ -13,10 +13,9 @@ const Tour = require('../models/tourModels');
 exports.getAllTours = async (req, res) => {
   
   try{
-    console.log(req.query);   
-    
+    // console.log(req.query);   
     //BUILD QUERY
-    //1A) Filtering
+    //1A) FILTERING
     // Create a queryObj object from req.query and copy it to a new object using the destructuring syntax
     const queryObj = {...req.query};
     
@@ -26,15 +25,16 @@ exports.getAllTours = async (req, res) => {
     // Use a forEach loop to iterate through each element of the excludedFields array and delete the corresponding field in the queryObj object
     excludedFields.forEach(el => delete queryObj[el]);
     
-    //Outputs the original req.query object and a filtered queryObj object for debugging and checking.
+    // Outputs the original req.query object and a filtered queryObj object for debugging and checking.
     console.log(req.query, queryObj);
 
     //Use the filtered queryObj object as a parameter to find matching tour routes in the database.
     // const query = await Tour.find(queryObj);
 
      //EXECUTE QUERY
-    const tours = await query;
-    //1B) Advanced Filtering
+    // let querys = Tour.find(queryObj);
+
+    //1B) ADVANCED FILTERING
     // Convert the queryObj object to a JSON string and assign it to the queryStr variable.
     let queryStr = JSON.stringify(queryObj);
     
@@ -42,24 +42,46 @@ exports.getAllTours = async (req, res) => {
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
     console.log(JSON.parse(queryStr));
     // Use the filtered queryStr object as a parameter to find matching tour routes in the database.
-    const query = Tour.find(JSON.parse(queryStr));
+    let query = Tour.find(JSON.parse(queryStr));
 
-    //2) Sorting
+    //2) SORTING
+    let sortBy = '';
     // Check if the sort property exists in req.query
     if(req.query.sort){
       // If it exists, use the sort method to sort the query results by the value of the sort property
       // Use the split method to split the sort property into an array of strings
       // Use the join method to join the array of strings into a string
       const sortBy = req.query.sort.split(',').join(' ');
+      console.log(sortBy);
       // Use the sort method to sort the query results by the value of the sortBy variable
       query = query.sort(sortBy);
-    }else{
+    } else {
       // If it does not exist, use the sort method to sort the query results by the value of the sort property
       query = query.sort('-createdAt');
     }
+
+    //3) FIELD LIMITING
+    if(req.query.fields){
+      // Use the split method to split the fields property into an array of strings
+      // Use the join method to join the array of strings into a string
+      const fields = req.query.fields.split(',').join(' ');
+      // Use the select method to limit the query results to the value of the fields variable
+      query = query.select(fields);
+    } else {
+      // If it does not exist, use the select method to limit the query results to the value of the fields property
+      query = query.select('-__v');
+    }
+
+    //4) PAGINATION
+    // Convert the page property in req.query to a number and assign it to the page variable
+    const page = req.query.page * 1 || 1;
+    // Convert the limit property in req.query to a number and assign it to the limit variable
+    const limit = req.query.limit * 1 || 100;
     
 
+
     //SEND RESPONSE
+    const tours = await query;
     res.status(200).json({
       status: 'success',
       results: tours.length,
@@ -102,22 +124,22 @@ exports.createTour = async (req, res) => {
     });
   };
 };
-  exports.updateTour = async(req, res) => {
-    try{
-      const updateTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true
-      });
-      
-    }catch(err){
-    }
-    res.status(200).json({
-      status: 'success',
-      data: {
-        tour: updateTour
-      }
+exports.updateTour = async(req, res) => {
+  try{
+    const updateTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
     });
+    
+  }catch(err){
   }
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: updateTour
+    }
+  });
+}
 
 
 exports.deleteTour = async (req, res) => {
