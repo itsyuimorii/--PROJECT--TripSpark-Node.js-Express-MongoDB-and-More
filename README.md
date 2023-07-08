@@ -163,7 +163,7 @@ out to solve;
 - [Aggregate middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
 
 ### `toJSON` and `toObject` 
- 
+
 This code sets the `toJSON` and `toObject` options on the `tourSchema` object, enabling it to include virtual properties when converting to a JSON string or a regular JavaScript object.
 
 Here are the comments for this code:
@@ -185,11 +185,93 @@ This code is typically used within the Mongoose schema definition. By setting th
 Virtual properties are properties that are not stored in the database but are computed or derived based on existing properties. They can be used to provide additional data or calculated property values without the need to explicitly store them in the database.
 
 With the `toJSON` and `toObject` options set, when you convert the document to a JSON string using `JSON.stringify()` or to a regular JavaScript object using the `toObject()` method, the virtual properties will be included in the result.
- 
+
 
 ### import import-dev-data.js into mongodb
 
 ```bash
-
 node dev-data/data/import-dev-data.js --import
 ```
+
+> import-dev-data.js
+```js
+const fs = require('fs');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const Tour = require('./../../models/tourModels');
+
+dotenv.config({ path: './config.env' });
+
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(DB, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true
+    });
+    console.log('DB connection successful!');
+  } catch (err) {
+    console.error('DB connection failed:', err);
+    process.exit(1);
+  }
+};
+
+// READ JSON FILE
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8')
+);
+
+// IMPORT DATA INTO DB
+const importDevData = async () => {
+  try {
+    await connectDB();
+    await Tour.create(tours);
+    console.log('Data successfully loaded!');
+  } catch (err) {
+    console.error('Error loading data:', err);
+  }
+  process.exit();
+};
+
+// DELETE ALL DATA FROM DB
+const deleteDevData = async () => {
+  try {
+    await connectDB();
+    await Tour.deleteMany();
+    console.log('Data successfully deleted!');
+  } catch (err) {
+    console.error('Error deleting data:', err);
+  }
+  process.exit();
+};
+
+if (process.argv[2] === '--import') {
+  importDevData();
+} else if (process.argv[2] === '--delete') {
+  deleteDevData();
+}
+
+```
+ ### req.query
+req.query is taken from the request object req in the Express framework. In Express, req.query is an object that contains the query parameters of a URL. When a client sends an HTTP request with query parameters, Express parses the query parameters in the URL and stores them in the req.query object.
+
+
+This code is used to construct a query object and find matching tours from the database based on that query object.
+
+
+> tourController.js
+```js 
+
+```
+
+
+
+
+
+  
