@@ -109,16 +109,56 @@ exports.getTourStats = async (req, res, next) => {
     },
     {
       $sort: { avgPrice: 1 }
-    }
+    },
     // {
     //   $match: { _id: { $ne: 'EASY' } }
     // }
   ]);
-
   res.status(200).json({
     status: 'success',
     data: {
-      stats
+      tour: stats
     }
   });
+};
+
+exports.getMonthlyPlan = async (req, res) => {
+  try {
+    const year = req.params.year * 1;
+    const monthlyPlan = await Tour.aggregate([
+      {
+        //unwind deconstructs an array field from the input documents to output a document for each element.
+        $unwind: '$startDates'
+      },
+      {
+        //match filters the documents to pass only the documents that match the specified condition(s) to the next pipeline stage.
+        $match: {
+          startDates: {
+            $gte: new Date(`${year}-01-01`),
+            $lte: new Date(`${year}-12-31`)
+          }
+        }
+      },
+      {
+        //group aggregates documents by some specified expression and outputs to the next stage a document for each distinct grouping.
+        $group: {
+          _id: { $month: '$startDates' },
+          numTourStarts: { $sum: 1 },
+          //push adds an element to an array.
+          tours: { $push: '$name' }
+        }
+      },
+    ]);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tour: monthlyPlan
+      }
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid data sent!'
+    });
+  };
 };
