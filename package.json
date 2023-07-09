@@ -13,7 +13,7 @@
     "nodemon": "^1.14.9",
     "slugify": "^1.6.6",
     "to": "^0.2.9",
-    "update": "^0.7.4",
+    "update": "^0.4.2",
     "validator": "^13.9.0"
   },
   "devDependencies": {

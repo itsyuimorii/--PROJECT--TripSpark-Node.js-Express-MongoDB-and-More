@@ -148,6 +148,16 @@ exports.getMonthlyPlan = async (req, res) => {
           tours: { $push: '$name' }
         }
       },
+      {
+        //addFields adds new fields to documents.
+        $addFields: { month: '$_id' }
+      },
+      {
+        //project specifies the inclusion of fields to output in the documents.
+        $project: {
+          _id: 0
+        }
+      },
     ]);
     res.status(201).json({
       status: 'success',
