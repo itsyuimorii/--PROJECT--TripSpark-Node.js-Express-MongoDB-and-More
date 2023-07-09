@@ -73,12 +73,12 @@ exports.getAllTours = async (req, res) => {
     }
 
     //4) PAGINATION
-    // Convert the page property in req.query to a number and assign it to the page variable
-    qwery =query.skip(20).limit(10);
-    // Convert the limit property in req.query to a number and assign it to the limit variable
+    // Use the limit method to limit the query results to the value of the limit property
+    const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 100;
+    const skip = (page - 1) * limit;
     
-
+    query = query.skip(skip).limit(limit);
 
     //SEND RESPONSE
     const tours = await query;
