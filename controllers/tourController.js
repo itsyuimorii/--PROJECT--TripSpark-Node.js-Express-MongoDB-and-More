@@ -1,154 +1,167 @@
-/**
- * @fileoverview This file contains all the functions that are used to handle the requests from the client side.
- * @exports getAllTours: This function is used to get all the tours from the database.
- * @exports getTour: This function is used to get a specific tour from the database.
- * @exports createTour: This function is used to create a new tour in the database.
- * @exports updateTour: This function is used to update a specific tour in the database.
- * @exports deleteTour: This function is used to delete a specific tour from the database.
- 
- */
+const Tour = require('./../models/tourModel');
+const catchAsync = require('./../utils/catchAsync');
+const factory = require('./handlerFactory');
+const AppError = require('./../utils/appError');
 
-const Tour = require('../models/tourModels');
+exports.aliasTopTours = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
+  next();
+};
 
-exports.getAllTours = async (req, res) => {
-  
-  try{
-    // console.log(req.query);   
-    //BUILD QUERY
-    //1A) FILTERING
-    // Create a queryObj object from req.query and copy it to a new object using the destructuring syntax
-    const queryObj = {...req.query};
-    
-    // Create an array of fields to be excluded, which should not be contained in queryObj
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    
-    // Use a forEach loop to iterate through each element of the excludedFields array and delete the corresponding field in the queryObj object
-    excludedFields.forEach(el => delete queryObj[el]);
-    
-    // Outputs the original req.query object and a filtered queryObj object for debugging and checking.
-    console.log(req.query, queryObj);
+exports.getAllTours = factory.getAll(Tour);
+exports.getTour = factory.getOne(Tour, { path: 'reviews' });
+exports.createTour = factory.createOne(Tour);
+exports.updateTour = factory.updateOne(Tour);
+exports.deleteTour = factory.deleteOne(Tour);
 
-    //Use the filtered queryObj object as a parameter to find matching tour routes in the database.
-    // const query = await Tour.find(queryObj);
-
-    //EXECUTE QUERY
-    // let querys = Tour.find(queryObj);
-
-    //1B) ADVANCED FILTERING
-    // Convert the queryObj object to a JSON string and assign it to the queryStr variable.
-    let queryStr = JSON.stringify(queryObj);
-    
-    // Use regular expressions to replace specific words (gte, gt, lte, lt) in queryStr with MongoDB query operators ($gte, $gt, $lte, $lt)
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
-    console.log(JSON.parse(queryStr));
-    // Use the filtered queryStr object as a parameter to find matching tour routes in the database.
-    let query = Tour.find(JSON.parse(queryStr));
-
-    //2) SORTING
-    let sortBy = '';
-    // Check if the sort property exists in req.query
-    if(req.query.sort){
-      // If it exists, use the sort method to sort the query results by the value of the sort property
-      // Use the split method to split the sort property into an array of strings
-      // Use the join method to join the array of strings into a string
-      const sortBy = req.query.sort.split(',').join(' ');
-      console.log(sortBy);
-      // Use the sort method to sort the query results by the value of the sortBy variable
-      query = query.sort(sortBy);
-    } else {
-      // If it does not exist, use the sort method to sort the query results by the value of the sort property
-      query = query.sort('-createdAt');
-    }
-
-    //3) FIELD LIMITING
-    if(req.query.fields){
-      // Use the split method to split the fields property into an array of strings
-      // Use the join method to join the array of strings into a string
-      const fields = req.query.fields.split(',').join(' ');
-      // Use the select method to limit the query results to the value of the fields variable
-      query = query.select(fields);
-    } else {
-      // If it does not exist, use the select method to limit the query results to the value of the fields property
-      query = query.select('-__v');
-    }
-
-    //4) PAGINATION
-    // Convert the page property in req.query to a number and assign it to the page variable
-    qwery =query.skip(20).limit(10);
-    // Convert the limit property in req.query to a number and assign it to the limit variable
-    const limit = req.query.limit * 1 || 100;
-    
-
-
-    //SEND RESPONSE
-    const tours = await query;
-    res.status(200).json({
-      status: 'success',
-      results: tours.length,
-      data: {
-        tours
+exports.getTourStats = catchAsync(async (req, res, next) => {
+  const stats = await Tour.aggregate([
+    {
+      $match: { ratingsAverage: { $gte: 4.5 } }
+    },
+    {
+      $group: {
+        _id: { $toUpper: '$difficulty' },
+        numTours: { $sum: 1 },
+        numRatings: { $sum: '$ratingsQuantity' },
+        avgRating: { $avg: '$ratingsAverage' },
+        avgPrice: { $avg: '$price' },
+        minPrice: { $min: '$price' },
+        maxPrice: { $max: '$price' }
       }
-    });
-  } catch(err){
-    res.status(404).json({
-      status: 'fail',
-      message: err
-    });
-  }
-};
+    },
+    {
+      $sort: { avgPrice: 1 }
+    }
+    // {
+    //   $match: { _id: { $ne: 'EASY' } }
+    // }
+  ]);
 
-exports.getTour = async (req, res) => {
-  try{
-    const tour = await Tour.findById(req.params.id);
-  }catch(err){
-    res.status(404).json({
-      status: 'fail',
-      message: err
-    });
-  }
-};
-
-exports.createTour = async (req, res) => {
-  try {
-    const newTour = await Tour.create(req.body);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        tour: newTour
-      }
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: 'Invalid data sent!'
-    });
-  };
-};
-exports.updateTour = async(req, res) => {
-  try{
-    const updateTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true
-    });
-    
-  }catch(err){
-  }
   res.status(200).json({
     status: 'success',
     data: {
-      tour: updateTour
+      stats
     }
   });
-}
+});
 
+exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
+  const year = req.params.year * 1; // 2021
 
-exports.deleteTour = async (req, res) => {
-  try{
-    await Tour.findByIdAndDelete(req.params.id);
-  }catch(err){
-  res.status(204).json({
+  const plan = await Tour.aggregate([
+    {
+      $unwind: '$startDates'
+    },
+    {
+      $match: {
+        startDates: {
+          $gte: new Date(`${year}-01-01`),
+          $lte: new Date(`${year}-12-31`)
+        }
+      }
+    },
+    {
+      $group: {
+        _id: { $month: '$startDates' },
+        numTourStarts: { $sum: 1 },
+        tours: { $push: '$name' }
+      }
+    },
+    {
+      $addFields: { month: '$_id' }
+    },
+    {
+      $project: {
+        _id: 0
+      }
+    },
+    {
+      $sort: { numTourStarts: -1 }
+    },
+    {
+      $limit: 12
+    }
+  ]);
+
+  res.status(200).json({
     status: 'success',
-    data: null
+    data: {
+      plan
+    }
   });
+});
+
+// /tours-within/:distance/center/:latlng/unit/:unit
+// /tours-within/233/center/34.111745,-118.113491/unit/mi
+exports.getToursWithin = catchAsync(async (req, res, next) => {
+  const { distance, latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
+
+  if (!lat || !lng) {
+    next(
+      new AppError(
+        'Please provide latitutr and longitude in the format lat,lng.',
+        400
+      )
+    );
   }
-};
+
+  const tours = await Tour.find({
+    startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } }
+  });
+
+  res.status(200).json({
+    status: 'success',
+    results: tours.length,
+    data: {
+      data: tours
+    }
+  });
+});
+
+exports.getDistances = catchAsync(async (req, res, next) => {
+  const { latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  const multiplier = unit === 'mi' ? 0.000621371 : 0.001;
+
+  if (!lat || !lng) {
+    next(
+      new AppError(
+        'Please provide latitutr and longitude in the format lat,lng.',
+        400
+      )
+    );
+  }
+
+  const distances = await Tour.aggregate([
+    {
+      $geoNear: {
+        near: {
+          type: 'Point',
+          coordinates: [lng * 1, lat * 1]
+        },
+        distanceField: 'distance',
+        distanceMultiplier: multiplier
+      }
+    },
+    {
+      $project: {
+        distance: 1,
+        name: 1
+      }
+    }
+  ]);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: distances
+    }
+  });
+});
