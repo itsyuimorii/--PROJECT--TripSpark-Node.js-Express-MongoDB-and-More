@@ -14,6 +14,7 @@
 Master Node by building a real-world RESTful API and web app (with authentication, Node.js security, payments & more)
 
 <div align="center">
+
 |Section|Topic|Problem Sets|
 |-----|-----------|----|
 |Section 0 | RestfulAPI |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/01_restfulapi)|
@@ -30,6 +31,11 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
 
 
 
+
+
+
+
+<div align="left">
 
 ## ⚙️ Starting a Node.js Project
 
