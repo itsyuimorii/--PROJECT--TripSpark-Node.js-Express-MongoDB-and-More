@@ -79,6 +79,7 @@ exports.getAllTours = async (req, res) => {
     const skip = (page - 1) * limit;
     
     query = query.skip(skip).limit(limit);
+    
 
     //SEND RESPONSE
     const tours = await query;
