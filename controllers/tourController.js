@@ -31,7 +31,7 @@ exports.getAllTours = async (req, res) => {
     //Use the filtered queryObj object as a parameter to find matching tour routes in the database.
     // const query = await Tour.find(queryObj);
 
-     //EXECUTE QUERY
+    //EXECUTE QUERY
     // let querys = Tour.find(queryObj);
 
     //1B) ADVANCED FILTERING
@@ -74,7 +74,7 @@ exports.getAllTours = async (req, res) => {
 
     //4) PAGINATION
     // Convert the page property in req.query to a number and assign it to the page variable
-    const page = req.query.page * 1 || 1;
+    qwery =query.skip(20).limit(10);
     // Convert the limit property in req.query to a number and assign it to the limit variable
     const limit = req.query.limit * 1 || 100;
     
