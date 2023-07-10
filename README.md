@@ -341,7 +341,18 @@ class APIFeatures {
 ### DATA validation
 
  
+### Error handling with Express
 
+```bash
+npm i ndb --save-dev
+```
 
+```json
+"scripts": {
+  "start": "nodemon server.js",
+  "start:prod": "NODE_ENV=production nodemon server.js",
+  "debug": "ndb npm start"
+}
+```
 
   
