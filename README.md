@@ -323,12 +323,22 @@ class APIFeatures {
 ```
 
 ###  Aggregation Pipeline: Matching and Grouping Documents
- 
+
 > [Aggregation document](https://docs.mongodb.com/manual/aggregation/)
-  
+
 ### Vitual Properties
 
+> https://mongoosejs.com/docs/tutorials/virtuals.html
 
+### [Mongoose middleware](https://mongoosejs.com/docs/middleware.html)
+
+ 
+- QUERY MIDDLEWARE
+- MODEL MIDDLEWARE
+- DOCUMENT MIDDLEWARE 
+- AGGREGATION MIDDLEWARE
+
+### DATA validation
 
  
 
