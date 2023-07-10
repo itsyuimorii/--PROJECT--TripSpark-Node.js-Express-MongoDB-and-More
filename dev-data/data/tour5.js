@@ -1,8 +1,8 @@
 /* eslint-disable */
 const tour5 = {
   id: 5,
-  name: '櫻花之行（さくらの旅）',
-  startLocation: '京都, 小樽, 橫濱',
+  name: 'The Sports Lover',
+  startLocation: 'California, USA',
   nextStartDate: 'July 2021',
   duration: 14,
   maxGroupSize: 8,
@@ -11,7 +11,7 @@ const tour5 = {
   numReviews: 23,
   regPrice: 2997,
   shortDescription:
-    '桜、古城、温泉、和風文化を堪能する、完璧な日本旅行',
+    'Surfing, skating, parajumping, rock climbing and more, all in one tour',
   longDescription:
-    'この旅では、日本の有名な桜の風景を楽しんだり、古代の城を訪れたり、温泉で癒やされたり、豊かな和風文化に触れたりすることができます。東京の繁華街で現代的な魅力を感じたり、京都の寺院で心を落ち着かせたりするなど、一生忘れられない日本旅行が待っています。ぜひ、この神秘的で美しい国を探索する旅にご参加ください！'
+    'Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nVoluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur!'
 };
