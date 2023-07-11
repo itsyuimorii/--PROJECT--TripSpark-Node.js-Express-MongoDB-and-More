@@ -1,68 +1,53 @@
-/**
- * APIFeatures class for filtering, sorting, limiting fields, and pagination
- * @class APIFeatures
- * @param {Object} query - MongoDB query object
- * @param {Object} queryString - Query string parameters
- * @returns {Object} - Updated APIFeatures object
- * @example
- * const features = new APIFeatures(Tour.find(), req.query)
- * .filter()
- * .sort()
- * .limitFields()
- * .paginate();
- */
-
 class APIFeatures {
   constructor(query, queryString) {
-    this.query = query; // MongoDB query object
-    this.queryString = queryString; // Query string parameters
+    this.query = query;
+    this.queryString = queryString;
   }
 
   filter() {
-    const queryObj = { ...this.queryString }; // Copy query string object
-    const excludedFields = ['page', 'sort', 'limit', 'fields']; // Array of excluded fields from filtering
-    excludedFields.forEach(el => delete queryObj[el]); // Remove excluded fields from query object
+    const queryObj = { ...this.queryString };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach(el => delete queryObj[el]);
 
-    // Advanced filtering
-    let queryStr = JSON.stringify(queryObj); // Convert query object to string
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`); // Replace comparison operators with MongoDB operators
+    // 1B) Advanced filtering
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
 
-    this.query = this.query.find(JSON.parse(queryStr)); // Apply the filtered query to the MongoDB find operation
+    this.query = this.query.find(JSON.parse(queryStr));
 
-    return this; // Return the updated APIFeatures object for method chaining
+    return this;
   }
 
   sort() {
     if (this.queryString.sort) {
-      const sortBy = this.queryString.sort.split(',').join(' '); // Get sorting fields from query string and join them with space
-      this.query = this.query.sort(sortBy); // Apply sorting to the MongoDB query using the provided fields
+      const sortBy = this.queryString.sort.split(',').join(' ');
+      this.query = this.query.sort(sortBy);
     } else {
-      this.query = this.query.sort('-createdAt'); // Default sorting by 'createdAt' field in descending order
+      this.query = this.query.sort('-createdAt');
     }
 
-    return this; // Return the updated APIFeatures object for method chaining
+    return this;
   }
 
   limitFields() {
     if (this.queryString.fields) {
-      const fields = this.queryString.fields.split(',').join(' '); // Get selected fields from query string and join them with space
-      this.query = this.query.select(fields); // Select only the specified fields in the MongoDB query
+      const fields = this.queryString.fields.split(',').join(' ');
+      this.query = this.query.select(fields);
     } else {
-      this.query = this.query.select('-__v'); // Exclude the '__v' field by default
+      this.query = this.query.select('-__v');
     }
 
-    return this; // Return the updated APIFeatures object for method chaining
+    return this;
   }
 
   paginate() {
-    const page = this.queryString.page * 1 || 1; // Get the page number from query string (default to 1 if not provided)
-    const limit = this.queryString.limit * 1 || 100; // Get the limit per page from query string (default to 100 if not provided)
-    const skip = (page - 1) * limit; // Calculate the number of documents to skip based on page and limit
+    const page = this.queryString.page * 1 || 1;
+    const limit = this.queryString.limit * 1 || 100;
+    const skip = (page - 1) * limit;
 
-    this.query = this.query.skip(skip).limit(limit); // Apply pagination to the MongoDB query
+    this.query = this.query.skip(skip).limit(limit);
 
-    return this; // Return the updated APIFeatures object for method chaining
+    return this;
   }
 }
-
-module.exports = APIFeatures; // Export the APIFeatures class for use in other modules
+module.exports = APIFeatures;
