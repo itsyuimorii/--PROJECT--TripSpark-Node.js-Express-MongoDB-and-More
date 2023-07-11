@@ -97,13 +97,13 @@ npm run start:prod
 ```
 
 > mongoose
-  
+
   ```bash
   npm i mongoose --legacy-peer-deps
   
   ```
-  
-  
+
+
 This command will set the `NODE_ENV` environment variable to `"production"` and then use `nodemon` to run the `server.js` file. Running the server in production mode may involve additional optimizations and configurations specific to your application.
 
 Note that when using `npm run` to execute a script, you need to prefix the script name with `run`.
@@ -138,18 +138,18 @@ npm install eslint prettier eslint-config-prettier eslint-plugin-prettier eslint
 
 **APPLICATION LOGIC** (controller)
 
-- 👉  Codethatisonlyconcernedabouttheapplication’s implementation, not the underlying business problem we’re trying to solve (e.g. showing and selling tours);
-- 👉  Concernedaboutmanagingrequestsandresponses;
-- 👉  Abouttheapp’smoretechnicalaspects;
-- 👉  Bridgebetweenmodelandviewlayers.
+- 👉  Code that is only concerned about the application’s implementation, not the underlying business problem we’re trying to solve (e.g. showing and selling tours);
+- 👉  Concerned about managing requests and responses;
+- 👉  About the app’ s more technical aspects;
+- 👉  Bridge between model and view layers.
 
 **BUSINESS LOGIC**(model)
 
-- 👉 Codethatactuallysolvesthebusinessproblemweset
+- 👉 Code that actually solve sthe business problem we set
 
 out to solve;
 
-- 👉 Directlyrelatedtobusinessrules,howthebusiness works,andbusinessneeds;
+- 👉 Directly related to business rules, how the business works,and business needs;
 
 - 👉 Examples:
 
@@ -163,13 +163,13 @@ out to solve;
 
 **Fat models/thin controllers:** offload as much logic as possible into the models, and keep the controllers as simple and lean as possible.
 
-### [Mongoose](https://mongoosejs.com/docs/guide.html)
+### Mongoose(https://mongoosejs.com/docs/guide.html)
 
 - [Model methods](https://mongoosejs.com/docs/models.html)
 
 - [Queries methods](https://mongoosejs.com/docs/queries.html)
 
-### [Mongoose query middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
+### Mongoose query middleware(https://mongoosejs.com/docs/middleware.html#types-of-middleware)
 
 - [Document middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
 - [Query middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
@@ -340,7 +340,7 @@ class APIFeatures {
 
 ### [Mongoose middleware](https://mongoosejs.com/docs/middleware.html)
 
- 
+
 - QUERY MIDDLEWARE
 - MODEL MIDDLEWARE
 - DOCUMENT MIDDLEWARE 
@@ -348,7 +348,7 @@ class APIFeatures {
 
 ### DATA validation
 
- 
+
 ### Error handling with Express
 
 ```bash
@@ -363,4 +363,24 @@ npm i ndb --save-dev
 }
 ```
 
-  
+
+### Error handling 
+
+- operational errors
+Problems that we can predict will happen at some point, so we just need to handle them in advance.
+
+👉 Invalid path accessed;
+👉 Invalid user input (validator error
+from mongoose);
+👉 Failed to connect to server;
+👉 Failed to connect to database;
+👉 Request timeout;
+
+- programming errors
+Bugs that we developers introduce into our code. Difficult to find and handle.
+
+👉 Reading properties on undefined;
+👉 Passing a number where an object
+is expected;
+👉 Using await without async;
+👉 Using req.query instead of req.body;

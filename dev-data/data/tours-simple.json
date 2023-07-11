@@ -62,7 +62,7 @@
   },
   {
     "id": 4,
-    "name": "北海道の自然探検⛰️",
+    "name": "北海道の自然探検❄️",
     "duration": 6,
     "maxGroupSize": 12,
     "difficulty": "difficult",
@@ -77,7 +77,7 @@
   },
   {
     "id": 5,
-    "name": "広島の歴史と平和巡り❄️",
+    "name": "広島の歴史と平和巡り🛣️",
     "duration": 3,
     "maxGroupSize": 18,
     "difficulty": "easy",
@@ -213,7 +213,7 @@
     },
     {
       "id": 14,
-      "name": "滋賀の琵琶湖クルーズ⛵️",
+      "name": "滋賀の琵琶湖クルーズ🐡",
       "duration": 1,
       "maxGroupSize": 30,
       "difficulty": "easy",
