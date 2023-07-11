@@ -52,19 +52,19 @@ const sendErrorProd = (err, res) => {
 module.exports = (err, req, res, next) => {
   // console.log(err.stack);
 
-  err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.statusCode = err.statusCode || 500; // Set status code to 500 if not provided
+  err.status = err.status || 'error'; // Set status to 'error' if not provided
 
   if (process.env.NODE_ENV === 'development') {
-    sendErrorDev(err, res);
+    sendErrorDev(err, res); // Send detailed error response in development mode
   } else if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
 
-    if (error.name === 'CastError') error = handleCastErrorDB(error);
-    if (error.code === 11000) error = handleDuplicateFieldsDB(error);
-    if (error.name === 'ValidationError')
-      error = handleValidationErrorDB(error);
+    // Error handling for specific types of errors in production mode
+    if (error.name === 'CastError') error = handleCastErrorDB(error); // Handle MongoDB CastError
+    if (error.code === 11000) error = handleDuplicateFieldsDB(error); // Handle duplicate fields error
+    if (error.name === 'ValidationError') error = handleValidationErrorDB(error); // Handle MongoDB ValidationError
 
-    sendErrorProd(error, res);
+    sendErrorProd(error, res); // Send generic error response in production mode
   }
 };
