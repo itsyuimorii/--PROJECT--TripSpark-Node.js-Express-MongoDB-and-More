@@ -30,7 +30,7 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
 
 <div align="left">
 
- 
+
 
 ## ☻ Starting a Node.js Project
 
@@ -482,3 +482,7 @@ Bugs that we developers introduce into our code. Difficult to find and handle.
 is expected;
 👉 Using await without async;
 👉 Using req.query instead of req.body;
+
+### JWT authentication
+
+> [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
