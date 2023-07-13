@@ -4,7 +4,6 @@
 </div>
 
 
-
 <div align=center>
     <a href="https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/">Course Link</a> |
     <a href=" ">Final Project</a> |
@@ -29,43 +28,142 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
 |Section 9 | ET Cetera |  |
 </div>
 
-
-
-
-
-
-
 <div align="left">
 
-## ⚙️ Starting a Node.js Project
+ 
 
-1. Install Project Dependencies
+## ☻ Starting a Node.js Project
 
-   Run the following command in the project's root directory to download and install all the required dependencies:
+1. Install Project Dependencies:
+   - Run `npm install` in the project's root directory to download and install all the required dependencies.
+   - You can use the `--dev` flag with `npm install` to install development dependencies.
 
-   ```bash
-   npm install
-   ```
+2. Configure Environment Variables and Configuration Files:
+   - If your project requires environment variables or configuration files, follow the project documentation to configure them.
+   - Create a `.env` file and fill in the necessary variables or modify relevant sections in the project's configuration files.
 
-   Optionally, if you have specific development dependencies, you can use the `--dev` flag:
+3. Start the Project:
+   - In the project's root directory, run `npm start` to start the project.
+   - This will execute the command specified in the `"start"` script in the `package.json` file.
 
-   ```bash
-   npm install --dev
-   ```
+4. `package.json`:
+   - The `package.json` file contains metadata about your project and its dependencies.
+   - It includes scripts that can be executed using `npm run <script-name>`.
+   - The `"start"` script is used to start the project using `nodemon` to automatically restart the server on file changes.
+   - The `"start:prod"` script starts the project in production mode.
+   - The `"debug"` script can be used for debugging with `ndb`.
 
-2. Configure Environment Variables and Configuration Files (If Required)
+5. `config.env`:
+   - The `config.env` file contains environment variables used in the project.
+   - It defines variables like `NODE_ENV`, `PORT`, and `DATABASE`.
+   - The `DATABASE_PASSWORD` variable is specific to your MongoDB connection.
 
-   If your project requires environment variables or configuration files, follow the instructions in the project documentation to configure them. This may involve creating a `.env` file and filling in the necessary variables or modifying relevant sections in the project's configuration files.
+6. `server.js`:
+   - The `server.js` file is the entry point of your application.
+   - It imports necessary modules like `mongoose` and `dotenv`.
+   - It sets up a connection to the MongoDB database using the `mongoose.connect()` method.
+   - The `dotenv.config()` method loads environment variables from the `config.env` file.
+   - The `app` module is imported from the `app.js` file.
+   - The server listens on the specified `port` and logs a success message.
+   - Error handling is implemented for unhandled exceptions and rejections.
 
-3. Start the Project
+These steps and code snippets provide a basic structure for starting a Node.js project with dependencies, environment variables, and server setup.
 
-   In the project's root directory, run the following command to start the project:
+```json
+{
+  "name": "yume-kobo",
+  "version": "1.0.0",
+  "description": "Learning node, express and mongoDB",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "debug": "ndb server.js"
+  },
+  "author": "itsyuimorii",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^7.0.0",
+    "express": "^4.18.2",
+    "mongodb": "^5.7.0",
+    "mongoose": "^5.13.19",
+    "morgan": "^1.10.0",
+    "slugify": "^1.3.4",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^1.19.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
+```
 
-   ```bash
-   npm start
-   ```
+> **config.env**
 
-   
+```bash
+NODE_ENV=development
+PORT=3000
+DATABASE=mongodb+srv://itsyuimorii:<PASSWORD>@cluster0.r7nrqwu.mongodb.net/Yumekobo?retryWrites=true&w=majority
+
+DATABASE_PASSWORD=lX0f8LolPcIEQvOk
+```
+
+> **server.js**
+
+```js
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+process.on('uncaughtException', err => {
+  console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
+  console.log(err.name, err.message);
+  process.exit(1);
+});
+
+dotenv.config({ path: './config.env' });
+const app = require('./app');
+
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('DB connection successful!'));
+
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+
+process.on('unhandledRejection', err => {
+  console.log('UNHANDLED REJECTION! 💥 Shutting down...');
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
+```
+
 
 ## 📗 Takeaway
 
