@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide a password'],
     minlength: 8,
+    //never show password in any output
     select: false
   },
   passwordConfirm: {
@@ -55,7 +56,6 @@ const userSchema = new mongoose.Schema({
 userSchema.pre('save', async function(next) {
   // Only run this function if password was actually modified
   if (!this.isModified('password')) return next();
-
   // Hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
   // Delete passwordConfirm field
@@ -75,10 +75,13 @@ userSchema.pre(/^find/, function(next) {
   next();
 });
 
+
+//INSTANCE METHOD: CHECK IF PASSWORD IS MATCHED WITH THE ONE IN DATABASE
 userSchema.methods.correctPassword = async function(
   candidatePassword,
   userPassword
 ) {
+  //return true or false
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
@@ -107,7 +110,6 @@ userSchema.methods.createPasswordResetToken = function() {
   console.log({ resetToken }, this.passwordResetToken);
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
-
   return resetToken;
 };
 
