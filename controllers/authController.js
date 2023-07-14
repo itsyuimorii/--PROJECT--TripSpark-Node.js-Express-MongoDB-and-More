@@ -8,17 +8,19 @@ const catchAsync = require('./../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const AppError = require('./../utils/appError');
 
-//--------------**CREATE TOKEN**----------------
+//--------------**GENERATE TOKEN**----------------
 const signToken = id => {
+    //payload, secret, options
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN
     });
 }
 
-//--------------**CREATE TOKEN**----------------
+//--------------**CREATE TOKEN & SEND TOKEN**----------------
 const createSendToken = (user, statusCode, res) => {
+    //create token
     const token = signToken(user._id);
- 
+
     res.status(statusCode).json({
       status: 'success',
       token,

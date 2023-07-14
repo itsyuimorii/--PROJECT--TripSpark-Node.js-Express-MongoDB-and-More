@@ -485,6 +485,106 @@ is expected;
 
 ### JWT authentication
 
-> [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+reference:  [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) ｜ jwt.io(https://jwt.io/)
 
+> install	
+
+```
+$ npm install jsonwebtoken
+```
+
+> usage
+
+```
+jwt.sign(payload, secretOrPrivateKey, [options, callback])
+```
+
+ 👇The input parameter id of the function is a unique identifier for the user (e.g. user ID) and is used as the content in the payload of the JWT.
+
+```js
+//--------------**GENERATE TOKEN**----------------
+const signToken = id => {
+    //payload, secret, options
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN
+    });
+}
+```
+
+Inside the function, the jwt.sign method is called to generate the JWT, and it accepts three parameters:
+
+**payload:** this is an object { id } containing the user's ID, which serves as the JWT's payload.
+**secret:** this is the key used to sign the JWT, process.env.JWT_SECRET. The key should be a secure random string to ensure that only the server with the correct key can authenticate and decode the JWT.
+**options:** this is an object containing options to set the attributes of the JWT, such as the expiration time (expiresIn). process.env.JWT_EXPIRES_IN should be a string indicating the expiration time, which can be a time interval (e.g., '2d' for 2 days) or a specific date/time.
+Finally, the signToken function returns the generated JWT and assigns it to the variable token in the following code, which may be used after a successful user authentication or registration to generate and provide the JWT to the user for further authorisation or authentication.
+
+
+
+👇This code defines a function called createSendToken that creates and sends a JWT (JSON Web Token) to the user.
+
+```js
+//--------------**CREATE TOKEN & SEND TOKEN**----------------
+const createSendToken = (user, statusCode, res) => {
+    //create token
+    const token = signToken(user._id);
+
+    res.status(statusCode).json({
+      status: 'success',
+      token,
+      data: {
+        user
+      }
+    });
+};
+```
+
+The input parameters of the function are as follows:
+
+**user:** user object containing information about the user.
+**statusCode:** HTTP status code, used to set the status code of the response.
+**res:** the response object, used to send the response to the client.
+Inside the function, it first calls the signToken function and passes in the user's _id to generate the JWT, then uses the res.status() method to set the status code of the response, which is usually the value of the statusCode parameter.
+
+Next, it uses the res.json() method to send a JSON-formatted response to the client. The response contains the following:
+
+**status:** a string indicating the status of the operation, here it is set to 'success'.
+**token:** the generated JWT, the value returned by the signToken function.
+**data:** an object containing the user's data. Here, the user parameter is passed into the data attribute.
+The purpose of this function is to generate a JWT after user authentication or registration, and respond to the client with the user data. The client can save the JWT and use it in future requests to authenticate and obtain authorisation.
+
+
+
+> Testing:  generate token
+
+```
+post: 127.0.0.1:3000/api/v1/users/signup
+```
+
+```json
+body JSON 
+{
+"name": "test3",
+"email":"test3@yuimorii.com",
+"password":"11111111",
+"passwordConfirm":"11111111"
+}
+```
+
+```json
+{
+    "status": "success",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjBiNTljZjkyZTg0ZWY4MmFmN2YxYSIsImlhdCI6MTY4OTMwMjQyOCwiZXhwIjoxNjk3MDc4NDI4fQ.nFDpacNCRnhyRtBhjA4oqJprDd6yQQrLwwI7eVdgiE4",
+    "data": {
+        "user": {
+            "role": "user",
+            "active": true,
+            "_id": "64b0b59cf92e84ef82af7f1a",
+            "name": "test3",
+            "email": "test3@yuimorii.com",
+            "password": "$2a$12$PpQtl4bBQBEYkKj03aUGJu3VpO8mxh1L9Y1c0q7vbV7Lkfa6/R10C",
+            "__v": 0
+        }
+    }
+}
+```
 
