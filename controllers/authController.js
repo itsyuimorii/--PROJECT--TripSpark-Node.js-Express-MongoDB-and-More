@@ -61,7 +61,7 @@ exports.login = catchAsync(async(req, res, next) => {
  
 //--------------**PROTECT ROUTES**----------------
 exports.protect = catchAsync(async (req, res, next) => {
-  // 1) Getting token and check of it's there
+    // 1) Getting token and check of it's there
     let token;
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         token = req.headers.authorization.split(' ')[1];
@@ -70,10 +70,12 @@ exports.protect = catchAsync(async (req, res, next) => {
     if(!token) {
         return next(new AppError('💥You are not logged in! Please log in to get access.', 401));
     }
-  // 2) Verification token
+    //  authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjBiYmQ5Zjg3NzgyZjhhYzg5OTI3NyIsImlhdCI6MTY4OTMwNDAyNSwiZXhwIjoxNjk3MDgwMDI1fQ.Ic45IuSdWdMfXmFT701iTQDlFpplQcg2wHHMceqx39s',
+    
+    // 2) Verification token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
-
+    console.log(decoded);
+    //{ id: '64b0bbd9f87782f8ac899277', iat: 1689304025, exp: 1697080025 }
  
   // 3) Check if user still exists
  
