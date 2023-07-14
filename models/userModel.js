@@ -52,7 +52,7 @@ const userSchema = new mongoose.Schema({
 });
 
 
-//MONGOOSE MIDDLEWARE
+//----------------**MIDDLEWARE: ENCRYPT PASSWORD**----------------
 userSchema.pre('save', async function(next) {
   // Only run this function if password was actually modified
   if (!this.isModified('password')) return next();
@@ -62,21 +62,20 @@ userSchema.pre('save', async function(next) {
   this.passwordConfirm = undefined;
   next();
 });
-
+//----------------**MIDDLEWARE: SET PASSWORD CHANGED AT**----------------
 userSchema.pre('save', function(next) {
   if (!this.isModified('password') || this.isNew) return next();
   this.passwordChangedAt = Date.now() - 1000;
   next();
 });
-
+//----------------**MIDDLEWARE: FILTER OUT INACTIVE USERS**----------------
 userSchema.pre(/^find/, function(next) {
   // this points to the current query
   this.find({ active: { $ne: false } });
   next();
 });
 
-
-//INSTANCE METHOD: CHECK IF PASSWORD IS MATCHED WITH THE ONE IN DATABASE
+//----------------**INSTANCE METHOD: COMPARE PASSWORD**----------------
 userSchema.methods.correctPassword = async function(
   candidatePassword,
   userPassword
@@ -84,7 +83,7 @@ userSchema.methods.correctPassword = async function(
   //return true or false
   return await bcrypt.compare(candidatePassword, userPassword);
 };
-
+//----------------**INSTANCE METHOD: CHECK IF PASSWORD CHANGED AFTER JWT ISSUED**----------------
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
   if (this.passwordChangedAt) {
     const changedTimestamp = parseInt(
@@ -99,6 +98,7 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
   return false;
 };
 
+//----------------**INSTANCE METHOD: CREATE PASSWORD RESET TOKEN**----------------`
 userSchema.methods.createPasswordResetToken = function() {
   const resetToken = crypto.randomBytes(32).toString('hex');
 
@@ -113,6 +113,7 @@ userSchema.methods.createPasswordResetToken = function() {
   return resetToken;
 };
 
+//----------------**CREATE MODEL**----------------
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

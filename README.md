@@ -178,6 +178,18 @@ In your `package.json` file, you can configure the `scripts` section to define c
 }
 ```
 
+**"start:prod": "NODE_ENV=production nodemon server.js"**
+This is a customised command to start the application in production environment mode. The command NODE_ENV=production sets the environment variable NODE_ENV to "production" so that specific settings or configurations can be made in the application based on this variable. Next, use the nodemon package to monitor and automatically restart the server.js file. Such a command is typically used to run an application in a production environment.
+
+**"start": "nodemon server.js"**
+This is another custom command to start the application in default mode. It simply uses the nodemon package to monitor and automatically restart the server.js file. Commands like this are typically used to run an application in a development environment.
+
+Using the npm start command will run the command specified by the start attribute, i.e. "nodemon server.js", and use the nodemon package to run the server.js file in the development environment.
+
+Use the npm start start:prod command to run the command specified by the start:prod attribute, "NODE_ENV=production nodemon server.js", and use the nodemon package to run the server.js file in the production environment with the environment variable NODE_ENV set to "production". and set the environment variable NODE_ENV to "production".
+
+
+
 With the above configuration, you can run the server using the following commands:
 
 > Start server in development mode
@@ -587,4 +599,6 @@ body JSON
     }
 }
 ```
+
+
 
