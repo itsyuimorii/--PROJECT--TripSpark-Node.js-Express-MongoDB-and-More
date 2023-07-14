@@ -3,6 +3,7 @@ const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 
+//--------------**ALIAS TOP 5 CHEAP TOURS**----------------
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
   req.query.sort = '-ratingsAverage,price';
@@ -10,7 +11,7 @@ exports.aliasTopTours = (req, res, next) => {
   next();
 };
 
-
+//--------------**GET ALL TOURS**----------------
 exports.getAllTours = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Tour.find(), req.query)
     .filter()
@@ -28,7 +29,7 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
     }
   });
 });
-
+//--------------**GET TOUR BY ID**----------------
 exports.getTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
   // Tour.findOne({ _id: req.params.id })
@@ -44,7 +45,7 @@ exports.getTour = catchAsync(async (req, res, next) => {
     }
   });
 });
-
+//--------------**CREATE TOUR**----------------
 exports.createTour = catchAsync(async (req, res, next) => {
   const newTour = await Tour.create(req.body);
 
@@ -55,7 +56,7 @@ exports.createTour = catchAsync(async (req, res, next) => {
     }
   });
 });
-
+//--------------**UPDATE TOUR**----------------
 exports.updateTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -73,7 +74,7 @@ exports.updateTour = catchAsync(async (req, res, next) => {
     }
   });
 });
-
+//--------------**DELETE TOUR**----------------
 exports.deleteTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findByIdAndDelete(req.params.id);
 
@@ -86,7 +87,7 @@ exports.deleteTour = catchAsync(async (req, res, next) => {
     data: null
   });
 });
-
+//--------------**GET TOUR STATS**----------------
 exports.getTourStats = catchAsync(async (req, res, next) => {
   const stats = await Tour.aggregate([
     {
@@ -118,7 +119,7 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
     }
   });
 });
-
+//--------------**GET MONTHLY PLAN**----------------
 exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
   const year = req.params.year * 1; // 2021
 
