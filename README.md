@@ -472,8 +472,6 @@ npm i ndb --save-dev
   "debug": "ndb npm start"
 }
 ```
-
-
 ### Error handling 
 
 - operational errors
