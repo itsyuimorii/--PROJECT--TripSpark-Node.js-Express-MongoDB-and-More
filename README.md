@@ -598,4 +598,31 @@ body JSON
 }
 ```
 
+### Environments setup @postman
 
+**Dev:yumekobo** -> http://127.0.0.1:3000/
+
+**Prod:yumekobo** -> ??
+
+> eg. {{URL}}api/v1/tours
+
+
+
+
+
+According to the provided code, it is a method to **set an environment variable** in the Postman testing tool using a **pre-request script.**  
+
+```javascript
+pm.environment.set("jwt", pm.response.json().token);
+```
+
+The purpose of this code is to extract a value named "token" from the response of a request and set it as the value of an environment variable in Postman named "jwt".
+
+Let's break down each part:
+
+- `pm.environment.set`: This is one of the built-in functions in the Postman script, used to set the value of an environment variable.
+- `"jwt"`: This is the name of the environment variable that is being set, the variable name that will be assigned the value.
+- `pm.response.json()`: This is a combination of Postman built-in objects and methods used to access the response of a request and parse it as JSON format.
+- `.token`: Assuming the response is a JSON object, this code retrieves the value of the property named "token" from the JSON object using the `.token` syntax.
+
+Therefore, the purpose of this code is to extract the value of "token" from the request response and set it as the value of the "jwt" environment variable in Postman. This allows you to reference this environment variable in subsequent requests or scripts.
