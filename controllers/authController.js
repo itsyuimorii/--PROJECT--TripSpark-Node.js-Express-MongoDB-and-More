@@ -73,14 +73,15 @@ exports.protect = catchAsync(async (req, res, next) => {
     //  authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjBiYmQ5Zjg3NzgyZjhhYzg5OTI3NyIsImlhdCI6MTY4OTMwNDAyNSwiZXhwIjoxNjk3MDgwMDI1fQ.Ic45IuSdWdMfXmFT701iTQDlFpplQcg2wHHMceqx39s',
 
     // 2) Verification token
- 
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     console.log(decoded);
     //{ id: '64b0bbd9f87782f8ac899277', iat: 1689304025, exp: 1697080025 }
  
     // 3) Check if user still exists
     const freshUser = await User.findById(decoded.id);
+
     user.findOne({ _id: decoded.id });
+    //if user is not found or deleted
     if(!currentUser) {
         return next(new AppError('💥The user belonging to this token do es no longer exist.', 401));
     } 
@@ -90,10 +91,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     }
   // GRANT ACCESS TO PROTECTED ROUTE
     req.user = currentUser;
-
-  
   next();
- 
 });
 
  
