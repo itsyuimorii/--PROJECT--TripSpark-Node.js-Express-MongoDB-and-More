@@ -19,18 +19,13 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
 |Section 0 | RestfulAPI |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/01_restfulapi)|
 |Section 1| Mongodb & mongoose |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/02_mongodb)|
 |Section 2 | Error handling |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/03_error_handling)|
-|Section 3|  |  |
-|Section 4 | Libraries |  |
-| Section 5 | Unit Tests |  |
-|Section 6 | File I/O |  |
-|Section 7 | Regular Expressions |  |
-|Section 8 | OOP |  |
-|Section 9 | ET Cetera |  |
-</div>
+|Section 3| Authentication_and_security | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/04_authentication_and_security) |
+|Section 4 | Modelling_data_and_advanced_mongoose | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/05_modelling_data_and_advanced_mongoose) |
+| Section 5 | Server_Side_Rendering-with_Pug_Templates | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/06_Server_Side_Rendering-with_Pug_Templates) |
+|Section 6 | Advanced_Features_Payments_Email_File_Uploads | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/07_Advanced_Features_-Payments_Email_File-Uploads) |
+|Section 7 | Setting_Up_Git_and_Deployment | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/08_Setting_Up_Git_and_Deployment) |
 
 <div align="left">
-
-
 
 ## ☻ Starting a Node.js Project
 
@@ -608,8 +603,6 @@ body JSON
 
 
 
-
-
 According to the provided code, it is a method to **set an environment variable** in the Postman testing tool using a **pre-request script.**  
 
 ```javascript
@@ -625,4 +618,4 @@ Let's break down each part:
 - `pm.response.json()`: This is a combination of Postman built-in objects and methods used to access the response of a request and parse it as JSON format.
 - `.token`: Assuming the response is a JSON object, this code retrieves the value of the property named "token" from the JSON object using the `.token` syntax.
 
-Therefore, the purpose of this code is to extract the value of "token" from the request response and set it as the value of the "jwt" environment variable in Postman. This allows you to reference this environment variable in subsequent requests or scripts.
+Therefore, the purpose of this code is to extract the value of "token" from the request response and set it as the value of the "jwt" environment variable in Postman. This allows you to reference this environment variable in subsequent requests or scripts.![advancedpostman01](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/advancedpostman01.png)
