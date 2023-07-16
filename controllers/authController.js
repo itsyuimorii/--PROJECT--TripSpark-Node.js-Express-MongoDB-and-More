@@ -107,3 +107,15 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
  
+//--------------**RESTRICT TO**----------------
+//closure function- a function that returns another function, and that inner function is called later on in your code, and that inner function has access to the variable environment of the outer function, even after the outer function has returned.
+exports.restrictTo = (...roles) => {
+    return (req, res, next) => {
+        //roles ['admin', 'lead-guide']. role='user'
+        if(!roles.includes(req.user.role)) {
+            return next(new AppError('You do not have permission to perform this action', 403));
+        }
+        // console.log(req.user.role);
+        next();
+    }
+}
