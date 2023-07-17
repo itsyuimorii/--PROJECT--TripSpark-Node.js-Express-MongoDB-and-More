@@ -628,4 +628,99 @@ Therefore, the purpose of this code is to extract the value of "token" from the 
 npm i nodemailer
 ```
 
+
+> [SendGrid](https://sendgrid.com/)
+
+> [mailtrap](https://mailtrap.io/home)
+
+1. create inbox
+2. copy SMTP settings
+3. paste in .env file
+
+```bash
+EMAIL_USERNAME= fde41408f46031
+EMAIL_PASSWORD=4bf6283683be45
+EMAIL_HOST=sandbox.smtp.mailtrap.io
+EMAIL_PORT=25
+```
+
+> /utils/email.js
+
 ```js
+/**
+ * @description: This file is used to send emails to the user
+ */
+const nodemailer = require('nodemailer');  
+
+//----------------**SEND EMAIL**----------------
+const sendEmail = async options => {
+  // 1) Create a transporter
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD
+    }
+  });
+
+  // 2) Define the email options
+  const mailOptions = {
+    from: 'yui morii <user@yuimorii.com>',
+    to: options.email,
+    subject: options.subject,
+    text: options.message
+  };
+
+  // 3) Actually send the email
+  await transporter.sendMail(mailOptions);
+};
+
+module.exports = sendEmail;
+```
+
+> controllers/authController.js
+
+```js
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  // 1) Get user based on POSTed email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return next(new AppError('There is no user with email address.', 404));
+  }
+
+  // 2) Generate the random reset token
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
+
+  // 3) Send it to user's email
+  const resetURL = `${req.protocol}://${req.get(
+    'host'
+  )}/api/v1/users/resetPassword/${resetToken}`;
+
+  const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'Your password reset token (valid for 10 min)',
+      message
+    });
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Token sent to email!'
+    });
+  } catch (err) {
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({ validateBeforeSave: false });
+
+    return next(
+      new AppError('There was an error sending the email. Try again later!'),
+      500
+    );
+  }
+});
+```
+
