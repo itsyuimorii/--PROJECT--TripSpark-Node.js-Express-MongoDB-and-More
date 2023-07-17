@@ -619,3 +619,13 @@ Let's break down each part:
 - `.token`: Assuming the response is a JSON object, this code retrieves the value of the property named "token" from the JSON object using the `.token` syntax.
 
 Therefore, the purpose of this code is to extract the value of "token" from the request response and set it as the value of the "jwt" environment variable in Postman. This allows you to reference this environment variable in subsequent requests or scripts.![advancedpostman01](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/advancedpostman01.png)
+
+### Nodemailer
+
+> [Nodemailer](https://nodemailer.com/about/)
+
+```bash 
+npm i nodemailer
+```
+
+```js
