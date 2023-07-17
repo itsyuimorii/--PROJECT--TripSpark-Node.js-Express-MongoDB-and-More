@@ -27,7 +27,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide a password'],
     minlength: 8,
-    //never show password in any output
     select: false
   },
   passwordConfirm: {
@@ -36,7 +35,7 @@ const userSchema = new mongoose.Schema({
     validate: {
       // This only works on CREATE and SAVE!!!
       validator: function(el) {
-        return el === this.password; 
+        return el === this.password;
       },
       message: 'Passwords are not the same!'
     }
@@ -56,8 +55,10 @@ const userSchema = new mongoose.Schema({
 userSchema.pre('save', async function(next) {
   // Only run this function if password was actually modified
   if (!this.isModified('password')) return next();
+
   // Hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
+
   // Delete passwordConfirm field
   this.passwordConfirm = undefined;
   next();
@@ -75,44 +76,61 @@ userSchema.pre(/^find/, function(next) {
   next();
 });
 
+
 //----------------**INSTANCE METHOD: COMPARE PASSWORD**----------------
+/**
+ * 
+ * @param {string} candidatePassword 
+ * @param {string} userPassword 
+ * @returns  {boolean}
+ */
 userSchema.methods.correctPassword = async function(
   candidatePassword,
   userPassword
 ) {
-  //return true or false
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 //----------------**INSTANCE METHOD: CHECK IF PASSWORD CHANGED AFTER JWT ISSUED**----------------
-
+/**
+ * 
+ * @param {number} JWTTimestamp 
+ * @returns {boolean}
+ */
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
   if (this.passwordChangedAt) {
+    //Convert password change times to timestamps
     const changedTimestamp = parseInt(
       this.passwordChangedAt.getTime() / 1000,
       10
     );
+    // If the JWT timestamp is earlier than the password change timestamp, the password has been changed after the JWT was issued
     return JWTTimestamp < changedTimestamp;
   }
+
   // False means NOT changed
   return false;
 };
 
 //----------------**INSTANCE METHOD: CREATE PASSWORD RESET TOKEN**----------------
+/**
+ * @returns {string} resetToken
+ */
 userSchema.methods.createPasswordResetToken = function() {
+  // Create a random token
   const resetToken = crypto.randomBytes(32).toString('hex');
-
+  // Encrypt the token and store it in the database
   this.passwordResetToken = crypto
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
-
+  // Set the token expiration date
   console.log({ resetToken }, this.passwordResetToken);
-
+  // 10 minutes
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
   return resetToken;
 };
 
-//----------------**CREATE MODEL**----------------
+ 
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;

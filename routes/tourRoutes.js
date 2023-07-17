@@ -30,7 +30,9 @@ router
     tourController.updateTour
   )
   .delete(
+    //check if user is logged in
     authController.protect,
+    //check if user is admin or lead-guide
     authController.restrictTo('admin', 'lead-guide'),
     tourController.deleteTour
   );
