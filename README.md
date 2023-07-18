@@ -679,6 +679,7 @@ const sendEmail = async options => {
 module.exports = sendEmail;
 ```
 
+### ----------------**Forget password**----------------
 > controllers/authController.js
 
 ```js
@@ -809,19 +810,6 @@ userSchema.pre('save', async function(next) {
   this.passwordConfirm = undefined;
   next();
 });
-//----------------**MIDDLEWARE: SET PASSWORD CHANGED AT**----------------
-userSchema.pre('save', function(next) {
-  if (!this.isModified('password') || this.isNew) return next();
-  this.passwordChangedAt = Date.now() - 1000;
-  next();
-});
-//----------------**MIDDLEWARE: FILTER OUT INACTIVE USERS**----------------
-userSchema.pre(/^find/, function(next) {
-  // this points to the current query
-  this.find({ active: { $ne: false } });
-  next();
-});
-
 
 //----------------**INSTANCE METHOD: COMPARE PASSWORD**----------------
 /**
@@ -897,7 +885,8 @@ Here is the flow of the `exports.forgotPassword` function across the `authContro
 
 Summary: The `exports.forgotPassword` function is defined in the `authController.js` file, which retrieves user information by importing the `User` model from the `userModel.js` file. The function calls `user.createPasswordResetToken()` to generate a password reset token and uses the `sendEmail` function to send the reset password email. In the `userRoutes.js` file, the `exports.forgotPassword` function is bound to the corresponding route. When a user visits that route, the logic within the `exports.forgotPassword` function is executed.
 
-#### RESET PASSWORD
+### ----------------**Reset password**----------------
+
 
 ```js
 
@@ -954,3 +943,55 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 ![2](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/2.png)
 
 ![3](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/3.png)
+
+### ----------------**Update password**----------------
+
+> models/userModel.js
+
+```js
+//----------------**MIDDLEWARE: SET PASSWORD CHANGED AT**----------------
+userSchema.pre('save', function(next) {
+  if (!this.isModified('password') || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+//----------------**MIDDLEWARE: FILTER OUT INACTIVE USERS**----------------
+userSchema.pre(/^find/, function(next) {
+  // this points to the current query
+  this.find({ active: { $ne: false } });
+  next();
+});
+
+```
+
+> controllers/authController.js
+
+```js
+//--------------**UPDATE PASSWORD**----------------
+/**
+ * Updates the user's password.
+ * @throws {AppError} - If the user is not found.
+ * @throws {AppError} - If the POSTed password is incorrect.
+ * @throws {AppError} - If the POSTed password and passwordConfirm do not match.
+ */
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  // 1) Get user from collection
+  const user = await User.findById(req.user.id).select('+password');
+
+  // 2) Check if POSTed current password is correct
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+    return next(new AppError('Your current password is wrong.', 401));
+  }
+
+  // 3) If so, update password
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  await user.save();
+  // User.findByIdAndUpdate will NOT work as intended!
+
+  // 4) Log user in, send JWT
+  createSendToken(user, 200, res);
+});
+
+```
+

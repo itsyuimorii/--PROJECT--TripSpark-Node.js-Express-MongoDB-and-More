@@ -152,10 +152,6 @@ exports.restrictTo = (...roles) => {
 //--------------**FORGOT PASSWORD**----------------
 /**
  * Creates a password reset token and sends it to the user's email. 
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @param {function} next - The next middleware function.
- * @returns {Object} - The response object.
  * @throws {AppError} - If there is no user with the email address.
  * @throws {AppError} - If there is an error sending the email.
  */
@@ -202,10 +198,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 //--------------**RESET PASSWORD**----------------
 /**
  * Resets the user's password.
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @param {function} next - The next middleware function.
- * @returns {Object} - The response object.
  * @throws {AppError} - If the token is invalid or has expired.
  * @throws {AppError} - If the user is not found.
  */
@@ -238,6 +230,12 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
 
 //--------------**UPDATE PASSWORD**----------------
+/**
+ * Updates the user's password.
+ * @throws {AppError} - If the user is not found.
+ * @throws {AppError} - If the POSTed password is incorrect.
+ * @throws {AppError} - If the POSTed password and passwordConfirm do not match.
+ */
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
   const user = await User.findById(req.user.id).select('+password');

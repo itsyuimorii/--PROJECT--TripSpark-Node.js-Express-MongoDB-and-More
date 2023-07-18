@@ -63,6 +63,7 @@ userSchema.pre('save', async function(next) {
   this.passwordConfirm = undefined;
   next();
 });
+
 //----------------**MIDDLEWARE: SET PASSWORD CHANGED AT**----------------
 userSchema.pre('save', function(next) {
   if (!this.isModified('password') || this.isNew) return next();
