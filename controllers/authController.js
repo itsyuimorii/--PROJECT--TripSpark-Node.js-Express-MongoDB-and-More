@@ -152,15 +152,20 @@ exports.restrictTo = (...roles) => {
 //--------------**FORGOT PASSWORD**----------------
 /**
  * Creates a password reset token and sends it to the user's email. 
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {function} next - The next middleware function.
+ * @returns {Object} - The response object.
+ * @throws {AppError} - If there is no user with the email address.
+ * @throws {AppError} - If there is an error sending the email.
  */
 exports.forgotPassword = catchAsync(async (req, res, next) => {
-  // 1) Get user based on POSTed email
+  // 1) Get user based on POSTed email-find the user in db using the supplied email address by calling the User.findOne method.
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
     return next(new AppError('There is no user with email address.', 404));
   }
-
-  // 2) Generate the random reset token
+  // 2) Generate the random reset token - call the createPasswordResetToken method on the user object to generate the token.
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
 
@@ -195,14 +200,22 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 });
 
 //--------------**RESET PASSWORD**----------------
+/**
+ * Resets the user's password.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {function} next - The next middleware function.
+ * @returns {Object} - The response object.
+ * @throws {AppError} - If the token is invalid or has expired.
+ * @throws {AppError} - If the user is not found.
+ */
 exports.resetPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on the token
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
-
-  const user = await User.findOne({
+   const user = await User.findOne({
     passwordResetToken: hashedToken,
     passwordResetExpires: { $gt: Date.now() }
   });
@@ -218,6 +231,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   // 3) Update changedPasswordAt property for the user
+
   // 4) Log the user in, send JWT
   createSendToken(user, 200, res);
 });

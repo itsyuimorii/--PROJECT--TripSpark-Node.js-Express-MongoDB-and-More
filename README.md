@@ -682,13 +682,23 @@ module.exports = sendEmail;
 > controllers/authController.js
 
 ```js
+
+//--------------**FORGOT PASSWORD**----------------
+/**
+ * Creates a password reset token and sends it to the user's email. 
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {function} next - The next middleware function.
+ * @returns {Object} - The response object.
+ * @throws {AppError} - If there is no user with the email address.
+ * @throws {AppError} - If there is an error sending the email.
+ */
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on POSTed email
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
     return next(new AppError('There is no user with email address.', 404));
   }
-
   // 2) Generate the random reset token
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
@@ -722,5 +732,236 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     );
   }
 });
+
+//--------------**RESET PASSWORD**----------------
+exports.resetPassword = catchAsync(async (req, res, next) => {
+  // 1) Get user based on the token
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(req.params.token)
+    .digest('hex');
+
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() }
+  });
+
+  // 2) If token has not expired, and there is user, set the new password
+  if (!user) {
+    return next(new AppError('Token is invalid or has expired', 400));
+  }
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+  await user.save();
+
+  // 3) Update changedPasswordAt property for the user
+  
+  // 4) Log the user in, send JWT
+  createSendToken(user, 200, res);
+});
 ```
 
+> routes/userRoutes.js
+
+```
+router.post('/forgotPassword', authController.forgotPassword);
+router.patch('/resetPassword/:token', authController.resetPassword);
+```
+
+>  models/userModel.js
+
+```js
+// models/userModel.js
+
+const crypto = require('crypto');
+const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
+
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'Please tell us your name!']
+  },
+  email: {
+    type: String,
+    required: [true, 'Please provide your email'],
+    unique: true,
+    lowercase: true,
+    validate: [validator.isEmail, 'Please provide a valid email']
+  },
+  photo: String,
+  role: {
+    type: String,
+    enum: ['user', 'guide', 'lead-guide', 'admin'],
+    default: 'user'
+  },
+  password: {
+    type: String,
+    required: [true, 'Please provide a password'],
+    minlength: 8,
+    select: false
+  },
+  passwordConfirm: {
+    type: String,
+    required: [true, 'Please confirm your password'],
+    validate: {
+      // This only works on CREATE and SAVE!!!
+      validator: function(el) {
+        return el === this.password;
+      },
+      message: 'Passwords are not the same!'
+    }
+  },
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
+  active: {
+    type: Boolean,
+    default: true,
+    select: false
+  }
+});
+
+
+//----------------**MIDDLEWARE: ENCRYPT PASSWORD**----------------
+userSchema.pre('save', async function(next) {
+  // Only run this function if password was actually modified
+  if (!this.isModified('password')) return next();
+
+  // Hash the password with cost of 12
+  this.password = await bcrypt.hash(this.password, 12);
+
+  // Delete passwordConfirm field
+  this.passwordConfirm = undefined;
+  next();
+});
+//----------------**MIDDLEWARE: SET PASSWORD CHANGED AT**----------------
+userSchema.pre('save', function(next) {
+  if (!this.isModified('password') || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+//----------------**MIDDLEWARE: FILTER OUT INACTIVE USERS**----------------
+userSchema.pre(/^find/, function(next) {
+  // this points to the current query
+  this.find({ active: { $ne: false } });
+  next();
+});
+
+
+//----------------**INSTANCE METHOD: COMPARE PASSWORD**----------------
+/**
+ * 
+ * @param {string} candidatePassword 
+ * @param {string} userPassword 
+ * @returns  {boolean}
+ */
+userSchema.methods.correctPassword = async function(
+  candidatePassword,
+  userPassword
+) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
+//----------------**INSTANCE METHOD: CHECK IF PASSWORD CHANGED AFTER JWT ISSUED**----------------
+/**
+ * 
+ * @param {number} JWTTimestamp 
+ * @returns {boolean}
+ */
+userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+  if (this.passwordChangedAt) {
+    //Convert password change times to timestamps
+    const changedTimestamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    // If the JWT timestamp is earlier than the password change timestamp, the password has been changed after the JWT was issued
+    return JWTTimestamp < changedTimestamp;
+  }
+
+  // False means NOT changed
+  return false;
+};
+
+//----------------**INSTANCE METHOD: CREATE PASSWORD RESET TOKEN**----------------
+/**
+ * @returns {string} resetToken
+ */
+userSchema.methods.createPasswordResetToken = function() {
+  // Create a random token
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  // Encrypt the token and store it in the database
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  // Set the token expiration date
+  console.log({ resetToken }, this.passwordResetToken);
+  // 10 minutes
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
+};
+
+ 
+const User = mongoose.model('User', userSchema);
+module.exports = User;
+
+```
+
+Here is the flow of the `exports.forgotPassword` function across the `authController.js`, `userModel.js`, and `userRoutes.js` files:
+
+1. In the `authController.js` file, the `exports.forgotPassword` function is defined to handle the logic for the forgot password feature.
+2. In the `authController.js` file, the `User` model is imported using the `require` statement, which is located in the `userModel.js` file.
+3. In the `exports.forgotPassword` function, the `User.findOne` method is called to search for the user in the database using the provided email address.
+4. In the `userModel.js` file, the `userSchema.methods.createPasswordResetToken` method is called to generate a password reset token and store it in the `passwordResetToken` field of the user model.
+5. In the `userModel.js` file, the `createPasswordResetToken` method is exported as `createPasswordResetToken`.
+6. In the `authController.js` file, the `user.createPasswordResetToken()` method is called to generate the password reset token.
+7. In the `authController.js` file, the `sendEmail` function is called, passing an options object containing the user's email, subject, and message, to send an email to the user.
+8. In the `userRoutes.js` file, the `exports.forgotPassword` function is bound to the `/forgotPassword` route using `router.post('/forgotPassword', authController.forgotPassword)`.
+9. When a user accesses the `/forgotPassword` route, the `exports.forgotPassword` function is triggered, and the logic within it is executed.
+
+Summary: The `exports.forgotPassword` function is defined in the `authController.js` file, which retrieves user information by importing the `User` model from the `userModel.js` file. The function calls `user.createPasswordResetToken()` to generate a password reset token and uses the `sendEmail` function to send the reset password email. In the `userRoutes.js` file, the `exports.forgotPassword` function is bound to the corresponding route. When a user visits that route, the logic within the `exports.forgotPassword` function is executed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+以下是 `exports.resetPassword` 函数在 `authController.js`、`userModel.js` 和 `userRoutes.js` 文件之间的流程：
+
+1. 在 `authController.js` 文件中定义了 `exports.resetPassword` 函数，该函数负责处理重置密码的逻辑。
+2. 在 `authController.js` 文件中，通过 `require` 语句导入了 `User` 模型，该模型位于 `userModel.js` 文件中。
+3. 在 `exports.resetPassword` 函数中，通过调用 `User.findOne` 方法，使用哈希后的密码重置令牌和有效期检查重置密码的凭证。
+4. 在 `userModel.js` 文件中，使用 `userSchema.methods` 定义了 `changedPasswordAfter` 方法，用于检查用户在 JWT 发布后是否更改了密码。
+5. 在 `userModel.js` 文件中，将 `userSchema.methods.changedPasswordAfter` 方法导出为 `changedPasswordAfter`。
+6. 在 `authController.js` 文件中，通过调用 `user.changedPasswordAfter` 方法检查用户是否在 JWT 发布后更改了密码。
+7. 在 `authController.js` 文件中，通过调用 `createSendToken` 函数，创建并发送带有新 JWT 的响应给用户。
+8. 在 `userRoutes.js` 文件中，通过 `router.patch('/resetPassword/:token', authController.resetPassword)` 将 `exports.resetPassword` 函数绑定到 `/resetPassword/:token` 路由。
+9. 当用户访问 `/resetPassword/:token` 路由时，将触发 `exports.resetPassword` 函数，并执行其中的逻辑。
+
+总结：`exports.resetPassword` 函数定义在 `authController.js` 文件中，该函数通过导入 `User` 模型从 `userModel.js` 文件中获取用户信息。函数调用 `user.changedPasswordAfter` 检查用户是否在 JWT 发布后更改了密码，并通过调用 `createSendToken` 函数创建新的 JWT 并将其发送回用户。在 `userRoutes.js` 文件中，将 `exports.resetPassword` 函数绑定到相应的路由上。当用户访问该路由时，将执行 `exports.resetPassword` 函数中的逻辑。
+
+
+
+
+
+![1](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/1.png)
+
+![2](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/2.png)
+
+![3](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/3.png)
