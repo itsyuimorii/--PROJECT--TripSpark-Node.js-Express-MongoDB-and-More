@@ -66,7 +66,9 @@ userSchema.pre('save', async function(next) {
 
 //----------------**MIDDLEWARE: SET PASSWORD CHANGED AT**----------------
 userSchema.pre('save', function(next) {
+  // Only run this function if password was actually modified
   if (!this.isModified('password') || this.isNew) return next();
+  // Set passwordChangedAt to the current time minus 1 second
   this.passwordChangedAt = Date.now() - 1000;
   next();
 });

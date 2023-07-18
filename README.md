@@ -994,4 +994,9 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 });
 
 ```
+> routes/userRoutes.js
+```js
+router.patch('/updateMyPassword', authController.protect,authController.updatePassword);
+```
 
+![4](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/4.png)
