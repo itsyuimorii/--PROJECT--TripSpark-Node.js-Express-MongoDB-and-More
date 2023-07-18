@@ -732,35 +732,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     );
   }
 });
-
-//--------------**RESET PASSWORD**----------------
-exports.resetPassword = catchAsync(async (req, res, next) => {
-  // 1) Get user based on the token
-  const hashedToken = crypto
-    .createHash('sha256')
-    .update(req.params.token)
-    .digest('hex');
-
-  const user = await User.findOne({
-    passwordResetToken: hashedToken,
-    passwordResetExpires: { $gt: Date.now() }
-  });
-
-  // 2) If token has not expired, and there is user, set the new password
-  if (!user) {
-    return next(new AppError('Token is invalid or has expired', 400));
-  }
-  user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
-  user.passwordResetToken = undefined;
-  user.passwordResetExpires = undefined;
-  await user.save();
-
-  // 3) Update changedPasswordAt property for the user
-  
-  // 4) Log the user in, send JWT
-  createSendToken(user, 200, res);
-});
 ```
 
 > routes/userRoutes.js
@@ -926,21 +897,39 @@ Here is the flow of the `exports.forgotPassword` function across the `authContro
 
 Summary: The `exports.forgotPassword` function is defined in the `authController.js` file, which retrieves user information by importing the `User` model from the `userModel.js` file. The function calls `user.createPasswordResetToken()` to generate a password reset token and uses the `sendEmail` function to send the reset password email. In the `userRoutes.js` file, the `exports.forgotPassword` function is bound to the corresponding route. When a user visits that route, the logic within the `exports.forgotPassword` function is executed.
 
+#### RESET PASSWORD
 
+```js
 
+//--------------**RESET PASSWORD**----------------
+exports.resetPassword = catchAsync(async (req, res, next) => {
+  // 1) Get user based on the token
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(req.params.token)
+    .digest('hex');
 
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() }
+  });
 
+  // 2) If token has not expired, and there is user, set the new password
+  if (!user) {
+    return next(new AppError('Token is invalid or has expired', 400));
+  }
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+  await user.save();
 
-
-
-
-
-
-
-
-
-
-
+  // 3) Update changedPasswordAt property for the user
+  
+  // 4) Log the user in, send JWT
+  createSendToken(user, 200, res);
+});
+```
 
 以下是 `exports.resetPassword` 函数在 `authController.js`、`userModel.js` 和 `userRoutes.js` 文件之间的流程：
 
