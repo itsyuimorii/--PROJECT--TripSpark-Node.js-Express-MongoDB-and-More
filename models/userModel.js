@@ -40,9 +40,11 @@ const userSchema = new mongoose.Schema({
       message: 'Passwords are not the same!'
     }
   },
+  //for password reset
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  //for deactivating user 
   active: {
     type: Boolean,
     default: true,
