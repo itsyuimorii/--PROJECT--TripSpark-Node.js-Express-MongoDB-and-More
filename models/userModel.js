@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
-  //for deactivating user 
+  //for deactivating user, not deleting from db
   active: {
     type: Boolean,
     default: true,

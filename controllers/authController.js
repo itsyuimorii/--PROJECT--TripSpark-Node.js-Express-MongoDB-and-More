@@ -18,7 +18,7 @@ const signToken = id => {
     });
 }
 
-//--------------**CREATE TOKEN & SEND TOKEN**----------------
+//--------------**CREATE TOKEN & SEND TOKEN*ne*----------------
 /**
  * Creates and sends a JWT token as a cookie in the response.
  * @param {Object} user - The user object.
