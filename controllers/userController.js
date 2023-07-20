@@ -73,12 +73,12 @@ exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
 
 //--------------**CREATEUSER**----------------
-// exports.createUser = (req, res) => {
-//   res.status(500).json({
-//     status: 'error',
-//     message: 'This route is not defined! Please use /signup instead'
-//   });
-// };
+exports.createUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not defined! Please use /signup instead'
+  });
+};
 */
 //--------------**GETUSER**----------------
 exports.getUser = (req, res) => {
