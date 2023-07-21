@@ -963,7 +963,6 @@ userSchema.pre(/^find/, function(next) {
 });
 
 ```
-
 > controllers/authController.js
 
 ```js
@@ -1000,3 +999,77 @@ router.patch('/updateMyPassword', authController.protect,authController.updatePa
 ```
 
 ![4](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/4.png)
+
+### Cookie and JWT 
+
+```js
+
+//--------------**GENERATE TOKEN**----------------
+const signToken = id => {
+    //payload, secret, options
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN
+    });
+}
+
+//--------------**CREATE TOKEN & SEND TOKEN*ne*----------------
+/**
+ * Creates and sends a JWT token as a cookie in the response.
+ * @param {Object} user - The user object.
+ * @param {number} statusCode - The HTTP status code.
+ * @param {Object} res - The response object. 
+*/
+const createSendToken = (user, statusCode, res) => {
+    // Generate a JWT token for the user
+    const token = signToken(user._id);
+  
+    // console.log(token);
+    // Set cookie options for the JWT token
+    const cookieOptions = {
+      expires: new Date(
+        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true
+    };
+   
+  // Set secure cookie option in production
+  if (process.env.NODE_ENV === 'production') {
+    cookieOptions.secure = true;
+  }
+
+  // Set the JWT token as a cookie in the response
+  res.cookie('jwt', token, cookieOptions);
+
+  // Remove the password field from the user object to avoid exposing it
+  user.password = undefined;
+
+  // Send the response with the JWT token and user data
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user
+    }
+  });
+};
+```
+
+### Limiting Field
+```bash
+npm i express-rate-limit
+```
+
+```js
+
+const rateLimit = require('express-rate-limit');
+
+// Limit requests from the same IP address
+const limiter = rateLimit({
+  max: 100, // 100 requests per hour
+  windowMs: 60 * 60 * 1000, // 1 hour
+  message: 'Too many requests from this IP, please try again in an hour!'
+});
+
+// Apply to all requests to the API
+app.use('/api', limiter);
+```
