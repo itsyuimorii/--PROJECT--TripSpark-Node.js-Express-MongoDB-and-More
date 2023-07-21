@@ -28,7 +28,7 @@ const signToken = id => {
 const createSendToken = (user, statusCode, res) => {
     // Generate a JWT token for the user
     const token = signToken(user._id);
-
+  
     // console.log(token);
     // Set cookie options for the JWT token
     const cookieOptions = {
