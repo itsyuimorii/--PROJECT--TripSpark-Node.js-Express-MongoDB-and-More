@@ -679,7 +679,7 @@ const sendEmail = async options => {
 module.exports = sendEmail;
 ```
 
-### ----------------**Forget password**----------------
+### Forget password
 > controllers/authController.js
 
 ```js
@@ -885,7 +885,7 @@ Here is the flow of the `exports.forgotPassword` function across the `authContro
 
 Summary: The `exports.forgotPassword` function is defined in the `authController.js` file, which retrieves user information by importing the `User` model from the `userModel.js` file. The function calls `user.createPasswordResetToken()` to generate a password reset token and uses the `sendEmail` function to send the reset password email. In the `userRoutes.js` file, the `exports.forgotPassword` function is bound to the corresponding route. When a user visits that route, the logic within the `exports.forgotPassword` function is executed.
 
-### ----------------**Reset password**----------------
+### Reset password
 
 
 ```js
@@ -944,7 +944,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
 ![3](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/3.png)
 
-### ----------------**Update password**----------------
+###  Update password
 
 > models/userModel.js
 
@@ -1081,12 +1081,16 @@ app.use('/api', limiter);
 npm i helmet
 ```
 
-```js
+### Data sanitization against NoSQL query injection
 
-
-### data sanitization against NoSQL query injection
+````js
 ```bash
 npm i express-mongo-sanitize
 ```
+````
 
 ```js
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+```
+
