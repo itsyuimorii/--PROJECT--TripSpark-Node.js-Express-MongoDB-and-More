@@ -28,8 +28,10 @@ const limiter = rateLimit({
 // Apply the rate limiter middleware to all requests to the /api route
 app.use('/api', limiter);
 
-// Body parser, reading data from the body into req.body, limit the amount of data that can be sent in the body to 10kb
-app.use(express.json());
+// Body parser, reading data from the body into req.body
+app.use(express.json({
+  limit: '10kb' 
+}));
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
 
