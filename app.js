@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
-
+const helmet = require('helmet');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -10,6 +10,10 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 
 // 1) GLOBAL MIDDLEWARES
+// Set security HTTP headers
+app.use(helmet());
+
+// Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
@@ -24,7 +28,7 @@ const limiter = rateLimit({
 // Apply the rate limiter middleware to all requests to the /api route
 app.use('/api', limiter);
 
-// Body parser, reading data from the body into req.body
+// Body parser, reading data from the body into req.body, limit the amount of data that can be sent in the body to 10kb
 app.use(express.json());
 // Serving static files
 app.use(express.static(`${__dirname}/public`));

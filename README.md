@@ -1073,3 +1073,12 @@ const limiter = rateLimit({
 // Apply to all requests to the API
 app.use('/api', limiter);
 ```
+
+
+### Setting security HTTP headers
+
+```bash
+npm i helmet
+```
+
+```js
