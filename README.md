@@ -1082,3 +1082,11 @@ npm i helmet
 ```
 
 ```js
+
+
+### data sanitization against NoSQL query injection
+```bash
+npm i express-mongo-sanitize
+```
+
+```js
