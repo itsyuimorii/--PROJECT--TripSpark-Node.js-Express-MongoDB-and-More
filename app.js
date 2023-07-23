@@ -44,7 +44,6 @@ app.use(mongoSanitize());
 // Data sanitization against XSS
 app.use(xss());
 
-
 // Prevent parameter pollution
 app.use(
   hpp({
@@ -58,7 +57,6 @@ app.use(
     ]
   })
 );
-
 
 // Serving static files
 app.use(express.static(`${__dirname}/public`));

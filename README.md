@@ -1083,14 +1083,27 @@ npm i helmet
 
 ### Data sanitization against NoSQL query injection
 
-````js
-```bash
+```js
 npm i express-mongo-sanitize
 ```
-````
 
 ```js
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
+
+// Data sanitization against XSS
+app.use(xss());
+
+//Prevent parameter pollution
+app.use(hpp({
+  whitelist: [
+    'duration',
+    'ratingsQuantity',
+    'ratingsAverage',
+    'maxGroupSize',
+    'difficulty',
+    'price'
+  ]
+}));
 ```
 
