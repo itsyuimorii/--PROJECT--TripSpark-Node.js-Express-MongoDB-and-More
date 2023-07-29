@@ -1123,3 +1123,46 @@ Embedding vs Referencing
 > Data model
 
 ![reference vs embeding](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/data model.png)
+
+### - Modelling Location 
+
+> [GeoJSON](https://mongoosejs.com/docs/geojson.html)
+
+```js
+// models/tourModel.js
+startLocation: {
+      // GeoJSON
+      type: {
+        type: String,
+        default: 'Point',
+        enum: ['Point']
+      },
+      coordinates: [Number],
+      address: String,
+      description: String
+    },
+```
+
+### - Modelling Tour Guides: Embedding
+
+```js
+// models/tourModel.js
+guides: Array
+```
+
+### - Modelling Tour Guides: Child Referencing
+
+```js
+// models/tourModel.js
+guides: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+      }
+    ]
+```
+
+### - Modelling Tour Guides: Parent Referencing
+
+```js
+// models/userModel.js
