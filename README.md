@@ -1107,13 +1107,19 @@ app.use(hpp({
 }));
 ```
 
-
 ### Mongodb data modeling
 
-> 
+> [Mongoose Populate](https://mongoosejs.com/docs/populate.html)
 
 Embedding vs Referencing
 
+- 1 : many reference
+- few:few embeded
 
+![reference vs embeding](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/reference vs embeding.png)
 
-> [Mongoose Populate](https://mongoosejs.com/docs/populate.html)
+![**data model**](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/datamodel2.png)
+
+> Data model
+
+![reference vs embeding](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/data model.png)
