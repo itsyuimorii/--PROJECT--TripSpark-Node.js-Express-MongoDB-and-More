@@ -1111,3 +1111,9 @@ app.use(hpp({
 ### Mongodb data modeling
 
 > 
+
+Embedding vs Referencing
+
+
+
+> [Mongoose Populate](https://mongoosejs.com/docs/populate.html)
