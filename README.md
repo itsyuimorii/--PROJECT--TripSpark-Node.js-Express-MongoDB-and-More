@@ -1148,12 +1148,22 @@ startLocation: {
 ```js
 // models/tourModel.js
 guides: Array
+ 
+tourSchema.pre('save', async function(next) {
+  const guidesPromises = this.guides.map(async id => await User.findById(id));
+  this.guides = await Promise.all(guidesPromises);
+  next();
+});
 ```
 
 ### - Modelling Tour Guides: Child Referencing
 
+> this pre-save middleware is responsible for fetching the `User` documents associated with the `guides` array (which are represented as `ObjectId` references) and replacing those `ObjectId`s with the actual `User` documents in the `guides` array before saving the tour document to the database. This allows for easy embedding of the `User` documents into the tour document, simplifying future querying and population of related data.
+
 ```js
 // models/tourModel.js
+const User = require('./userModel');
+
 guides: [
       {
         type: mongoose.Schema.ObjectId,
@@ -1169,16 +1179,4 @@ guides: [
 
 ```
 
-### - Embedding guides into tours
-
-> this pre-save middleware is responsible for fetching the `User` documents associated with the `guides` array (which are represented as `ObjectId` references) and replacing those `ObjectId`s with the actual `User` documents in the `guides` array before saving the tour document to the database. This allows for easy embedding of the `User` documents into the tour document, simplifying future querying and population of related data.
-
-
-```js
-tourSchema.pre('save', async function(next) {
-  const guidesPromises = this.guides.map(async id => await User.findById(id));
-  this.guides = await Promise.all(guidesPromises);
-  next();
-});
-```
-
+### 
