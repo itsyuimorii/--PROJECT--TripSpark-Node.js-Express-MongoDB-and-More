@@ -140,11 +140,11 @@ tourSchema.pre('save', function(next) {
 });
 
 // Embedding guides into tours
-tourSchema.pre('save', async function(next) {
-  const guidesPromises = this.guides.map(async id => await User.findById(id));
-  this.guides = await Promise.all(guidesPromises);
-  next();
-});
+// tourSchema.pre('save', async function(next) {
+//   const guidesPromises = this.guides.map(async id => await User.findById(id));
+//   this.guides = await Promise.all(guidesPromises);
+//   next();
+// });
 
 
 tourSchema.pre('save', function(next) {
