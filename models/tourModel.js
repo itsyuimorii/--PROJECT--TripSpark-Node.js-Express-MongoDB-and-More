@@ -104,6 +104,7 @@ const tourSchema = new mongoose.Schema(
         day: Number
       }
     ],
+    //embedding guides into tours, guides is an array of user id
     guides: [
       {
         type: mongoose.Schema.ObjectId,
