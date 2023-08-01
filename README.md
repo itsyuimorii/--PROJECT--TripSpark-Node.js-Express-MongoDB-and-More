@@ -1196,7 +1196,59 @@ By using `populate`, the `guides` field in the `tour` document will be replaced 
 ### Modelling Tour Guides: Parent Referencing
 
 
+### Review Model: Parent Referencing
+
+```js
+// models/reviewModel.js
+reviewSchema.pre(/^find/, function (next) {
+    // this.populate({
+    //     path: 'tour',
+    //     select: 'name'
+    // }).populate({
+    //     path: 'user',
+    //     select: 'name photo'
+    // });
+    this.populate({
+        path: 'user',
+        select: 'name photo'
+    });
+    next();
+});
+
+```
+
+### Review Model: Virtual Populate
+
+> [Virtual Populate](https://mongoosejs.com/docs/populate.html#populate-virtuals)
+
+- Virtual population allows us to fill comments into the tour document without storing comment IDs in the tour document.
+- It provides an efficient way to access all comments of a tour without manual querying or storing comment IDs in the tour document.
+- Virtual population improves code readability and maintainability by simplifying the access to comments for each tour.
+- Comments are not persistently stored in the database through virtual population, avoiding database bloat.
+ 
+```js
+// models/reviewModel.js
+reviewSchema.virtual('comments', {
+    ref: 'Comment',
+    foreignField: 'review',
+    localField: '_id'
+});
+ 
+// models/commentModel.js
+//virtual populate
+reviewSchema.virtual('durationWeeks').get(function () {
+    return this.duration / 7;
+});
+
+//virtual populate
+tourSchema.virtual('reviews', {
+    ref: 'Review',
+    foreignField: 'tour',
+    localField: '_id'
+});
+```
 
 
-## Creating and Getting Reviews
+
+### Modelling Locations: Geospatial Data
 

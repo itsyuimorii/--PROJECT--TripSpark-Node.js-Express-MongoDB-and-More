@@ -37,6 +37,38 @@ const reviewSchema = new mongoose.Schema({
     }
 );
 
+//virtual populate
+reviewSchema.virtual('durationWeeks').get(function () {
+    return this.duration / 7;
+});
+
+//virtual populate
+tourSchema.virtual('reviews', {
+    ref: 'Review',
+    foreignField: 'tour',
+    localField: '_id'
+});
+ 
+//preventing duplicate reviews
+reviewSchema.index({ tour: 1, user: 1 }, { unique: true });
+
+//query middleware
+reviewSchema.pre(/^find/, function (next) {
+    // this.populate({
+    //     path: 'tour',
+    //     select: 'name'
+    // }).populate({
+    //     path: 'user',
+    //     select: 'name photo'
+    // });
+    this.populate({
+        path: 'user',
+        select: 'name photo'
+    });
+    next();
+});
+
+
 
 const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;

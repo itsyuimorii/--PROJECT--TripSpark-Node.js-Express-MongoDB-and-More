@@ -1,3 +1,6 @@
+// models/tourModel.js
+
+
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 const User = require('./userModel');
