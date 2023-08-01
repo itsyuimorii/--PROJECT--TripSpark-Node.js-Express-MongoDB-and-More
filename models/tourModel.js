@@ -159,7 +159,6 @@ tourSchema.pre('save', function(next) {
 // });
 
 // QUERY MIDDLEWARE
-// tourSchema.pre('find', function(next) {
 tourSchema.pre(/^find/, function(next) {
   this.find({ secretTour: { $ne: true } });
 
@@ -168,6 +167,7 @@ tourSchema.pre(/^find/, function(next) {
 });
 
 tourSchema.pre(/^find/, function(next) {
+  //this points to the current query
   this.populate({
     path: 'guides',
     select: '-__v -passwordChangedAt'

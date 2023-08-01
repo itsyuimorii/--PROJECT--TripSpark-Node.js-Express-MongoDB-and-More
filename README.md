@@ -1184,13 +1184,17 @@ const tour = await Tour.findById(req.params.id).populate('guides');
 Here, `Tour` is the Mongoose model representing the collection of tours in the MongoDB database. The `findById` method is used to find a tour document with the specified ID. The `populate('guides')` method is then used to populate the `guides` field in the `tour` document, which is likely a reference to another collection, such as a collection of users representing tour guides.
 
 By using `populate`, the `guides` field in the `tour` document will be replaced with the actual objects from the referenced collection, making it easier to access the details of the guides without having to perform an additional database query. This is particularly useful when you want to retrieve related data from different collections in a single query.
-```js
+ 
 
 ![populating1](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/populating1.png)
 
 ![populating2](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/populating2.png)
 
-### - Modelling Tour Guides: Parent Referencing
+
+
+
+### Modelling Tour Guides: Parent Referencing
+
 
 
 
