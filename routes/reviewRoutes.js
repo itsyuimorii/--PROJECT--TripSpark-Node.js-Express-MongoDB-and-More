@@ -2,8 +2,9 @@ const express = require('express');
 const reviewController = require('./../controllers/reviewController');
 const authController = require('./../controllers/authController');
 
+// mergeParams: true allows us to access the tourId param from the tour router
 const router = express.Router({ mergeParams: true });
-
+// Protect all routes after this middleware
 router.use(authController.protect);
 
 router
