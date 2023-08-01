@@ -13,22 +13,24 @@ const reviewSchema = new mongoose.Schema({
         min: 1,
         max: 5
     },
-    
     createAt: {
         type: Date,
 
         default: Date.now()
     },
+    //parent referencing
     tour: {
         type: mongoose.Schema.ObjectId,
         ref: 'Tour',
         required: [true, 'Review must belong to a tour.']
     },
+    //parent referencing
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
     }
 },
+//virtual populate
     {
         toJSON: { virtuals: true },
         toObject: { virtuals: true }

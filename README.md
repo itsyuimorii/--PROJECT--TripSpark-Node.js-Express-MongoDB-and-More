@@ -1198,7 +1198,5 @@ By using `populate`, the `guides` field in the `tour` document will be replaced 
 
 
 
-
-
-
+## Creating and Getting Reviews
 
