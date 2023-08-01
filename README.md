@@ -920,23 +920,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 });
 ```
 
-以下是 `exports.resetPassword` 函数在 `authController.js`、`userModel.js` 和 `userRoutes.js` 文件之间的流程：
-
-1. 在 `authController.js` 文件中定义了 `exports.resetPassword` 函数，该函数负责处理重置密码的逻辑。
-2. 在 `authController.js` 文件中，通过 `require` 语句导入了 `User` 模型，该模型位于 `userModel.js` 文件中。
-3. 在 `exports.resetPassword` 函数中，通过调用 `User.findOne` 方法，使用哈希后的密码重置令牌和有效期检查重置密码的凭证。
-4. 在 `userModel.js` 文件中，使用 `userSchema.methods` 定义了 `changedPasswordAfter` 方法，用于检查用户在 JWT 发布后是否更改了密码。
-5. 在 `userModel.js` 文件中，将 `userSchema.methods.changedPasswordAfter` 方法导出为 `changedPasswordAfter`。
-6. 在 `authController.js` 文件中，通过调用 `user.changedPasswordAfter` 方法检查用户是否在 JWT 发布后更改了密码。
-7. 在 `authController.js` 文件中，通过调用 `createSendToken` 函数，创建并发送带有新 JWT 的响应给用户。
-8. 在 `userRoutes.js` 文件中，通过 `router.patch('/resetPassword/:token', authController.resetPassword)` 将 `exports.resetPassword` 函数绑定到 `/resetPassword/:token` 路由。
-9. 当用户访问 `/resetPassword/:token` 路由时，将触发 `exports.resetPassword` 函数，并执行其中的逻辑。
-
-总结：`exports.resetPassword` 函数定义在 `authController.js` 文件中，该函数通过导入 `User` 模型从 `userModel.js` 文件中获取用户信息。函数调用 `user.changedPasswordAfter` 检查用户是否在 JWT 发布后更改了密码，并通过调用 `createSendToken` 函数创建新的 JWT 并将其发送回用户。在 `userRoutes.js` 文件中，将 `exports.resetPassword` 函数绑定到相应的路由上。当用户访问该路由时，将执行 `exports.resetPassword` 函数中的逻辑。
-
-
-
-
 
 ![1](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/1.png)
 
