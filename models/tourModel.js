@@ -126,11 +126,12 @@ tourSchema.index({ price: 1, ratingsAverage: -1 });
 tourSchema.index({ slug: 1 });
 tourSchema.index({ startLocation: '2dsphere' });
 
+///virtual property, not stored in database
 tourSchema.virtual('durationWeeks').get(function() {
   return this.duration / 7;
 });
 
-// Virtual populate
+// Virtual property
 tourSchema.virtual('reviews', {
   ref: 'Review',
   foreignField: 'tour',
