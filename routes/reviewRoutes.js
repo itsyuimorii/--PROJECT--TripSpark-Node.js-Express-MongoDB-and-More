@@ -9,6 +9,7 @@ const router = express.Router({ mergeParams: true });
 // Protect all routes after this middleware
 router.use(authController.protect);
 
+// POST /tour/234fad4/reviews
 router
   .route('/')
   .get(reviewController.getAllReviews)
@@ -18,6 +19,7 @@ router
     reviewController.createReview
   );
 
+// Protect all routes after this middleware
 router
   .route('/:id')
   .get(reviewController.getReview)
