@@ -1,5 +1,12 @@
-
- 
+/**
+ * @module ./routes/userRoutes.js
+ * @description User routes
+ * @requires module:express
+ * @requires module:controllers/userController
+ * @requires module:controllers/authController
+ * @exports module:routes/userRoutes
+ * @version 1.0.0
+ */
 const express = require('express');
 const userController = require('./../controllers/userController');
 const authController = require('./../controllers/authController');
