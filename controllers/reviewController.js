@@ -5,13 +5,14 @@
  * @requires     module:controllers/handlerFactory
  * @exports      module:controllers/reviewController
  * @version      1.0.0
- * 
+
  */
 
 const Review = require('./../models/reviewModel');
 const factory = require('./handlerFactory');
 // const catchAsync = require('./../utils/catchAsync');
 
+// ------------------ **GET ALL REVIEWS** ------------------//
 exports.setTourUserIds = (req, res, next) => {
   // Allow nested routes
   if (!req.body.tour) req.body.tour = req.params.tourId;
