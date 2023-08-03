@@ -1,4 +1,11 @@
-// models/tourModel.js
+/**
+ * @fileoverview tour model
+ * @module       models/tourModel
+ * @requires     module:mongoose
+ * @requires     module:slugify
+ * @requires     module:./userModel
+ * @version      1.0.0
+ */
 
 
 const mongoose = require('mongoose');

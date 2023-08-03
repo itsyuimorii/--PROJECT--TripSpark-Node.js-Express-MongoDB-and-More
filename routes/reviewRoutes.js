@@ -1,4 +1,15 @@
 
+/**
+ * @module       routes/reviewRoutes
+ * @description  Review routes
+ * @requires     module:express
+ * @requires     module:controllers/reviewController
+ * @requires     module:controllers/authController
+ * @exports      module:routes/reviewRoutes
+ * @version      1.0.0
+ */
+
+
 // routes/reviewRoutes.js
 const express = require('express');
 const reviewController = require('./../controllers/reviewController');

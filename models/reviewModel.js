@@ -1,4 +1,11 @@
-//reviewModel.js
+/**
+ * @module       reviewModel
+ * @description  Review model
+ * @requires     module:mongoose
+ * @requires     module:tourModel
+ * @exports      module:reviewModel
+ * @version      1.0.0
+ */
 const mongoose = require('mongoose');
 const Tour = require('./tourModel');
 

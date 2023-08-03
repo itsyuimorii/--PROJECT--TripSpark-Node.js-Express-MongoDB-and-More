@@ -1,7 +1,18 @@
 /**
  * @module controllers/authController
  * @description  Controller functions for authentication
+ * @requires     module:crypto
+ * @requires     module:util
+ * @requires     module:jsonwebtoken
+ * @requires     module:models/userModel
+ * @requires     module:utils/catchAsync
+ * @requires     module:utils/appError
+ * @requires     module:utils/email
+ * @exports      module:controllers/authController
+ * @version      1.0.0
  */
+
+
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');

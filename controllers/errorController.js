@@ -1,3 +1,12 @@
+/**
+ * @module       controllers/errorController
+ * @description  Controller functions for Error
+ * @requires     module:utils/appError
+ * @exports      module:controllers/errorController
+ * @version      1.0.0
+
+ */
+
 const AppError = require('./../utils/appError');
 //--------------**HANDLE CAST ERROR**----------------
 const handleCastErrorDB = err => {

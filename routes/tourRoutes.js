@@ -1,4 +1,14 @@
-// routes/tourRoutes.js 
+/**
+ * @module       routes/tourRoutes
+ * @description  Tour routes
+ * @requires     module:express
+ * @requires     module:controllers/tourController
+ * @requires     module:controllers/authController
+ * @requires     module:controllers/reviewController
+ * @exports      module:routes/tourRoutes
+ * @version      1.0.0
+ * 
+ */
 
 const express = require('express');
 const tourController = require('./../controllers/tourController');

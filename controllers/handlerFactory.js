@@ -1,7 +1,19 @@
+/**
+ * @module       handlerFactory
+ * @description  Factory functions for CRUD operations
+ * @requires     module:utils/catchAsync
+ * @requires     module:utils/appError
+ * @requires     module:utils/apiFeatures
+ * @exports      module:handlerFactory
+ * @version      1.0.0
+ * 
+ */
+
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const APIFeatures = require('./../utils/apiFeatures');
 
+// ------------------ **DELETE ONE** ------------------//
  
 exports.deleteOne = Model =>
   catchAsync(async (req, res, next) => {
@@ -17,8 +29,8 @@ exports.deleteOne = Model =>
     });
   });
 
-
-exports.updateOne = Model =>
+// ------------------ **UPDATE ONE** ------------------//
+  exports.updateOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -37,6 +49,7 @@ exports.updateOne = Model =>
     });
   });
 
+// ------------------ **CREATE ONE** ------------------//
 exports.createOne = Model =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.create(req.body);
@@ -48,7 +61,7 @@ exports.createOne = Model =>
       }
     });
   });
-
+// ------------------ **GET ONE** ------------------//
 exports.getOne = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     let query = Model.findById(req.params.id);
@@ -66,7 +79,7 @@ exports.getOne = (Model, popOptions) =>
       }
     });
   });
-
+// ------------------ **GET ALL** ------------------//
 exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
     // To allow for nested GET reviews on tour (hack)

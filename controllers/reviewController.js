@@ -1,3 +1,13 @@
+/**
+ * @module       controllers/reviewController
+ * @description  Controller functions for Review
+ * @requires     module:models/reviewModel
+ * @requires     module:controllers/handlerFactory
+ * @exports      module:controllers/reviewController
+ * @version      1.0.0
+ * 
+ */
+
 const Review = require('./../models/reviewModel');
 const factory = require('./handlerFactory');
 // const catchAsync = require('./../utils/catchAsync');

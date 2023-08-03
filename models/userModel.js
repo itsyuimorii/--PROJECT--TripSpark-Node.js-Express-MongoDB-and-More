@@ -1,5 +1,13 @@
-// models/userModel.js
-
+/**
+ * @module       models/userModel
+ * @requires     module:crypto
+ * @requires     module:mongoose
+ * @requires     module:validator
+ * @requires     module:bcryptjs
+ * @exports      module:userModel
+ * @version      1.0.0
+ * 
+ */
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
