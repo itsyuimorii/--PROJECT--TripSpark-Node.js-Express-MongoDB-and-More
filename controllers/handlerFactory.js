@@ -6,7 +6,6 @@
  * @requires     module:utils/apiFeatures
  * @exports      module:handlerFactory
  * @version      1.0.0
- * 
  */
 
 const catchAsync = require('./../utils/catchAsync');
@@ -80,7 +79,7 @@ exports.getOne = (Model, popOptions) =>
     });
   });
 
-  
+
 // ------------------ **GET ALL** ------------------//
 exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
