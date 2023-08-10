@@ -47,7 +47,7 @@
   {
     "id": 3,
     "name": "大阪のグルメ食べ歩き🍣",
-        "duration": 9,
+    "duration": 9,
     "maxGroupSize": 20,
     "difficulty": "easy",
     "ratingsAverage": 4.6,
@@ -61,7 +61,8 @@
   },
   {
     "id": 4,
-    "name": "北海道の自然探検❄️",    "duration": 10,
+    "name": "北海道の自然探検❄️",    
+    "duration": 10,
     "maxGroupSize": 15,
     "difficulty": "medium",
     "ratingsAverage": 4.9,

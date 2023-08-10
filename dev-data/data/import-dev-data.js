@@ -2,8 +2,8 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Tour = require('./../../models/tourModel');
-const Review = require('./../../models/reviewModel');
 const User = require('./../../models/userModel');
+const Review = require('./../../models/reviewModel');
 
 dotenv.config({ path: './config.env' });
 
@@ -17,34 +17,27 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    socketTimeoutMS: 30000 // 设置更长的操作超时时间，单位为毫秒
+    //buffer
+    // useUnifiedTopology: true
+
   })
   .then(() => console.log('DB connection successful!'));
-
 
 // READ JSON FILE
 const tours = JSON.parse(
   // fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8')
-  fs.readFileSync(`${__dirname}/tours.json`, 'utf-8')
+  // fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'),
+  fs.readFileSync(`${__dirname}/reviews.json`, 'utf-8'),
+  fs.readFileSync(`${__dirname}/users.json`, 'utf-8')
+
 );
-
-// const users = JSON.parse(
-//   fs.readFileSync(`${__dirname}/users.json`, 'utf-8')
-// );
-
-// const reviews = JSON.parse(
-//   fs.readFileSync(`${__dirname}/reviews.json`, 'utf-8')
-// );
-
-
 
 // IMPORT DATA INTO DB
 const importData = async () => {
   try {
-    await Tour.create(tours);
-    //turn off the validation for the passwordConfirm field
-    // await User.create(users, { validateBeforeSave: false });
-    // await Review.create(reviews);
+    // await Tour.create(tours);
+    await Review.create(reviews);
+    await User.create(users, { validateBeforeSave: false });
     console.log('Data successfully loaded!');
   } catch (err) {
     console.log(err);
@@ -55,9 +48,9 @@ const importData = async () => {
 // DELETE ALL DATA FROM DB
 const deleteData = async () => {
   try {
-    // await User.deleteMany();
-    await Tour.deleteMany();
-    // await Review.deleteMany();
+    // await Tour.deleteMany();
+    await Review.deleteMany();
+    await User.deleteMany();
 
     console.log('Data successfully deleted!');
   } catch (err) {

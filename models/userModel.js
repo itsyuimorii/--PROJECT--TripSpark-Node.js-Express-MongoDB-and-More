@@ -92,7 +92,6 @@ userSchema.pre(/^find/, function(next) {
 
 //----------------**INSTANCE METHOD: COMPARE PASSWORD**----------------
 /**
- * 
  * @param {string} candidatePassword 
  * @param {string} userPassword 
  * @returns  {boolean}
@@ -105,7 +104,6 @@ userSchema.methods.correctPassword = async function(
 };
 //----------------**INSTANCE METHOD: CHECK IF PASSWORD CHANGED AFTER JWT ISSUED**----------------
 /**
- * 
  * @param {number} JWTTimestamp 
  * @returns {boolean}
  */
