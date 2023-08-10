@@ -309,6 +309,7 @@ With the `toJSON` and `toObject` options set, when you convert the document to a
 
 ```bash
 node dev-data/data/import-dev-data.js --import
+node dev-data/data/import-dev-data.js --delete
 ```
 
 > import-dev-data.js
