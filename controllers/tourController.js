@@ -106,7 +106,7 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
   });
 });
 
-//------------------ **GET TOURS WITHIN** ------------------//
+//------------------ **GEOSPATIAL QUERY** ------------------//
 // /tours-within/:distance/center/:latlng/unit/:unit
 // /tours-within/233/center/34.111745,-118.113491/unit/mi
 exports.getToursWithin = catchAsync(async (req, res, next) => {

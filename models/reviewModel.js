@@ -43,8 +43,10 @@ const reviewSchema = new mongoose.Schema({
     }
 );
 
+//preventing duplicate reviews
 reviewSchema.index({ tour: 1, user: 1 }, { unique: true });
 
+//static method
 reviewSchema.pre(/^find/, function(next) {
   // this.populate({
   //   path: 'tour',
@@ -76,8 +78,15 @@ reviewSchema.pre(/^find/, function(next) {
 //         }
 //       }
 //     ]);
-//     // console.log(stats);
-  
+//     console.log(stats);
+// };
+
+// reviewSchema.pre('save', function(next) {
+//     //this points to current review
+//     this.constructor.calcAverageRatings(this.tour);
+//     next();
+// });
+
 //     if (stats.length > 0) {
 //       await Tour.findByIdAndUpdate(tourId, {
 //         ratingsQuantity: stats[0].nRating,
