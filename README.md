@@ -1168,7 +1168,7 @@ const tour = await Tour.findById(req.params.id).populate('guides');
 Here, `Tour` is the Mongoose model representing the collection of tours in the MongoDB database. The `findById` method is used to find a tour document with the specified ID. The `populate('guides')` method is then used to populate the `guides` field in the `tour` document, which is likely a reference to another collection, such as a collection of users representing tour guides.
 
 By using `populate`, the `guides` field in the `tour` document will be replaced with the actual objects from the referenced collection, making it easier to access the details of the guides without having to perform an additional database query. This is particularly useful when you want to retrieve related data from different collections in a single query.
- 
+
 
 ![populating1](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/populating1.png)
 
@@ -1209,7 +1209,7 @@ reviewSchema.pre(/^find/, function (next) {
 - It provides an efficient way to access all comments of a tour without manual querying or storing comment IDs in the tour document.
 - Virtual population improves code readability and maintainability by simplifying the access to comments for each tour.
 - Comments are not persistently stored in the database through virtual population, avoiding database bloat.
- 
+
 ```js
 // models/reviewModel.js
 reviewSchema.virtual('comments', {
@@ -1237,6 +1237,27 @@ tourSchema.virtual('reviews', {
 ### Modelling Locations: Geospatial Data
 
 
-# API documentation
+### API documentation
 [JapantourAPI](https://documenter.getpostman.com/view/24568930/2s9Xy5LVem#a436068c-2d53-4738-a0d9-a8d7aa574dfe)
+
+### Server-side Rendering  with pug 
+```js
+const path = require('path');
+
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
+// 1) GLOBAL MIDDLEWARES
+// Serving static files
+app.use(express.static(`${__dirname}/public`));
+
+
+
+// 3) ROUTES
+app.get('/', (req, res) => {
+  res.status(200).render('base');
+});
+
+ 
+```
 
