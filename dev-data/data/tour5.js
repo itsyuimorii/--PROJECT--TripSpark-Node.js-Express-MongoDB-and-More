@@ -1,8 +1,8 @@
 /* eslint-disable */
 const tour5 = {
   id: 5,
-  name: '鎌倉 (Kamakura) - 14日間 ',
-  startLocation: '東京, JAPAN',
+  name: 'The Sports Lover',
+  startLocation: 'California, USA',
   nextStartDate: 'July 2021',
   duration: 14,
   maxGroupSize: 8,
@@ -10,6 +10,8 @@ const tour5 = {
   avgRating: 4.7,
   numReviews: 23,
   regPrice: 2997,
-  shortDescription: '鎌倉の美しい寺院や歴史的な名所を訪れる14日間のツアー',
-  longDescription: '鎌倉は日本の歴史的な都市で、美しい寺院や歴史的な名所が豊富にあります。この14日間のツアーでは、鎌倉の代表的な寺院である鶴岡八幡宮や建長寺などを訪れます。また、鎌倉の美しい海岸や風光明媚な自然環境も楽しむことができます。ツアーガイドが豆知識や歴史的な背景について解説しながら、鎌倉の魅力を存分に堪能しましょう。',
+  shortDescription:
+    'Surfing, skating, parajumping, rock climbing and more, all in one tour',
+  longDescription:
+    'Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nVoluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur!'
 };

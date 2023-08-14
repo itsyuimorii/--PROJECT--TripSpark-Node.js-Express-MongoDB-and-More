@@ -1,10 +1,10 @@
 [
   {
     "startLocation": {
-      "description": "富士山トレッキング🗻",
+      "description": "Miami, USA",
       "type": "Point",
-      "coordinates": [35.36139452791903, 138.72710586463756],
-      "address": "〒403-0005 静岡県富士市上吉田"
+      "coordinates": [-80.185942, 25.774772],
+      "address": "301 Biscayne Blvd, Miami, FL 33132, USA"
     },
     "ratingsAverage": 4.8,
     "ratingsQuantity": 6,
@@ -15,41 +15,40 @@
       "2021-08-18T09:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c2955",
-    "name": "富士山トレッキング",
+    "name": "The Sea Explorer",
     "duration": 7,
     "maxGroupSize": 15,
     "difficulty": "medium",
     "guides": ["5c8a22c62f8fb814b56fa18b", "5c8a1f4e2f8fb814b56fa185"],
     "price": 497,
-    "summary": "息をのむような富士山トレッキング",
-    "description": "この息をのむようなトレッキングで、日本の富士山の美しさを発見してください。周囲の風景のパノラマビューを楽しみ、自然の静けさを体験しましょう。この易しいトレッキングは、全てのフィットネスレベルに適しています。",
+    "summary": "Exploring the jaw-dropping US east coast by foot and by boat",
+    "description": "Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     "imageCover": "tour-2-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c2959",
-        "description": "河口湖（かわぐちこ）",
+        "description": "Lummus Park Beach",
         "type": "Point",
         "coordinates": [-80.128473, 25.781842],
         "day": 1
       },
       {
         "_id": "5c88fa8cf4afda39709c2958",
-        "description": "富士山五合目（ふじさんごうごうめ） ",
-
+        "description": "Islamorada",
         "type": "Point",
         "coordinates": [-80.647885, 24.909047],
         "day": 2
       },
       {
         "_id": "5c88fa8cf4afda39709c2957",
-        "description": "御殿場（ごてんば",
+        "description": "Sombrero Beach",
         "type": "Point",
         "coordinates": [-81.0784, 24.707496],
         "day": 3
       },
       {
         "_id": "5c88fa8cf4afda39709c2956",
-        "description": "忍野八海(おしのはっかい)",
+        "description": "West Key",
         "type": "Point",
         "coordinates": [-81.768719, 24.552242],
         "day": 5
@@ -58,10 +57,10 @@
   },
   {
     "startLocation": {
-      "description": "日本京都の古都巡り⛩️",
+      "description": "Banff, CAN",
       "type": "Point",
       "coordinates": [-115.570154, 51.178456],
-      "address": "〒XXXXX 京都府京都市XXX"
+      "address": "224 Banff Ave, Banff, AB, Canada"
     },
     "ratingsAverage": 5,
     "ratingsQuantity": 9,
@@ -72,7 +71,7 @@
       "2021-10-05T09:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c2951",
-    "name": "美しい寺院と伝統的な日本の文化に浸る",
+    "name": "The Forest Hiker",
     "duration": 5,
     "maxGroupSize": 25,
     "difficulty": "easy",
@@ -82,27 +81,27 @@
       "5c8a1f292f8fb814b56fa184"
     ],
     "price": 397,
-    "summary": "古都・京都の歴史と文化を巡るツアー",
-    "description": "京都は日本を代表する歴史文化都市であり、豊かな自然風景も魅力の一つです。このツアーでは、壮大な山々、公園、庭園など、京都市内の美しい自然景観を探索します。有名な観光スポットとして清水寺、金閣寺、嵐山などを訪れながら、自然環境の中でハイキングやトレッキングを楽しみます。また、地元の美食を味わったり、伝統文化体験をしたりすることもできます。自然と歴史文化が好きな方々にとって、このツアーは最適な選択肢です。",
+    "summary": "Breathtaking hike through the Canadian Banff National Park",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "imageCover": "tour-1-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c2954",
-        "description": "金閣寺, 京都",
+        "description": "Banff National Park",
         "type": "Point",
         "coordinates": [-116.214531, 51.417611],
         "day": 1
       },
       {
         "_id": "5c88fa8cf4afda39709c2953",
-        "description": "清水寺, 京都",
+        "description": "Jasper National Park",
         "type": "Point",
         "coordinates": [-118.076152, 52.875223],
         "day": 3
       },
       {
         "_id": "5c88fa8cf4afda39709c2952",
-        "description": "嵐山, 京都",
+        "description": "Glacier National Park of Canada",
         "type": "Point",
         "coordinates": [-117.490309, 51.261937],
         "day": 5
@@ -111,10 +110,10 @@
   },
   {
     "startLocation": {
-      "description": "大阪のグルメ食べ歩き🍣",
+      "description": "Aspen, USA",
       "type": "Point",
       "coordinates": [-106.822318, 39.190872],
-      "address": "〒XXXXX 大阪府大阪市XXX"
+      "address": "419 S Mill St, Aspen, CO 81611, USA"
     },
     "ratingsAverage": 4.5,
     "ratingsQuantity": 6,
@@ -125,7 +124,7 @@
       "2023-01-06T10:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c295a",
-    "name": "大阪のグルメと文化探訪, 食べ歩きツアー",
+    "name": "The Snow Adventurer",
     "duration": 4,
     "maxGroupSize": 10,
     "difficulty": "difficult",
@@ -135,21 +134,20 @@
       "5c8a1f4e2f8fb814b56fa185"
     ],
     "price": 997,
-    "summary": "大阪の美食と文化を満喫するツアー",
-    
-    "description": "大阪は、美食と独特の文化が魅力の街です。このツアーでは、大阪市内でのグルメ体験と文化探訪を楽しみます。有名な食品屋台やレストランで地元の美食を味わい、大阪らしい独特の雰囲気を体感します。また、大阪城や道頓堀など、歴史的な名所も訪れながら、大阪の文化と歴史に触れることができます。このツアーは、美食と文化に興味がある方々にとって、大阪を存分に楽しむ絶好の機会となるでしょう。",
-    "imageCover": "tour-11-cover.jpg",
+    "summary": "Exciting adventure in the snow with snowboarding and skiing",
+    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!",
+    "imageCover": "tour-3-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c295c",
-        "description": "道頓堀",
+        "description": "Aspen Highlands",
         "type": "Point",
         "coordinates": [-106.855385, 39.182677],
         "day": 1
       },
       {
         "_id": "5c88fa8cf4afda39709c295b",
-        "description": "大阪城",
+        "description": "Beaver Creek",
         "type": "Point",
         "coordinates": [-106.516623, 39.60499],
         "day": 2
@@ -158,10 +156,10 @@
   },
   {
     "startLocation": {
-      "description": "神戸の温泉とグルメ体験♨",
+      "description": "Las Vegas, USA",
       "type": "Point",
       "coordinates": [-115.172652, 36.110904],
-      "address": "〒650-0000 兵庫県神戸市XXX"
+      "address": "3663 S Las Vegas Blvd, Las Vegas, NV 89109, USA"
     },
     "ratingsAverage": 4.7,
     "ratingsQuantity": 7,
@@ -172,7 +170,7 @@
       "2022-08-12T09:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c2961",
-    "name": "神戸の温泉とグルメ体験",
+    "name": "The Park Camper",
     "duration": 10,
     "maxGroupSize": 15,
     "difficulty": "medium",
@@ -182,27 +180,27 @@
       "5c8a201e2f8fb814b56fa186"
     ],
     "price": 1497,
-    "summary": "神戸の温泉と美食を楽しむ旅",
-    "description": "神戸は温泉と美食が楽しめる街であり、このツアーでは神戸の温泉とグルメを満喫します。温泉地でリラックスしたり、美味しい食事を楽しんだりしながら、神戸の魅力を存分に味わいます。また、神戸の観光スポットや名所も訪れ、美しい街並みや景色を楽しむことができます。温泉と美食が大好きな方におすすめのツアーです。",
+    "summary": "Breathing in Nature in America's most spectacular National Parks",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!",
     "imageCover": "tour-5-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c2965",
-        "description": "有馬温泉",
+        "description": "Zion Canyon National Park",
         "type": "Point",
         "coordinates": [-112.987418, 37.198125],
         "day": 1
       },
       {
         "_id": "5c88fa8cf4afda39709c2964",
-        "description": "神戸ハーバーランド",
+        "description": "Antelope Canyon",
         "type": "Point",
         "coordinates": [-111.376161, 36.86438],
         "day": 4
       },
       {
         "_id": "5c88fa8cf4afda39709c2963",
-        "description": "南京町",
+        "description": "Grand Canyon National Park",
         "type": "Point",
         "coordinates": [-112.115763, 36.058973],
         "day": 5
@@ -218,10 +216,10 @@
   },
   {
     "startLocation": {
-      "description": "北海道の自然探検☃️",
+      "description": "NYC, USA",
       "type": "Point",
       "coordinates": [-73.985141, 40.75894],
-      "address": "〒060-0000 北海道札幌市XXX"
+      "address": "Manhattan, NY 10036, USA"
     },
     "ratingsAverage": 4.6,
     "ratingsQuantity": 5,
@@ -232,33 +230,33 @@
       "2021-06-09T09:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c295d",
-    "name": "北海道の大な自然と野生動物との出会いを楽しむ冒険",
-        "duration": 9,
+    "name": "The City Wanderer",
+    "duration": 9,
     "maxGroupSize": 20,
     "difficulty": "easy",
     "guides": ["5c8a22c62f8fb814b56fa18b", "5c8a201e2f8fb814b56fa186"],
     "price": 1197,
-    "summary": "北海道の美しい自然を探索する旅",
-    "description": "北海道は美しい自然風景が広がる地域であり、このツアーでは北海道の自然を探検します。広大な森林、山岳地帯、湖沼地帯など、豊かな自然環境を楽しみながらトレッキングやキャンプを行います。また、美しい渓谷や滝、温泉地なども訪れ、自然の中でリラックスした時間を過ごすことができます。北海道の美しい景色と自然の魅力を存分に味わいたい方におすすめのツアーです。",
+    "summary": "Living the life of Wanderlust in the US' most beatiful cities",
+    "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem ipsum dolor sit amet.\nConsectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat!",
     "imageCover": "tour-4-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c2960",
-        "description": "知床, 北海道",
+        "description": "New York",
         "type": "Point",
         "coordinates": [-73.967696, 40.781821],
         "day": 1
       },
       {
         "_id": "5c88fa8cf4afda39709c295f",
-        "description": "美瑛, 北海道",
+        "description": "Los Angeles",
         "type": "Point",
         "coordinates": [-118.324396, 34.097984],
         "day": 3
       },
       {
         "_id": "5c88fa8cf4afda39709c295e",
-        "description": "函館, 北海道",
+        "description": "San Francisco",
         "type": "Point",
         "coordinates": [-122.408865, 37.787825],
         "day": 5
@@ -267,10 +265,10 @@
   },
   {
     "startLocation": {
-      "description": "鎌倉の古都散策と桜🌸 ",
+      "description": "California, USA",
       "type": "Point",
       "coordinates": [-118.803461, 34.006072],
-      "address": "〒XXXXX 福岡県福岡市XXX"
+      "address": "29130 Cliffside Dr, Malibu, CA 90265, USA"
     },
     "ratingsAverage": 3.9,
     "ratingsQuantity": 7,
@@ -281,7 +279,7 @@
       "2022-03-18T10:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c2966",
-    "name": "歴史的な神社と仏閣を巡る日帰りツアー",
+    "name": "The Sports Lover",
     "duration": 14,
     "maxGroupSize": 8,
     "difficulty": "difficult",
@@ -291,41 +289,41 @@
       "5c8a1f4e2f8fb814b56fa185"
     ],
     "price": 2997,
-    "summary": "鎌倉の古都を訪れ、歴史的な神社や仏閣を巡る日帰りツアー, 桜の季節におすすめ",
-    "description": "鎌倉の古都を訪れ、歴史的な神社や仏閣を巡りましょう。美しい海岸線や風光明媚な庭園もお楽しみいただけます。日本の歴史と文化を感じる一日を過ごしましょう, 桜の季節におすすめのツアーです。",
+    "summary": "Surfing, skating, parajumping, rock climbing and more, all in one tour",
+    "description": "Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nVoluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur!",
     "imageCover": "tour-6-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c296b",
-        "description": "鹤岗八幡宫",
+        "description": "Point Dume Beach",
         "type": "Point",
         "coordinates": [-118.809361, 34.003098],
         "day": 1
       },
       {
         "_id": "5c88fa8cf4afda39709c296a",
-        "description": "前往长谷寺",
+        "description": "Venice Skate Park",
         "type": "Point",
         "coordinates": [-118.47549, 33.987367],
         "day": 4
       },
       {
         "_id": "5c88fa8cf4afda39709c2969",
-        "description": "江之岛展望灯台",
+        "description": "San Diego Skydive",
         "type": "Point",
         "coordinates": [-116.830104, 33.022843],
         "day": 6
       },
       {
         "_id": "5c88fa8cf4afda39709c2968",
-        "description": "镰仓高校前车站",
+        "description": "Kern River Rafting",
         "type": "Point",
         "coordinates": [-118.4547, 35.710359],
         "day": 7
       },
       {
         "_id": "5c88fa8cf4afda39709c2967",
-        "description": "镰仓大佛",
+        "description": "Yosemite National Park",
         "type": "Point",
         "coordinates": [-119.600492, 37.742371],
         "day": 10
@@ -334,10 +332,10 @@
   },
   {
     "startLocation": {
-      "description": "沖縄のビーチリゾート🌊",
+      "description": "Utah, USA",
       "type": "Point",
       "coordinates": [-109.55099, 37.283469],
-      "address": "〒XXXXX 沖縄県那覇市XXX"
+      "address": "Bluff, UT 84512, USA"
     },
     "ratingsAverage": 4.8,
     "ratingsQuantity": 6,
@@ -348,33 +346,33 @@
       "2022-01-30T10:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c2970",
-    "name": "沖縄のビーチリゾートを満喫する旅",
+    "name": "The Star Gazer",
     "duration": 9,
     "maxGroupSize": 8,
     "difficulty": "medium",
     "guides": ["5c8a21d02f8fb814b56fa189", "5c8a1f292f8fb814b56fa184"],
     "price": 2997,
-    "summary": "沖縄の美しいビーチリゾートを満喫する旅",
-    "description": "沖縄は美しいビーチとリゾート施設が充実しており、多くの観光客に人気の目的地です。このツアーでは、沖縄の美しいビーチリゾート地域を訪れ、白い砂浜や透明な海水を楽しむことができます。また、リゾート施設のプールやスパを利用したり、様々なマリンスポーツに挑戦したりすることもできます。沖縄の美しい自然環境とリゾートの魅力を存分に味わいたい方におすすめのツアーです。",
+    "summary": "The most remote and stunningly beautiful places for seeing the night sky",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "imageCover": "tour-8-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c2973",
-        "description": "美ら海水族館",
+        "description": "Natural Bridges National Monument",
         "type": "Point",
         "coordinates": [-109.99953, 37.629017],
         "day": 1
       },
       {
         "_id": "5c88fa8cf4afda39709c2972",
-        "description": "琉球村",
+        "description": "Horseshoe Bend",
         "type": "Point",
         "coordinates": [-111.50954, 36.883269],
         "day": 3
       },
       {
         "_id": "5c88fa8cf4afda39709c2971",
-        "description": "美ら海の教会",
+        "description": "Death Valley National Park",
         "type": "Point",
         "coordinates": [-117.07399, 36.501435],
         "day": 6
@@ -383,10 +381,10 @@
   },
   {
     "startLocation": {
-      "description": "奈良の古都遺跡探索🦌",
+      "description": "Yellowknife, CAN",
       "type": "Point",
       "coordinates": [-114.406097, 62.439943],
-      "address": "〒XXXXX 奈良県奈良市XXX"
+      "address": "Yellowknife, NT X1A 2L2, Canada"
     },
     "ratingsAverage": 4.7,
     "ratingsQuantity": 7,
@@ -397,7 +395,7 @@
       "2022-12-12T10:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c2974",
-    "name": "世界遺産の仏像と古代遺跡に触れる旅",
+    "name": "The Northern Lights",
     "duration": 3,
     "maxGroupSize": 12,
     "difficulty": "easy",
@@ -407,13 +405,13 @@
       "5c8a23412f8fb814b56fa18c"
     ],
     "price": 1497,
-    "summary": "奈良の世界遺産に登録された仏像や古代遺跡を訪れる旅",
-    "description": "奈良の世界遺産に登録された仏像や古代遺跡を訪れ、日本の歴史の中に浸りましょう。美しい庭園や公園もお楽しみいただけます。奈良の古都の魅力を体験しましょう。",
+    "summary": "Enjoy the Northern Lights in one of the best places in the world",
+    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!",
     "imageCover": "tour-9-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c2975",
-        "description": "東大寺, 奈良",
+        "description": "Yellowknife",
         "type": "Point",
         "coordinates": [-114.406097, 62.439943],
         "day": 1
@@ -422,10 +420,10 @@
   },
   {
     "startLocation": {
-      "description": "東京の現代都市探索🚅",
+      "description": "California, USA",
       "type": "Point",
       "coordinates": [-122.29286, 38.294065],
-      "address": "〒XXXXX 東京都XXX"
+      "address": "560 Jefferson St, Napa, CA 94559, USA"
     },
     "ratingsAverage": 4.4,
     "ratingsQuantity": 7,
@@ -436,33 +434,33 @@
       "2021-09-01T09:00:00.000Z"
     ],
     "_id": "5c88fa8cf4afda39709c296c",
-    "name": "近代的な建築物と繁華街を巡る都市冒険",
+    "name": "The Wine Taster",
     "duration": 5,
     "maxGroupSize": 8,
     "difficulty": "easy",
     "guides": ["5c8a22c62f8fb814b56fa18b", "5c8a23412f8fb814b56fa18c"],
     "price": 1997,
-    "summary": "東京の現代的なランドマークや伝統的な神社仏閣を訪れる旅",
-    "description": "東京の現代的なランドマークや伝統的な神社仏f閣を訪れ、日本の都市の魅力を満喫しましょう。忙しい都市の中で美しい庭園や公園でリフレッシュしながら、東京のエネルギッシュな雰囲気を体感しましょう。",
+    "summary": "Exquisite wines, scenic views, exclusive barrel tastings,  and much more",
+    "description": "Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nIrure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     "imageCover": "tour-7-cover.jpg",
     "locations": [
       {
         "_id": "5c88fa8cf4afda39709c296f",
-        "description": "東京タワー",
+        "description": "Beringer Vineyards",
         "type": "Point",
         "coordinates": [-122.479887, 38.510312],
         "day": 1
       },
       {
         "_id": "5c88fa8cf4afda39709c296e",
-        "description": "皇居",
+        "description": "Clos Pegase Winery & Tasting Room",
         "type": "Point",
         "coordinates": [-122.582948, 38.585707],
         "day": 3
       },
       {
         "_id": "5c88fa8cf4afda39709c296d",
-        "description": "浅草寺",
+        "description": "Raymond Vineyard and Cellar",
         "type": "Point",
         "coordinates": [-122.434697, 38.482181],
         "day": 5
