@@ -1,18 +1,16 @@
- 
-  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Bricolage+Grotesque:opsz,wght@10..48,200;10..48,300;10..48,400;10..48,600;10..48,700&display=swap');
- 
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Bricolage+Grotesque:opsz,wght@10..48,200;10..48,300;10..48,400;10..48,600;10..48,700&display=swap');
 
 :root {
   --section-rotate: 9vw;
 }
 
 ::-moz-selection {
-  background-color: #FDC6BE;
+  background-color: #fdc6be;
   color: #fff;
 }
 
 ::selection {
-  background-color: #FDC6BE;
+  background-color: #fdc6be;
   color: #fff;
 }
 
@@ -36,11 +34,11 @@ body {
   font-weight: 300;
   font-family: 'Lato', sans-serif;
   color: #777;
-  background: #063B3D;
+  background: #063b3d;
   padding: 3rem;
   min-height: 100vh;
   display: -webkit-box;
-  display:   -ms-flexbox;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -49,13 +47,12 @@ body {
 }
 
 .main {
-   padding: 8rem 6rem;
+  padding: 8rem 6rem;
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
   position: relative;
 }
-
 
 .flex {
   display: -webkit-box;
@@ -74,10 +71,8 @@ body {
 
 .rotate-symbol {
   display: inline-block;
-  animation: rotate 4s linear infinite;  
+  animation: rotate 4s linear infinite;
 }
-
-
 
 .span-all-rows {
   grid-row: 1 / -1;
@@ -87,7 +82,6 @@ body {
   max-width: 120rem;
   margin: 0 auto;
 }
-
 
 .ma-bt-md {
   margin-bottom: 3rem !important;
@@ -136,9 +130,8 @@ body {
   font-size: 2.25rem;
   text-transform: uppercase;
   font-weight: 700;
-  font-family: 'Bricolage Grotesque', sans-serif; 
-  color:#063B3D;
-
+  font-family: 'Bricolage Grotesque', sans-serif;
+  color: #063b3d;
 
   letter-spacing: 0.1rem;
   line-height: 1.3;
@@ -160,7 +153,6 @@ body {
 .heading-tertirary {
   color: #fff;
   font-family: 'Bodoni Moda', serif;
-    
 }
 
 .heading-primary span,
@@ -178,17 +170,15 @@ body {
   text-align: center;
   width: 100%;
   margin: 0 auto;
-
 }
 
 .heading-tertirary {
   font-size: 3rem;
-  color: #063B3D;
+  color: #063b3d;
   font-weight: 600;
- 
 }
 
-.heading-primary-sec  {
+.heading-primary-sec {
   font-size: 6rem;
   font-family: 'Bodoni Moda', serif;
   letter-spacing: -0.2rem;
@@ -220,8 +210,8 @@ body {
 }
 
 .btn:hover {
-  background-color: #063B3D;
-  color:#F4F4B8;
+  background-color: #063b3d;
+  color: #f4f4b8;
   -webkit-transform: translateY(-3px);
   transform: translateY(-3px);
   -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
@@ -250,11 +240,11 @@ body {
 }
 
 .btn--green {
-  background-color: #F4F4B8;
-  color: #063B3D;
+  background-color: #f4f4b8;
+  color: #063b3d;
 }
 .btn--green::after {
-  background-color: #F4F4B8;
+  background-color: #f4f4b8;
 }
 
 .btn--small {
@@ -265,8 +255,8 @@ body {
 .btn-small,
 .btn-small:link,
 .btn-small:visited {
-  background-color: #F4F4B8;
-  color: #063B3D;
+  background-color: #f4f4b8;
+  color: #063b3d;
   font-size: 1.4rem;
   padding: 1.25rem 3rem;
   border-radius: 10rem;
@@ -281,23 +271,21 @@ body {
 }
 
 .btn-small:hover {
-  background-color: #063B3D;
+  background-color: #063b3d;
 }
- 
- 
+
 .btn-text:link,
 .btn-text:visited {
-  color: #F4F4B8;
+  color: #f4f4b8;
   display: inline-block;
   text-decoration: none;
- 
+
   padding: 3px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 .btn-text:hover {
- 
   -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 1rem 2rem rgba(109, 109, 109, 0.15);
   -webkit-transform: translateY(-2px);
@@ -313,22 +301,22 @@ body {
 
 .btn-text:focus {
   outline: none;
- 
+
   outline-offset: 3px;
 }
-.top-container{
- position: relative;
+.top-container {
+  position: relative;
   z-index: 1;
   height: 60vh;
   overflow: hidden;
 }
-.top-container-text{
+.top-container-text {
   position: absolute;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Bodoni Moda', serif;
-  letter-spacing: -0.5rem; 
+  letter-spacing: -0.5rem;
   text-align: center;
   color: #efefef;
   font-size: 7rem;
@@ -336,21 +324,18 @@ body {
   /* no wrap */
   white-space: nowrap;
 }
-.top-container-mission{
+.top-container-mission {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   text-align: center;
   color: #eaeaea;
   font-size: 1.8rem;
   font-weight: 400;
- 
- 
 }
 .header {
-
   padding: 0 5rem;
   height: 8rem;
   position: relative;
@@ -478,7 +463,7 @@ body {
 }
 
 .section-description {
-  background-color: #B5DEE7;
+  background-color: #b5dee7;
   margin-top: calc(0px - var(--section-rotate));
   display: -webkit-box;
   display: -ms-flexbox;
@@ -505,7 +490,7 @@ body {
 }
 
 .overview-box {
-  background-color: #CAE7DF;
+  background-color: #cae7df;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -721,7 +706,7 @@ body {
   margin-right: 1px;
 }
 .reviews__star--active {
-  fill: #063B3D;
+  fill: #063b3d;
 }
 .reviews__star--inactive {
   fill: #bbb;
@@ -790,7 +775,7 @@ body {
 }
 .cta__content {
   display: grid;
- 
+
   grid-auto-flow: row;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -799,7 +784,7 @@ body {
 .cta__text {
   font-size: 1.9rem;
   font-weight: 400;
- text-align: center;
+  text-align: center;
 }
 
 .user-view {
@@ -842,11 +827,11 @@ body {
 }
 
 .footer {
-  background-color: #FDC6BE;
+  background-color: #fdc6be;
   margin-top: 10rem;
   padding: 6rem;
   font-size: 1.6rem;
- 
+
   display: grid;
   grid-template-columns: auto auto;
   grid-row-gap: 0.75rem;
@@ -875,7 +860,7 @@ body {
   height: 3rem;
 }
 .footer__nav li a {
-  color: #063B3D;
+  color: #063b3d;
   font-size: 1.4rem;
   font-weight: 200;
 }
@@ -898,7 +883,6 @@ body {
 .footer__nav a:active {
   color: #021a1b;
   font-weight: 600;
- 
 }
 /* .footer__copyright {
   justify-self: right;
@@ -909,7 +893,6 @@ body {
     justify-self: right;
   }
 }
- 
 
 .nav {
   display: -webkit-box;
@@ -1155,20 +1138,19 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
 }
+
 .card__header {
   position: relative;
 }
 .card__picture {
   position: relative;
-  
+
   height: 22rem;
 }
 .card__picture-overlay {
   position: absolute;
   width: 100%;
   height: 100%;
- 
-  
 }
 .card__picture-img {
   -o-object-fit: cover;
@@ -1211,7 +1193,7 @@ body {
 .card__icon {
   height: 2rem;
   width: 2rem;
-  fill: #FDC6BE;
+  fill: #fdc6be;
 }
 .card__footer {
   background-color: #f7f7f7;
