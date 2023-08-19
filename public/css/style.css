@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Bricolage+Grotesque:opsz,wght@10..48,200;10..48,300;10..48,400;10..48,600;10..48,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Bricolage+Grotesque:opsz,wght@10..48,200;10..48,300;10..48,400;10..48,600;10..48,700&family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&family=Roboto+Mono:wght@200;400&display=swap');
 :root {
   --section-rotate: 9vw;
 }
@@ -334,7 +333,7 @@ body {
 .top-container {
   position: relative;
   z-index: 1;
-  height: 60vh;
+  height: 80vh;
   overflow: hidden;
 }
 .top-container-text {
@@ -346,7 +345,7 @@ body {
   letter-spacing: -0.5rem;
   text-align: center;
   color: #efefef;
-  font-size: 7rem;
+  font-size: 8rem;
   font-weight: 400;
   /* no wrap */
   white-space: nowrap;
@@ -360,11 +359,13 @@ body {
   text-align: center;
   color: #eaeaea;
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 100;
+  font-family: Lato, sans-serif;
 }
 .header {
   padding: 0 5rem;
   height: 12rem;
+  margin-bottom: -12rem;
   position: relative;
   z-index: 100;
   display: -webkit-box;
@@ -398,9 +399,7 @@ body {
 }
 
 .section-header {
-  margin-top: 6rem;
   position: relative;
-  height: 38vw;
   /* clip-path: polygon(
     0 0,
     100% 0,
@@ -416,7 +415,7 @@ body {
 }
 
 .header__hero {
-  height: 120%;
+  height: 100vh;
 }
 
 .header__hero-img {
@@ -431,7 +430,7 @@ body {
 .header__hero-overlay {
   position: absolute;
   width: 100%;
-  height: 120%;
+  height: 100vh;
   background-image: radial-gradient(
     circle at center,
     rgba(6, 59, 61, 0.9) 20%,
@@ -444,7 +443,7 @@ body {
   position: absolute;
   bottom: 13vw;
   left: 50%;
-  top: 60%;
+  top: 55%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -500,11 +499,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   color: white;
+  background-color: #063b3d;
 }
 .section-description > * {
-  margin-top: 30vh;
   padding: 0 8vw;
-  padding-top: 0;
+  padding-top: 4rem;
   /* padding-bottom: calc(1vw + var(--section-rotate)); */
   -webkit-box-flex: 0;
   -ms-flex: 0 0 50%;
@@ -523,6 +522,7 @@ body {
 }
 
 .overview-box {
+  padding-top: 4rem;
   /* background-color: #cae7df; */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -536,19 +536,21 @@ body {
 }
 .overview-box__detail {
   font-size: 1.5rem;
+  font-style: italic;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-weight: 400;
+  font-weight: 200;
+  font-family: 'Bricolage Grotesque', sans-serif;
 }
 .overview-box__detail svg {
   margin-right: 1.25rem;
 }
 .overview-box__detail:not(:last-child) {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
 }
 .overview-box__icon {
   height: 2.25rem;
@@ -556,10 +558,10 @@ body {
   fill: #fdc6be;
 }
 .overview-box__label {
-  font-weight: 700;
+  font-weight: 400;
   margin-right: 2.25rem;
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 .overview-box__text {
   text-transform: capitalize;
