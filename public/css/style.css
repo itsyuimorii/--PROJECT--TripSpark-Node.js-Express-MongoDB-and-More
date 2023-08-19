@@ -373,18 +373,18 @@ body {
 .section-header {
   position: relative;
   height: 38vw;
-  clip-path: polygon(
+  /* clip-path: polygon(
     0 0,
     100% 0,
     100% calc(100% - var(--section-rotate)),
-    0 100%
+    0 100% 
   );
   -webkit-clip-path: polygon(
     0 0,
     100% 0,
     100% calc(100% - var(--section-rotate)),
     0 100%
-  );
+  );*/
 }
 
 .header__hero {
@@ -477,7 +477,7 @@ body {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
-  margin-bottom: 20rem;
+  padding-bottom: 20rem;
 }
 
 .description-box .description {
