@@ -16,6 +16,9 @@ block content
       .header__hero-overlay &nbsp;
       img.header__hero-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`) 
   
+
+    
+    
     .heading-box
         h1.heading-tertirary-tour
           span=tour.name
@@ -31,8 +34,6 @@ block content
             span.heading-box__text=tour.startLocation.description
     
 
-    
-
  
   - const date = tour.startDates[0].toLocaleString('en-us', { month: 'long', year: 'numeric' });
   - const difficulty = tour.difficulty;
@@ -43,7 +44,7 @@ block content
     .overview-box
       div
         .overview-box__group
-          h2.heading-secondary.ma-bt-lg Details of the tour
+          h2.heading-secondary.ma-bt-lg ✷  Details of the tour
 
           +overviewBox('Next date', date, 'calendar')
           +overviewBox('Diffculty', difficulty, 'trending-up')
@@ -52,7 +53,7 @@ block content
 
 
         .overview-box__group
-          h2.heading-secondary.ma-bt-lg Your tour guides
+          h2.heading-secondary.ma-bt-lg ✷  Your tour guides
           .overview-box__detail
             img.overview-box__img(src='/img/users/user-19.jpg', alt='Lead guide')
             span.overview-box__label Lead guide
@@ -67,7 +68,9 @@ block content
             span.overview-box__text Max Smith
 
     .description-box
-      h2.heading-secondary.ma-bt-lg About the park camper tour
+      h2.heading-secondary.ma-bt-lg ✷  About the park camper tour
+      p.description__text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      p.description__text Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!
       p.description__text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
       p.description__text Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!
 
