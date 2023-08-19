@@ -19,7 +19,7 @@ block content
           .card__header
             .card__picture
               .card__picture-overlay &nbsp;
-              img.card__picture-img(src=`img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+              img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
             h3.heading-tertirary
               span= tour.name
               
@@ -28,11 +28,11 @@ block content
             p.card__text= tour.summary
             .card__data
               svg.card__icon
-                use(xlink:href='img/icons.svg#icon-map-pin')
+                use(xlink:href='/img/icons.svg#icon-map-pin')
               span= tour.startLocation.description
             .card__data
               svg.card__icon
-                use(xlink:href='img/icons.svg#icon-calendar')
+                use(xlink:href='/img/icons.svg#icon-calendar')
               span= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
             .card__data
               svg.card__icon
