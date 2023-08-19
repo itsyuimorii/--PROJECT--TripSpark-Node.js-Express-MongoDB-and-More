@@ -1,6 +1,7 @@
 extends base
 
 block content
+
   main.main
     section.overview
       section.top-container
@@ -52,4 +53,4 @@ block content
               span.card__footer-value= tour.ratingsAverage
               | 
               span.card__footer-text= `rating (${tour.ratingsQuantity})`
-            a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details ->
+            a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
