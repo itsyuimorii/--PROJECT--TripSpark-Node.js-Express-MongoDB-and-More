@@ -83,11 +83,12 @@ body {
 }
 
 .ma-bt-md {
-  margin-bottom: 3rem !important;
+  /* margin-bottom: 3rem !important; */
 }
 
 .ma-bt-lg {
-  margin-bottom: 3.5rem !important;
+  font-family: 'lato', sans-serif;
+  margin-bottom: 5rem !important;
 }
 
 .right {
@@ -129,23 +130,29 @@ body {
   font-size: 2rem;
   /* text-transform: uppercase; */
   font-family: 'Bodoni Moda', serif;
-
   font-weight: 400;
   color: #063b3d;
-
   letter-spacing: 0.1rem;
   line-height: 1.3;
   display: inline-block;
 }
 
+.heading-secondary-login {
+  font-size: 3rem;
+  text-transform: uppercase;
+  /* font-family: 'lato', sans-serif; */
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 400;
+  color: #dde1e1;
+  /* letter-spacing: 0.1rem; */
+  line-height: 3;
+  display: inline-block;
+}
+
 .ma-bt-lg {
   margin-top: 5rem;
-  font-size: 2rem;
   /* text-transform: uppercase; */
-  font-family: 'Bodoni Moda', serif;
 
-  font-weight: 200;
-  color: #ffffff;
   letter-spacing: -0.1rem;
   line-height: 1.3;
   display: inline-block;
@@ -219,7 +226,7 @@ body {
 .btn:link,
 .btn:visited {
   font-size: 1.6rem;
-  padding: 1.4rem 3rem;
+  padding: 1rem 3rem;
   border-radius: 10rem;
   text-transform: uppercase;
   display: inline-block;
@@ -274,6 +281,47 @@ body {
   background-color: #f4f4b8;
 }
 
+.btn--green-book {
+  margin-top: 3rem;
+  background-color: #f4f4b8;
+  color: #063b3d;
+  padding: 1.7rem 6rem;
+  font-family: 'lato', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.btn-login {
+  margin: 0 auto;
+  font-size: 1.6rem;
+  padding: 1.4rem 3rem;
+  /* border-radius: 2rem; */
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-weight: 600;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /*Add later when we use this for the button in form*/
+  border: none;
+  cursor: pointer;
+}
+
+.btn--pink {
+  margin-top: 7rem;
+  background-color: #fdc6be;
+  color: #063b3d;
+  padding: 1.5rem 8rem;
+  font-family: 'lato', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.btn--pink::after {
+  background-color: #f4f4b8;
+}
 .btn--small {
   padding: 2rem 4rem !important;
   font-size: 1.4rem !important;
@@ -293,7 +341,8 @@ body {
   transition: all 0.2s;
   cursor: pointer;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 100;
+  font-family: 'lato', sans-serif;
   border: none;
 }
 
@@ -646,10 +695,10 @@ body {
 
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: 'lato', serif;
+  font-family: 'lato', sans-serif;
   padding: 1.5rem !important;
   font-style: italic;
-  font-weight: 200;
+  font-weight: 100;
   font-size: 1.4rem;
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
@@ -680,16 +729,16 @@ body {
   display: grid;
   grid-column-gap: 6rem;
   grid-auto-flow: column;
-  overflow-x: scroll; /* 使用scroll而不是hidden */
-  -ms-overflow-style: none; /* 隐藏IE/Edge默认滚动条 */
-  scrollbar-width: none; /* 隐藏Firefox默认滚动条 */
-  -webkit-overflow-scrolling: touch; /* 支持惯性滚动（Safari/iOS） */
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
   -ms-scroll-snap-type: x mandatory;
   scroll-snap-type: x mandatory;
 }
 
 .reviews::-webkit-scrollbar {
-  display: none; /* 隐藏Chrome/WebKit默认滚动条 */
+  display: none;
 }
 .reviews__card {
   width: 30rem;
@@ -733,7 +782,8 @@ body {
   font-size: 1.5rem;
   font-weight: 400;
   color: #063b3d;
-  font-family: 'Lato', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
+
   text-transform: uppercase;
 }
 .reviews__text {
@@ -1249,12 +1299,13 @@ body {
   padding: 1rem 3rem 2rem 3rem;
 }
 .card__sub-heading {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   font-weight: 700;
   grid-column: 1 / -1;
 }
 .card__text {
+  font-family: 'lato', sans-serif;
   grid-column: 1 / -1;
   font-size: 1.5rem;
   font-style: italic;
@@ -1339,28 +1390,33 @@ body {
 }
 
 .login-form {
-  margin: 0 auto;
+  margin: 15rem auto;
   max-width: 55rem;
-  background-color: #fff;
-  -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
-  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
-  padding: 5rem 7rem;
+  /* background-color: #fff; */
+  /* -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06); */
+  /* box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06); */
+  padding: 5rem 2rem;
   border-radius: 5px;
+  text-align: center;
 }
-
+.form__group {
+  text-align: center;
+  border-top: 0.6px solid #8f8f8f;
+}
 .form__input {
   display: block;
   font-family: inherit;
+  text-transform: uppercase;
   font-size: 1.5rem;
   color: inherit;
-  padding: 1.25rem 1.75rem;
+  padding-top: 1.5rem;
   border: none;
   width: 100%;
-  background-color: #fff;
-  background-color: #f2f2f2;
-  border-top: 3px solid transparent;
-  border-bottom: 3px solid transparent;
+  background-color: #063b3d;
+  /* border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent; */
   -webkit-transition: all 0.3s;
+
   transition: all 0.3s;
   border-radius: 4px;
   -webkit-box-sizing: border-box;
@@ -1370,24 +1426,27 @@ body {
 }
 .form__input:focus {
   outline: none;
-  border-bottom: 3px solid #55c57a;
+  /* border-bottom: 3px solid #55c57a; */
 }
 .form__input:focus:invalid {
-  border-bottom: 3px solid #ff7730;
+  /* border-bottom: 3px solid #ff7730; */
 }
 .form__input::-webkit-input-placeholder {
   color: #bbb;
+  font-weight: 100;
+  font-family: 'lato', sans-serif;
+  font-size: 1.5rem;
 }
 
 .form__group:not(:last-child) {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .form__label {
   display: block;
   font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  /* margin-bottom: 0.75rem; */
 }
 
 .form__photo-upload {
