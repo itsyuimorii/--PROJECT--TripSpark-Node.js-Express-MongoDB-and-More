@@ -1426,14 +1426,15 @@ body {
 }
 .form__input:focus {
   outline: none;
+  color: #fff;
   /* border-bottom: 3px solid #55c57a; */
 }
 .form__input:focus:invalid {
-  /* border-bottom: 3px solid #ff7730; */
+  /* border-bottom: 1px dash #fdc6be; */
 }
 .form__input::-webkit-input-placeholder {
-  color: #bbb;
-  font-weight: 100;
+  color: #e0e0e0;
+  font-weight: 200;
   font-family: 'lato', sans-serif;
   font-size: 1.5rem;
 }
@@ -1476,7 +1477,7 @@ body {
 }
 
 .form__upload:focus + label {
-  outline: 3px solid #55c57a;
+  outline: 3px solid #454545;
   outline-offset: 3px;
 }
 
