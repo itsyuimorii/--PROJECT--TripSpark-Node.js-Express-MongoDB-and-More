@@ -14,9 +14,12 @@ header.header
                     use(xlink:href='/img/icons.svg#icon-search')
             input.nav__search-input(type='text', placeholder='Search tours')
     nav.nav.nav--user
-        //- a.nav__el(href='#') ✶ My bookings
-        //- a.nav__el(href='#')
-        //-     img.nav__user-img(src='img/user.jpg', alt='User photo', class='nav__user-img')
-        //-     span itsyuimorii
-        a.nav__el(href='/login') Log in
-        a.nav__el.nav__el--cta(href='#') Sign up
+        if user
+            a.nav__el(href='/me') ✶ My bookings
+            a.nav__el(href='/logout') Log out
+            a.nav__el.nav__el--cta--user(href='/me')
+                img.nav__user-img(src=`/img/users/${user.photo}`, alt='User photo', class='nav__user-img')
+                span=user.name.split(' ')[0]
+        else
+            a.nav__el(href='/login') Log in
+            a.nav__el.nav__el--cta(href='#') Sign up

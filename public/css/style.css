@@ -1108,6 +1108,14 @@ body {
 .nav__el:focus {
   outline: none;
 }
+
+.nav__el--cta--user {
+  padding: 1rem 3rem;
+  border-radius: 10rem;
+  /* border: 1px solid currentColor !important; */
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
 .nav__el--cta {
   padding: 1rem 3rem;
   border-radius: 10rem;
@@ -1401,13 +1409,13 @@ body {
 }
 .form__group {
   text-align: center;
-  border-top: 0.6px solid #8f8f8f;
+  border-top: 0.6px solid #dbdbdb;
 }
 .form__input {
   display: block;
   font-family: inherit;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: inherit;
   padding-top: 1.5rem;
   border: none;
@@ -1433,7 +1441,7 @@ body {
   /* border-bottom: 1px dash #fdc6be; */
 }
 .form__input::-webkit-input-placeholder {
-  color: #e0e0e0;
+  color: #b8b8b8;
   font-weight: 200;
   font-family: 'lato', sans-serif;
   font-size: 1.5rem;
