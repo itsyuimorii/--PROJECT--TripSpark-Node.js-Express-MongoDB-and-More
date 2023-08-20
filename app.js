@@ -26,6 +26,14 @@ app.use(express.static(`${__dirname}/public`));
 // Set security HTTP headers
 app.use(helmet());
 
+//fixing the mapbox security error
+
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "script-src 'self' https://api.tiles.mapbox.com; worker-src 'self' blob:;");
+  next();
+});
+
+
 // Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -43,7 +51,7 @@ app.use('/api', limiter);
 
 // Body parser, reading data from the body into req.body
 app.use(express.json({
-  limit: '10kb' 
+  limit: '10kb'
 }));
 
 // Data sanitization against NoSQL query injection
@@ -89,5 +97,5 @@ app.all('*', (req, res, next) => {
 
 // 5) ERROR HANDLING MIDDLEWARE
 app.use(globalErrorHandler);
- 
+
 module.exports = app;
