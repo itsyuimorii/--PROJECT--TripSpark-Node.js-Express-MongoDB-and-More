@@ -621,7 +621,7 @@ body {
 
 .section-map {
   position: relative;
-  height: 65rem;
+  height: 80vh;
   margin-top: calc(0px - var(--section-rotate));
 }
 
@@ -632,7 +632,7 @@ body {
   width: 100%;
 }
 
-.marker {
+/* .marker {
   background-image: url('../img/pin.png');
   background-size: cover;
   width: 32px;
@@ -651,7 +651,7 @@ body {
   font-size: 1.4rem;
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
-}
+} */
 
 /* .section-reviews {
   margin-top: calc(0px - var(--section-rotate));
