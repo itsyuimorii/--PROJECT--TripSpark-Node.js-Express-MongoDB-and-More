@@ -27,12 +27,10 @@ app.use(express.static(`${__dirname}/public`));
 app.use(helmet());
 
 //fixing the mapbox security error
-
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "script-src 'self' https://api.tiles.mapbox.com; worker-src 'self' blob:;");
+  res.setHeader("Content-Security-Policy", "script-src 'self' https://api.tiles.mapbox.com https://cdn.jsdelivr.net; worker-src 'self' blob:;");
   next();
 });
-
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
