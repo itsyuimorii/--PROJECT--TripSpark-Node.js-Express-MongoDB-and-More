@@ -70,18 +70,10 @@ block content
       - const paragraphs = tour.description.split('\n');
       each p in paragraphs
         p.description__text= p
+      button.btn.btn--green.span-all-rows Book tour now!
          
-
-  section.section-cta
-    .cta
-      .cta__img.cta__img--logo
-        img(src='/img/logo-white.png', alt='Natours logo')
-      img.cta__img.cta__img--1(src=`/img/tours/${tour.images[1]}`, alt='Tour picture')
-      img.cta__img.cta__img--2(src=`/img/tours/${tour.images[2]}`, alt='Tour picture')
-      .cta__content
-        h2.heading-secondary What are you waiting for?
-        p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
-        button.btn.btn--green.span-all-rows Book tour now!
+ 
+        
   //- section.section-pictures
   //-   each img, i in tour.images
   //-     .picture-box
@@ -95,12 +87,12 @@ block content
       each review in tour.reviews
         +reviewCard(review)
 
-  section.section-cta
-    .cta
-      img(src="", alt="")
+  //- section.section-cta
+  //-   .cta
+  //-     img(src="", alt="")
  
       
-    .cta__content
-      h2.heading-secondary What are you waiting for?
-      p.cta__text 10 days. 1 adventure. Infinite memories. Make it yours today!
-      button.btn.btn--green.span-all-rows Book tour now!
+  //-   .cta__content
+  //-     h2.heading-secondary What are you waiting for?
+  //-     p.cta__text 10 days. 1 adventure. Infinite memories. Make it yours today!
+  //-     button.btn.btn--green.span-all-rows Book tour now!

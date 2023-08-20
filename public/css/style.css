@@ -266,6 +266,7 @@ body {
 }
 
 .btn--green {
+  margin-top: 3rem;
   background-color: #f4f4b8;
   color: #063b3d;
 }
@@ -274,7 +275,7 @@ body {
 }
 
 .btn--small {
-  padding: 1.25rem 3rem !important;
+  padding: 2rem 4rem !important;
   font-size: 1.4rem !important;
 }
 
@@ -305,7 +306,6 @@ body {
   color: #f4f4b8;
   display: inline-block;
   text-decoration: none;
-
   padding: 3px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -729,14 +729,17 @@ body {
 }
 .reviews__user {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 400;
+  color: #063b3d;
+  font-family: 'Lato', serif;
   text-transform: uppercase;
 }
 .reviews__text {
   font-size: 1.5rem;
+  font-family: 'lato' sans-serif;
+  font-weight: 200;
   margin-bottom: 2rem;
   font-style: italic;
-  font-weight: 400;
 }
 .reviews__rating {
   margin-top: auto;
@@ -756,20 +759,17 @@ body {
   fill: #bbb;
 }
 .section-cta {
-  margin-top: calc(0px - var(--section-rotate));
   padding: 3rem;
-  padding-bottom: 11rem;
-  padding-top: calc(15rem + var(--section-rotate));
-  background-color: #ffffff;
+  /* padding-bottom: rem; */
+  background-color: #b5dee7;
 }
 
-/* .cta {
+.cta {
   position: relative;
   max-width: 105rem;
   margin: 0 auto;
   overflow: hidden;
- 
-} */
+}
 .cta__img {
   height: 15rem;
   width: 15rem;
@@ -905,6 +905,7 @@ body {
 .footer__nav li a {
   color: #063b3d;
   font-size: 1.4rem;
+
   font-weight: 200;
 }
 .footer__nav {
@@ -914,10 +915,11 @@ body {
   display: flex;
 }
 .footer__nav li {
-  margin-left: 1.5rem;
+  margin-left: 2rem;
 }
 .footer__nav a {
   color: #777;
+
   text-decoration: none !important;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
