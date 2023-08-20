@@ -1,11 +1,10 @@
-
-const login = (email, password) => {
-    alert(email, password)
+const login = async (email, password) => {
+    alert(email + ' ' + password);
 };
 
-document.querySelector('.form').addEventListener('submit', e => {
+document.querySelector('.form').addEventListener('submit', async e => {
     e.preventDefault();
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-    login(email, password);
+    await login(email, password);
 });
