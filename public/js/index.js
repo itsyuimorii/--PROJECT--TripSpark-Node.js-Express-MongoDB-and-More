@@ -1,6 +1,6 @@
 /* eslint-disable */
 import '@babel/polyfill';
-import "core-js/stable";
+// import "core-js/stable";
 
 import { displayMap } from './mapbox';
 import { login, logout } from './login';
