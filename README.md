@@ -3,7 +3,6 @@
     <h1> ⛺️ Node.js, Express, MongoDB & More: The Complete Bootcamp 2023 </h1>
 </div>
 
-
 <div align=center>
     <a href="https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/">Course Link</a> |
     <a href=" ">Final Project</a> |
@@ -14,34 +13,38 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
 
 <div align="center">
 
-|Section|Topic|Problem Sets|
-|-----|-----------|----|
-|Section 0 | RestfulAPI |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/01_restfulapi)|
-|Section 1| Mongodb & mongoose |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/02_mongodb)|
-|Section 2 | Error handling |[code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/03_error_handling)|
-|Section 3| Authentication_and_security | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/04_authentication_and_security) |
-|Section 4 | Modelling_data_and_advanced_mongoose | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/05_modelling_data_and_advanced_mongoose) |
-| Section 5 | Server_Side_Rendering-with_Pug_Templates | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/06_Server_Side_Rendering-with_Pug_Templates) |
-|Section 6 | Advanced_Features_Payments_Email_File_Uploads | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/07_Advanced_Features_-Payments_Email_File-Uploads) |
-|Section 7 | Setting_Up_Git_and_Deployment | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/08_Setting_Up_Git_and_Deployment) |
+| Section   | Topic                                         | Problem Sets                                                                                                                                               |
+| --------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Section 0 | RestfulAPI                                    | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/01_restfulapi)                                     |
+| Section 1 | Mongodb & mongoose                            | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/02_mongodb)                                        |
+| Section 2 | Error handling                                | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/03_error_handling)                                 |
+| Section 3 | Authentication_and_security                   | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/04_authentication_and_security)                    |
+| Section 4 | Modelling_data_and_advanced_mongoose          | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/05_modelling_data_and_advanced_mongoose)           |
+| Section 5 | Server_Side_Rendering-with_Pug_Templates      | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/06_Server_Side_Rendering-with_Pug_Templates)       |
+| Section 6 | Advanced_Features_Payments_Email_File_Uploads | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/07_Advanced_Features_-Payments_Email_File-Uploads) |
+| Section 7 | Setting_Up_Git_and_Deployment                 | [code](https://github.com/itsyuimorii/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/tree/08_Setting_Up_Git_and_Deployment)                  |
 
 <div align="left">
 
 ## ☻ Starting a Node.js Project
 
 1. Install Project Dependencies:
+
    - Run `npm install` in the project's root directory to download and install all the required dependencies.
    - You can use the `--dev` flag with `npm install` to install development dependencies.
 
 2. Configure Environment Variables and Configuration Files:
+
    - If your project requires environment variables or configuration files, follow the project documentation to configure them.
    - Create a `.env` file and fill in the necessary variables or modify relevant sections in the project's configuration files.
 
 3. Start the Project:
+
    - In the project's root directory, run `npm start` to start the project.
    - This will execute the command specified in the `"start"` script in the `package.json` file.
 
 4. `package.json`:
+
    - The `package.json` file contains metadata about your project and its dependencies.
    - It includes scripts that can be executed using `npm run <script-name>`.
    - The `"start"` script is used to start the project using `nodemon` to automatically restart the server on file changes.
@@ -49,6 +52,7 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
    - The `"debug"` script can be used for debugging with `ndb`.
 
 5. `config.env`:
+
    - The `config.env` file contains environment variables used in the project.
    - It defines variables like `NODE_ENV`, `PORT`, and `DATABASE`.
    - The `DATABASE_PASSWORD` variable is specific to your MongoDB connection.
@@ -62,49 +66,18 @@ Master Node by building a real-world RESTful API and web app (with authenticatio
    - The server listens on the specified `port` and logs a success message.
    - Error handling is implemented for unhandled exceptions and rejections.
 
-These steps and code snippets provide a basic structure for starting a Node.js project with dependencies, environment variables, and server setup.
+```bash
+echo ".cache/" >> .gitignore
 
-```json
-{
-  "name": "yume-kobo",
-  "version": "1.0.0",
-  "description": "Learning node, express and mongoDB",
-  "main": "app.js",
-  "scripts": {
-    "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js",
-    "debug": "ndb server.js"
-  },
-  "author": "itsyuimorii",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.1.0",
-    "bcryptjs": "^2.4.3",
-    "crypto": "^1.0.1",
-    "dotenv": "^7.0.0",
-    "express": "^4.18.2",
-    "mongodb": "^5.7.0",
-    "mongoose": "^5.13.19",
-    "morgan": "^1.10.0",
-    "slugify": "^1.3.4",
-    "validator": "^13.9.0"
-  },
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-prettier": "^3.4.1",
-    "eslint-plugin-react": "^7.32.2",
-    "prettier": "^1.19.1"
-  },
-  "engines": {
-    "node": ">=10.0.0"
-  }
-}
+rm -rf node_modules
+rm -rf .cache
+
+npm install deasync@latest --save-dev
+
+
 ```
+
+These steps and code snippets provide a basic structure for starting a Node.js project with dependencies, environment variables, and server setup.
 
 > **config.env**
 
@@ -159,7 +132,6 @@ process.on('unhandledRejection', err => {
 });
 ```
 
-
 ## 📗 Takeaway
 
 ### Configuring `scripts` in package.json
@@ -183,8 +155,6 @@ Using the npm start command will run the command specified by the start attribut
 
 Use the npm start start:prod command to run the command specified by the start:prod attribute, "NODE_ENV=production nodemon server.js", and use the nodemon package to run the server.js file in the production environment with the environment variable NODE_ENV set to "production". and set the environment variable NODE_ENV to "production".
 
-
-
 With the above configuration, you can run the server using the following commands:
 
 > Start server in development mode
@@ -203,17 +173,16 @@ npm run start:prod
 
 > mongoose
 
-  ```bash
-  npm i mongoose --legacy-peer-deps
-  
-  ```
+```bash
+npm i mongoose --legacy-peer-deps
 
+```
 
 This command will set the `NODE_ENV` environment variable to `"production"` and then use `nodemon` to run the `server.js` file. Running the server in production mode may involve additional optimizations and configurations specific to your application.
 
 Note that when using `npm run` to execute a script, you need to prefix the script name with `run`.
 
-Now, you can start your server by using either `npm start` or `npm run start:prod`, depending on the desired mode. 
+Now, you can start your server by using either `npm start` or `npm run start:prod`, depending on the desired mode.
 
 ### Configuring ESLint and Prettier
 
@@ -243,10 +212,10 @@ npm install eslint prettier eslint-config-prettier eslint-plugin-prettier eslint
 
 **APPLICATION LOGIC** (controller)
 
-- 👉  Code that is only concerned about the application’s implementation, not the underlying business problem we’re trying to solve (e.g. showing and selling tours);
-- 👉  Concerned about managing requests and responses;
-- 👉  About the app’ s more technical aspects;
-- 👉  Bridge between model and view layers.
+- 👉 Code that is only concerned about the application’s implementation, not the underlying business problem we’re trying to solve (e.g. showing and selling tours);
+- 👉 Concerned about managing requests and responses;
+- 👉 About the app’ s more technical aspects;
+- 👉 Bridge between model and view layers.
 
 **BUSINESS LOGIC**(model)
 
@@ -258,13 +227,13 @@ out to solve;
 
 - 👉 Examples:
 
-  - 👉  Creating new tours in the database;
+  - 👉 Creating new tours in the database;
 
-  - 👉  Checking if user’s password is correct;
+  - 👉 Checking if user’s password is correct;
 
-  - 👉  Validating user input data;
+  - 👉 Validating user input data;
 
-  - 👉  Ensuring only users who bought a tour can review it.
+  - 👉 Ensuring only users who bought a tour can review it.
 
 **Fat models/thin controllers:** offload as much logic as possible into the models, and keep the controllers as simple and lean as possible.
 
@@ -280,7 +249,7 @@ out to solve;
 - [Query middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
 - [Aggregate middleware](https://mongoosejs.com/docs/middleware.html#types-of-middleware)
 
-### `toJSON` and `toObject` 
+### `toJSON` and `toObject`
 
 This code sets the `toJSON` and `toObject` options on the `tourSchema` object, enabling it to include virtual properties when converting to a JSON string or a regular JavaScript object.
 
@@ -292,8 +261,8 @@ const tourSchema = new mongoose.Schema(
     // Schema definitions...
   },
   {
-    toJSON: { virtuals: true },   // Include virtual properties when converting to JSON string
-    toObject: { virtuals: true }  // Include virtual properties when converting to regular JavaScript object
+    toJSON: { virtuals: true }, // Include virtual properties when converting to JSON string
+    toObject: { virtuals: true } // Include virtual properties when converting to regular JavaScript object
   }
 );
 ```
@@ -304,7 +273,6 @@ Virtual properties are properties that are not stored in the database but are co
 
 With the `toJSON` and `toObject` options set, when you convert the document to a JSON string using `JSON.stringify()` or to a regular JavaScript object using the `toObject()` method, the virtual properties will be included in the result.
 
-
 ### import import-dev-data.js into mongodb
 
 ```bash
@@ -313,6 +281,7 @@ node dev-data/data/import-dev-data.js --delete
 ```
 
 > import-dev-data.js
+
 ```js
 const fs = require('fs');
 const mongoose = require('mongoose');
@@ -375,68 +344,66 @@ if (process.argv[2] === '--import') {
 } else if (process.argv[2] === '--delete') {
   deleteDevData();
 }
-
 ```
 
 ### APIFeatures
 
-
 ```js
 class APIFeatures {
-    constructor(query, queryString) {
-      this.query = query; // Initialize the query property with the query parameter
-      this.queryString = queryString; // Initialize the queryString property with the queryString parameter
-    }
-  
-    filter() {
-      const queryObj = { ...this.queryString }; // Create a copy of the queryString object
-      const excludedFields = ['page', 'sort', 'limit', 'fields']; // Specify the fields to be excluded from the query
-  
-      // Remove the excluded fields from the queryObj
-      excludedFields.forEach(el => delete queryObj[el]);
-  
-      // Advanced filtering
-      let queryStr = JSON.stringify(queryObj); // Convert the queryObj to a string
-      queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`); // Replace certain operators with MongoDB operators
-  
-      this.query = this.query.find(JSON.parse(queryStr)); // Update the query with the filtered results
-  
-      return this;
-    }
-  
-    sort() {
-      if (this.queryString.sort) {
-        const sortBy = this.queryString.sort.split(',').join(' '); // Extract the sort criteria from the queryString and format it
-        this.query = this.query.sort(sortBy); // Sort the query based on the sortBy criteria
-      } else {
-        this.query = this.query.sort('-createdAt'); // If no sort criteria provided, sort by 'createdAt' field in descending order
-      }  
-      return this;
-    }
-  
-    limitFields() {
-      if (this.queryString.fields) {
-        const fields = this.queryString.fields.split(',').join(' '); // Extract the fields to be included from the queryString and format it
-        this.query = this.query.select(fields); // Select only the specified fields in the query
-      } else {
-        this.query = this.query.select('-__v'); // Exclude the '__v' field from the query result
-      }
-      return this;
-    }
-  
-    paginate() {
-      const page = this.queryString.page * 1 || 1; // Extract the page number from the queryString, convert to number, default to 1 if not provided
-      const limit = this.queryString.limit * 1 || 100; // Extract the limit from the queryString, convert to number, default to 100 if not provided
-      const skip = (page - 1) * limit; // Calculate the number of documents to skip based on the page and limit
-      this.query = this.query.skip(skip).limit(limit); // Skip the specified number of documents and limit the result to the specified number
-      return this;
-    }
+  constructor(query, queryString) {
+    this.query = query; // Initialize the query property with the query parameter
+    this.queryString = queryString; // Initialize the queryString property with the queryString parameter
   }
-  
-  module.exports = APIFeatures; // Export the APIFeatures class for external use
+
+  filter() {
+    const queryObj = { ...this.queryString }; // Create a copy of the queryString object
+    const excludedFields = ['page', 'sort', 'limit', 'fields']; // Specify the fields to be excluded from the query
+
+    // Remove the excluded fields from the queryObj
+    excludedFields.forEach(el => delete queryObj[el]);
+
+    // Advanced filtering
+    let queryStr = JSON.stringify(queryObj); // Convert the queryObj to a string
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`); // Replace certain operators with MongoDB operators
+
+    this.query = this.query.find(JSON.parse(queryStr)); // Update the query with the filtered results
+
+    return this;
+  }
+
+  sort() {
+    if (this.queryString.sort) {
+      const sortBy = this.queryString.sort.split(',').join(' '); // Extract the sort criteria from the queryString and format it
+      this.query = this.query.sort(sortBy); // Sort the query based on the sortBy criteria
+    } else {
+      this.query = this.query.sort('-createdAt'); // If no sort criteria provided, sort by 'createdAt' field in descending order
+    }
+    return this;
+  }
+
+  limitFields() {
+    if (this.queryString.fields) {
+      const fields = this.queryString.fields.split(',').join(' '); // Extract the fields to be included from the queryString and format it
+      this.query = this.query.select(fields); // Select only the specified fields in the query
+    } else {
+      this.query = this.query.select('-__v'); // Exclude the '__v' field from the query result
+    }
+    return this;
+  }
+
+  paginate() {
+    const page = this.queryString.page * 1 || 1; // Extract the page number from the queryString, convert to number, default to 1 if not provided
+    const limit = this.queryString.limit * 1 || 100; // Extract the limit from the queryString, convert to number, default to 100 if not provided
+    const skip = (page - 1) * limit; // Calculate the number of documents to skip based on the page and limit
+    this.query = this.query.skip(skip).limit(limit); // Skip the specified number of documents and limit the result to the specified number
+    return this;
+  }
+}
+
+module.exports = APIFeatures; // Export the APIFeatures class for external use
 ```
 
-###  Aggregation Pipeline: Matching and Grouping Documents
+### Aggregation Pipeline: Matching and Grouping Documents
 
 > [Aggregation document](https://docs.mongodb.com/manual/aggregation/)
 
@@ -446,14 +413,12 @@ class APIFeatures {
 
 ### [Mongoose middleware](https://mongoosejs.com/docs/middleware.html)
 
-
 - QUERY MIDDLEWARE
 - MODEL MIDDLEWARE
-- DOCUMENT MIDDLEWARE 
+- DOCUMENT MIDDLEWARE
 - AGGREGATION MIDDLEWARE
 
 ### DATA validation
-
 
 ### Error handling with Express
 
@@ -468,10 +433,11 @@ npm i ndb --save-dev
   "debug": "ndb npm start"
 }
 ```
-### Error handling 
+
+### Error handling
 
 - operational errors
-Problems that we can predict will happen at some point, so we just need to handle them in advance.
+  Problems that we can predict will happen at some point, so we just need to handle them in advance.
 
 👉 Invalid path accessed;
 👉 Invalid user input (validator error
@@ -481,7 +447,7 @@ from mongoose);
 👉 Request timeout;
 
 - programming errors
-Bugs that we developers introduce into our code. Difficult to find and handle.
+  Bugs that we developers introduce into our code. Difficult to find and handle.
 
 👉 Reading properties on undefined;
 👉 Passing a number where an object
@@ -491,9 +457,9 @@ is expected;
 
 ### JWT authentication
 
-reference:  [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) ｜ jwt.io(https://jwt.io/)
+reference: [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) ｜ jwt.io(https://jwt.io/)
 
-> install	
+> install
 
 ```
 $ npm install jsonwebtoken
@@ -505,16 +471,16 @@ $ npm install jsonwebtoken
 jwt.sign(payload, secretOrPrivateKey, [options, callback])
 ```
 
- 👇The input parameter id of the function is a unique identifier for the user (e.g. user ID) and is used as the content in the payload of the JWT.
+👇The input parameter id of the function is a unique identifier for the user (e.g. user ID) and is used as the content in the payload of the JWT.
 
 ```js
 //--------------**GENERATE TOKEN**----------------
 const signToken = id => {
-    //payload, secret, options
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN
-    });
-}
+  //payload, secret, options
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN
+  });
+};
 ```
 
 Inside the function, the jwt.sign method is called to generate the JWT, and it accepts three parameters:
@@ -524,23 +490,21 @@ Inside the function, the jwt.sign method is called to generate the JWT, and it a
 **options:** this is an object containing options to set the attributes of the JWT, such as the expiration time (expiresIn). process.env.JWT_EXPIRES_IN should be a string indicating the expiration time, which can be a time interval (e.g., '2d' for 2 days) or a specific date/time.
 Finally, the signToken function returns the generated JWT and assigns it to the variable token in the following code, which may be used after a successful user authentication or registration to generate and provide the JWT to the user for further authorisation or authentication.
 
-
-
 👇This code defines a function called createSendToken that creates and sends a JWT (JSON Web Token) to the user.
 
 ```js
 //--------------**CREATE TOKEN & SEND TOKEN**----------------
 const createSendToken = (user, statusCode, res) => {
-    //create token
-    const token = signToken(user._id);
+  //create token
+  const token = signToken(user._id);
 
-    res.status(statusCode).json({
-      status: 'success',
-      token,
-      data: {
-        user
-      }
-    });
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user
+    }
+  });
 };
 ```
 
@@ -549,7 +513,7 @@ The input parameters of the function are as follows:
 **user:** user object containing information about the user.
 **statusCode:** HTTP status code, used to set the status code of the response.
 **res:** the response object, used to send the response to the client.
-Inside the function, it first calls the signToken function and passes in the user's _id to generate the JWT, then uses the res.status() method to set the status code of the response, which is usually the value of the statusCode parameter.
+Inside the function, it first calls the signToken function and passes in the user's \_id to generate the JWT, then uses the res.status() method to set the status code of the response, which is usually the value of the statusCode parameter.
 
 Next, it uses the res.json() method to send a JSON-formatted response to the client. The response contains the following:
 
@@ -558,16 +522,14 @@ Next, it uses the res.json() method to send a JSON-formatted response to the cli
 **data:** an object containing the user's data. Here, the user parameter is passed into the data attribute.
 The purpose of this function is to generate a JWT after user authentication or registration, and respond to the client with the user data. The client can save the JWT and use it in future requests to authenticate and obtain authorisation.
 
-
-
-> Testing:  generate token
+> Testing: generate token
 
 ```
 post: 127.0.0.1:3000/api/v1/users/signup
 ```
 
 ```json
-body JSON 
+body JSON
 {
 "name": "test3",
 "email":"test3@yuimorii.com",
@@ -578,19 +540,19 @@ body JSON
 
 ```json
 {
-    "status": "success",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjBiNTljZjkyZTg0ZWY4MmFmN2YxYSIsImlhdCI6MTY4OTMwMjQyOCwiZXhwIjoxNjk3MDc4NDI4fQ.nFDpacNCRnhyRtBhjA4oqJprDd6yQQrLwwI7eVdgiE4",
-    "data": {
-        "user": {
-            "role": "user",
-            "active": true,
-            "_id": "64b0b59cf92e84ef82af7f1a",
-            "name": "test3",
-            "email": "test3@yuimorii.com",
-            "password": "$2a$12$PpQtl4bBQBEYkKj03aUGJu3VpO8mxh1L9Y1c0q7vbV7Lkfa6/R10C",
-            "__v": 0
-        }
+  "status": "success",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjBiNTljZjkyZTg0ZWY4MmFmN2YxYSIsImlhdCI6MTY4OTMwMjQyOCwiZXhwIjoxNjk3MDc4NDI4fQ.nFDpacNCRnhyRtBhjA4oqJprDd6yQQrLwwI7eVdgiE4",
+  "data": {
+    "user": {
+      "role": "user",
+      "active": true,
+      "_id": "64b0b59cf92e84ef82af7f1a",
+      "name": "test3",
+      "email": "test3@yuimorii.com",
+      "password": "$2a$12$PpQtl4bBQBEYkKj03aUGJu3VpO8mxh1L9Y1c0q7vbV7Lkfa6/R10C",
+      "__v": 0
     }
+  }
 }
 ```
 
@@ -602,12 +564,10 @@ body JSON
 
 > eg. {{URL}}api/v1/tours
 
-
-
-According to the provided code, it is a method to **set an environment variable** in the Postman testing tool using a **pre-request script.**  
+According to the provided code, it is a method to **set an environment variable** in the Postman testing tool using a **pre-request script.**
 
 ```javascript
-pm.environment.set("jwt", pm.response.json().token);
+pm.environment.set('jwt', pm.response.json().token);
 ```
 
 The purpose of this code is to extract a value named "token" from the response of a request and set it as the value of an environment variable in Postman named "jwt".
@@ -625,10 +585,9 @@ Therefore, the purpose of this code is to extract the value of "token" from the 
 
 > [Nodemailer](https://nodemailer.com/about/)
 
-```bash 
+```bash
 npm i nodemailer
 ```
-
 
 > [SendGrid](https://sendgrid.com/)
 
@@ -651,7 +610,7 @@ EMAIL_PORT=25
 /**
  * @description: This file is used to send emails to the user
  */
-const nodemailer = require('nodemailer');  
+const nodemailer = require('nodemailer');
 
 //----------------**SEND EMAIL**----------------
 const sendEmail = async options => {
@@ -681,13 +640,13 @@ module.exports = sendEmail;
 ```
 
 ### Forget password
+
 > controllers/authController.js
 
 ```js
-
 //--------------**FORGOT PASSWORD**----------------
 /**
- * Creates a password reset token and sends it to the user's email. 
+ * Creates a password reset token and sends it to the user's email.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @param {function} next - The next middleware function.
@@ -743,7 +702,7 @@ router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 ```
 
->  models/userModel.js
+> models/userModel.js
 
 ```js
 // models/userModel.js
@@ -798,7 +757,6 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-
 //----------------**MIDDLEWARE: ENCRYPT PASSWORD**----------------
 userSchema.pre('save', async function(next) {
   // Only run this function if password was actually modified
@@ -814,9 +772,9 @@ userSchema.pre('save', async function(next) {
 
 //----------------**INSTANCE METHOD: COMPARE PASSWORD**----------------
 /**
- * 
- * @param {string} candidatePassword 
- * @param {string} userPassword 
+ *
+ * @param {string} candidatePassword
+ * @param {string} userPassword
  * @returns  {boolean}
  */
 userSchema.methods.correctPassword = async function(
@@ -827,8 +785,8 @@ userSchema.methods.correctPassword = async function(
 };
 //----------------**INSTANCE METHOD: CHECK IF PASSWORD CHANGED AFTER JWT ISSUED**----------------
 /**
- * 
- * @param {number} JWTTimestamp 
+ *
+ * @param {number} JWTTimestamp
  * @returns {boolean}
  */
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
@@ -866,10 +824,8 @@ userSchema.methods.createPasswordResetToken = function() {
   return resetToken;
 };
 
- 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
-
 ```
 
 Here is the flow of the `exports.forgotPassword` function across the `authController.js`, `userModel.js`, and `userRoutes.js` files:
@@ -888,9 +844,7 @@ Summary: The `exports.forgotPassword` function is defined in the `authController
 
 ### Reset password
 
-
 ```js
-
 //--------------**RESET PASSWORD**----------------
 exports.resetPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on the token
@@ -915,12 +869,11 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   // 3) Update changedPasswordAt property for the user
-  
+
   // 4) Log the user in, send JWT
   createSendToken(user, 200, res);
 });
 ```
-
 
 ![1](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/1.png)
 
@@ -928,7 +881,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
 ![3](file:///Users/itsyuimoriispace/Documents/%E2%9C%B6%20GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/3.png)
 
-###  Update password
+### Update password
 
 > models/userModel.js
 
@@ -945,8 +898,8 @@ userSchema.pre(/^find/, function(next) {
   this.find({ active: { $ne: false } });
   next();
 });
-
 ```
+
 > controllers/authController.js
 
 ```js
@@ -975,47 +928,51 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // 4) Log user in, send JWT
   createSendToken(user, 200, res);
 });
-
 ```
+
 > routes/userRoutes.js
+
 ```js
-router.patch('/updateMyPassword', authController.protect,authController.updatePassword);
+router.patch(
+  '/updateMyPassword',
+  authController.protect,
+  authController.updatePassword
+);
 ```
 
 ![4](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/4.png)
 
-### Cookie and JWT 
+### Cookie and JWT
 
 ```js
-
 //--------------**GENERATE TOKEN**----------------
 const signToken = id => {
-    //payload, secret, options
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN
-    });
-}
+  //payload, secret, options
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN
+  });
+};
 
 //--------------**CREATE TOKEN & SEND TOKEN*ne*----------------
 /**
  * Creates and sends a JWT token as a cookie in the response.
  * @param {Object} user - The user object.
  * @param {number} statusCode - The HTTP status code.
- * @param {Object} res - The response object. 
-*/
+ * @param {Object} res - The response object.
+ */
 const createSendToken = (user, statusCode, res) => {
-    // Generate a JWT token for the user
-    const token = signToken(user._id);
-  
-    // console.log(token);
-    // Set cookie options for the JWT token
-    const cookieOptions = {
-      expires: new Date(
-        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-      ),
-      httpOnly: true
-    };
-   
+  // Generate a JWT token for the user
+  const token = signToken(user._id);
+
+  // console.log(token);
+  // Set cookie options for the JWT token
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true
+  };
+
   // Set secure cookie option in production
   if (process.env.NODE_ENV === 'production') {
     cookieOptions.secure = true;
@@ -1039,12 +996,12 @@ const createSendToken = (user, statusCode, res) => {
 ```
 
 ### Limiting Field
+
 ```bash
 npm i express-rate-limit
 ```
 
 ```js
-
 const rateLimit = require('express-rate-limit');
 
 // Limit requests from the same IP address
@@ -1057,7 +1014,6 @@ const limiter = rateLimit({
 // Apply to all requests to the API
 app.use('/api', limiter);
 ```
-
 
 ### Setting security HTTP headers
 
@@ -1079,16 +1035,18 @@ app.use(mongoSanitize());
 app.use(xss());
 
 //Prevent parameter pollution
-app.use(hpp({
-  whitelist: [
-    'duration',
-    'ratingsQuantity',
-    'ratingsAverage',
-    'maxGroupSize',
-    'difficulty',
-    'price'
-  ]
-}));
+app.use(
+  hpp({
+    whitelist: [
+      'duration',
+      'ratingsQuantity',
+      'ratingsAverage',
+      'maxGroupSize',
+      'difficulty',
+      'price'
+    ]
+  })
+);
 ```
 
 ### Mongodb data modeling
@@ -1108,7 +1066,7 @@ Embedding vs Referencing
 
 ![reference vs embeding](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/data model.png)
 
-### - Modelling Location 
+### - Modelling Location
 
 > [GeoJSON](https://mongoosejs.com/docs/geojson.html)
 
@@ -1131,8 +1089,8 @@ startLocation: {
 
 ```js
 // models/tourModel.js
-guides: Array
- 
+guides: Array;
+
 tourSchema.pre('save', async function(next) {
   const guidesPromises = this.guides.map(async id => await User.findById(id));
   this.guides = await Promise.all(guidesPromises);
@@ -1149,13 +1107,14 @@ tourSchema.pre('save', async function(next) {
 const User = require('./userModel');
 
 guides: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User'
-      }
-    ]
+  {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }
+];
 ```
-### - Populating Tour Guides 
+
+### - Populating Tour Guides
 
 In the given code snippet, `populate` is a method used in Mongoose, which is an Object Data Modeling (ODM) library for MongoDB and Node.js. The `populate` method is used to populate references in a document with the actual objects from other collections.
 
@@ -1169,36 +1128,30 @@ Here, `Tour` is the Mongoose model representing the collection of tours in the M
 
 By using `populate`, the `guides` field in the `tour` document will be replaced with the actual objects from the referenced collection, making it easier to access the details of the guides without having to perform an additional database query. This is particularly useful when you want to retrieve related data from different collections in a single query.
 
-
 ![populating1](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/populating1.png)
 
 ![populating2](/Users/itsyuimoriispace/Documents/✶ GitHub/Node.js--Express--MongoDB---More--The-Complete-Bootcamp-2023/dev-data/img/populating2.png)
 
-
-
-
 ### Modelling Tour Guides: Parent Referencing
-
 
 ### Review Model: Parent Referencing
 
 ```js
 // models/reviewModel.js
-reviewSchema.pre(/^find/, function (next) {
-    // this.populate({
-    //     path: 'tour',
-    //     select: 'name'
-    // }).populate({
-    //     path: 'user',
-    //     select: 'name photo'
-    // });
-    this.populate({
-        path: 'user',
-        select: 'name photo'
-    });
-    next();
+reviewSchema.pre(/^find/, function(next) {
+  // this.populate({
+  //     path: 'tour',
+  //     select: 'name'
+  // }).populate({
+  //     path: 'user',
+  //     select: 'name photo'
+  // });
+  this.populate({
+    path: 'user',
+    select: 'name photo'
+  });
+  next();
 });
-
 ```
 
 ### Review Model: Virtual Populate
@@ -1213,34 +1166,33 @@ reviewSchema.pre(/^find/, function (next) {
 ```js
 // models/reviewModel.js
 reviewSchema.virtual('comments', {
-    ref: 'Comment',
-    foreignField: 'review',
-    localField: '_id'
+  ref: 'Comment',
+  foreignField: 'review',
+  localField: '_id'
 });
- 
+
 // models/commentModel.js
 //virtual populate
-reviewSchema.virtual('durationWeeks').get(function () {
-    return this.duration / 7;
+reviewSchema.virtual('durationWeeks').get(function() {
+  return this.duration / 7;
 });
 
 //virtual populate
 tourSchema.virtual('reviews', {
-    ref: 'Review',
-    foreignField: 'tour',
-    localField: '_id'
+  ref: 'Review',
+  foreignField: 'tour',
+  localField: '_id'
 });
 ```
 
-
-
 ### Modelling Locations: Geospatial Data
 
-
 ### API documentation
+
 [JapantourAPI](https://documenter.getpostman.com/view/24568930/2s9Xy5LVem#a436068c-2d53-4738-a0d9-a8d7aa574dfe)
 
-### Server-side Rendering  with pug 
+### Server-side Rendering with pug
+
 ```js
 const path = require('path');
 
@@ -1251,13 +1203,8 @@ app.set('views', path.join(__dirname, 'views'));
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
 
-
-
 // 3) ROUTES
 app.get('/', (req, res) => {
   res.status(200).render('base');
 });
-
- 
 ```
-
