@@ -13689,7 +13689,7 @@ if (userPasswordForm) userPasswordForm.addEventListener('submit', function () {
     return _ref.apply(this, arguments);
   };
 }());
-},{"@babel/polyfill":850,"./mapbox":3,"./login":4,"./updateSettings":5}],1162:[function(require,module,exports) {
+},{"@babel/polyfill":850,"./mapbox":3,"./login":4,"./updateSettings":5}],1163:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -13859,5 +13859,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[1162,1], null)
+},{}]},{},[1163,1], null)
 //# sourceMappingURL=/bundle.map
