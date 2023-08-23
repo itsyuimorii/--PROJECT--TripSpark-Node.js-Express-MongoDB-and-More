@@ -120,10 +120,14 @@ body {
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
 }
 .alert--success {
-  background-color: #20bf6b;
+  background-color: #a4ff82;
+  color: #063b3d;
+  font-weight: 400;
 }
 .alert--error {
-  background-color: #eb4d4b;
+  background-color: #a4ff82;
+  color: #063b3d;
+  font-weight: 400;
 }
 
 .heading-secondary {
@@ -159,15 +163,10 @@ body {
 }
 
 .heading-secondary--error {
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#ff7730),
-    to(#eb4d4b)
-  );
-  background-image: linear-gradient(to right, #ff7730, #eb4d4b);
-  font-size: 3.5rem;
+  margin-top: 40vh;
+  font-size: 2.5rem;
+  font-family: 'lato', sans-serif;
+  color: #fcc4c4;
 }
 
 .heading-primary,
@@ -1375,26 +1374,34 @@ body {
   text-align: center;
 }
 .error__title {
-  display: -webkit-box;
-  display: -ms-flexbox;
+  text-transform: uppercase;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  display: grid;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-bottom: 1rem;
 }
 .error__emoji {
-  font-size: 3.75rem;
-  margin-left: 1rem;
+  margin: 2rem auto;
+}
+.back_home {
+  margin-top: 3rem;
+  color: #fdc6be;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid #fdc6be;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-family: 'lato', sans-serif;
 }
 .error__msg {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: 'lato', sans-serif;
   max-width: 50rem;
-  margin: 0 auto;
+  color: #ffffff;
+  margin: 1rem auto;
 }
 
 .login-form {
