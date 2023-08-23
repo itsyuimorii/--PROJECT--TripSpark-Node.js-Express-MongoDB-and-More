@@ -145,12 +145,12 @@ body {
 }
 
 .heading-secondary-login {
-  font-size: 3rem;
+  font-size: 2.8rem;
   text-transform: uppercase;
   /* font-family: 'lato', sans-serif; */
   font-family: 'Bodoni Moda', serif;
   font-weight: 400;
-  color: #ffffee;
+  color: #ffffff;
   /* letter-spacing: 0.1rem; */
   line-height: 3;
   display: inline-block;
