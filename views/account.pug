@@ -28,19 +28,19 @@ block content
 
       .user-view__content
         .user-view__form-container
-          h2.heading-secondary.ma-bt-md Your account settings
+          h2.heading-secondary-setting.ma-bt-mb your account settings
           
           //- WITHOUT API
           //- form.form.form-user-data(action='/submit-user-data' method='POST')
           
           //- WITH API
-          form.form.form-user-data
-            .form__group
+          form.form.form-user-data 
+            .form__group 
               //- label.form__label(for='name') 
-              input#name.form__input(type='text', value=`${user.name}`, required, name='name')
-            .form__group.ma-bt-md
+              input#name.form__input__border(type='text', value=`${user.name}`, required, name='name')
+            .form__group
               //- label.form__label(for='email')  
-              input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+              input#email.form__input__border(type='email', value=`${user.email}`, required, name='email')
             .form__group.form__photo-upload
               img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
               a.btn-text-photo(href='') Choose new photo
@@ -50,16 +50,16 @@ block content
       
         
         .user-view__form-container
-          h2.heading-secondary.ma-bt-md Password change
+          h2.heading-secondary-setting.ma-bt-mb Password change
           form.form.form-user-password
             .form__group
-              label.form__label(for='password-current') 
-              input#password-current.form__input(type='password', placeholder='Current password', required, minlength='8')
+               
+              input#password-current.form__input.form__input__border(type='password', placeholder='Current password', required, minlength='8')
             .form__group
-              label.form__label(for='password') 
-              input#password.form__input(type='password', placeholder='New password', required, minlength='8')
+               
+              input#password.form__input.form__input__border(type='password', placeholder='New password', required, minlength='8')
             .form__group 
               label.form__label(for='password-confirm') 
-              input#password-confirm.form__input(type='password', placeholder='Confirm password', required, minlength='8')
+              input#password-confirm.form__input.form__input__border(type='password', placeholder='Confirm password', required, minlength='8')
             .form__group.right
               button.btn--pink.btn--save-password Save password
