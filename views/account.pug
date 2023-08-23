@@ -17,7 +17,7 @@ block content
           +navItem('#', 'My reviews', 'star')
           +navItem('#', 'Billing', 'credit-card')
 
-        - if (user.role === 'admin')
+        - if (user && user.role === 'admin')
           .admin-nav
             h5.admin-nav__heading Admin
             ul.side-nav
@@ -25,6 +25,7 @@ block content
               +navItem('#', 'Manage users', 'users')
               +navItem('#', 'Manage reviews', 'star')
               +navItem('#', 'Manage bookings', 'briefcase')
+ 
 
       .user-view__content
         .user-view__form-container
