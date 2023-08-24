@@ -158,7 +158,7 @@ body {
 
 .heading-secondary-setting {
   font-size: 2.2rem;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
   text-transform: uppercase;
   /* font-family: 'lato', sans-serif; */
   font-family: 'Bodoni Moda', serif;
@@ -326,7 +326,7 @@ body {
 }
 
 .btn--pink {
-  margin-top: 7rem;
+  margin-top: 4rem;
   background-color: #fdc6be;
   color: #063b3d;
   padding: 1.5rem 10rem;
@@ -942,10 +942,17 @@ body {
   flex: 1;
   /* paddin 0; */
 }
+
+.user-view__form {
+  max-width: 80rem;
+  margin: 0 auto;
+
+  padding: 0 8rem;
+}
 .user-view__form-container {
   max-width: 80rem;
   margin: 0 auto;
-  /* margin-top: 4rem; */
+  margin-top: 10rem;
   padding: 0 8rem;
 }
 
