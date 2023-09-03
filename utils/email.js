@@ -2,7 +2,6 @@
  * @description: This file is used to send emails to the user
  */
 
-
 const nodemailer = require('nodemailer');
 const pug = require('pug');
 const htmlToText = require('html-to-text');
@@ -60,7 +59,7 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send('welcome', 'Welcome to the Natours Family!');
+    await this.send('welcome', 'Welcome to the TripSpark Family!');
   }
 
   async sendPasswordReset() {
