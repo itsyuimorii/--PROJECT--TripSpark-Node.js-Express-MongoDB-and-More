@@ -32,7 +32,7 @@ router.patch('/updateMyPassword', authController.updatePassword);
 router.get('/me', userController.getMe, userController.getUser);
 router.patch(
   '/updateMe',
-  userController.uploadUserPhoto,
+  upload.single('photo'),
   userController.updateMe
 );
 router.delete('/deleteMe', userController.deleteMe);
