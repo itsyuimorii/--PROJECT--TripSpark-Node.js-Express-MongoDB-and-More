@@ -41,11 +41,13 @@ block content
               input#name.form__input__border(type='text', value=`${user.name}`, required, name='name')
             .form__group
               //- label.form__label(for='email')  
+              
               input#email.form__input__border(type='email', value=`${user.email}`, required, name='email')
             .form__group.form__photo-upload
               img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
-              input.form__upload(type='file', accept='image/*', id='photo',name='photo')
+              input.form__upload(type='file', accept='image/*', id='photo', name='photo')
               label(for='photo') Choose new photo
+              
             .form__group.right
               button.btn--pink Save settings
               
