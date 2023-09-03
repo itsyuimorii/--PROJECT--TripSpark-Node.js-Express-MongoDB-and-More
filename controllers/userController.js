@@ -28,6 +28,7 @@ const multerStorage = multer.diskStorage({
   }
 });
 
+
 const multerFilter = (req, file, callback) => {
   if (file.mimetype.startsWith('image')) {
     callback(null, true);
@@ -40,7 +41,8 @@ const multerFilter = (req, file, callback) => {
 }
 
 const upload = multer({
-  dest: 'public/img/users'
+  storage: multerStorage,
+  fileFilter: multerFilter
 });
 
 //------------------ **UPLOAD USER PHOTO** ------------------//
