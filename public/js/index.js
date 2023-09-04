@@ -36,6 +36,7 @@ if (userDataForm)
     e.preventDefault();
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
+
     // Change updateSettings to updateData
     updateSettings({ name, email }, 'data')
   });

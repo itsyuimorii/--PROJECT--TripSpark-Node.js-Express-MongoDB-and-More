@@ -5676,6 +5676,7 @@ if (userDataForm) userDataForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
+
   // Change updateSettings to updateData
   (0, _updateSettings.updateSettings)({
     name: name,
