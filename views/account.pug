@@ -41,6 +41,7 @@ block content
               input#name.form__input__border(type='text', value=`${user.name}`, required, name='name')
             .form__group
               //- label.form__label(for='email')  
+              
               input#email.form__input__border(type='email', value=`${user.email}`, required, name='email')
             .form__group.form__photo-upload
               img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
@@ -50,6 +51,8 @@ block content
             .form__group.right
               button.btn--pink Save settings
               
+      
+        
         .user-view__form-container
           h2.heading-secondary-setting.ma-bt-mb Password change
           form.form.form-user-password
