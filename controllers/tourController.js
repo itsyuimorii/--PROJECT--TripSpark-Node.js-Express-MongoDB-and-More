@@ -26,8 +26,6 @@ exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 exports.createTour = factory.createOne(Tour);
 exports.updateTour = factory.updateOne(Tour);
 exports.deleteTour = factory.deleteOne(Tour);
-
-
 //------------------ **GET TOUR STATS** ------------------//
 exports.getTourStats = catchAsync(async (req, res, next) => {
   const stats = await Tour.aggregate([
@@ -175,7 +173,7 @@ exports.getDistances = catchAsync(async (req, res, next) => {
   ]);
 
   res.status(200).json({
-    status: 'success',
+    status: 'success', 
     data: {
       data: distances
     }

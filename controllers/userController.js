@@ -14,17 +14,12 @@ const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
 
-//------------------ **UPLOAD USER PHOTO** ------------------//
 const multer = require('multer');
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, callback) => {
     // cb(null, 'public/img/users');
     callback(null, 'public/img/users');
-  }, filename: (req, file, callback) => {
-    // user-7676767abc-123456789.jpeg
-    const ext = file.mimetype.split('/')[1];
-    callback(null, `user-${req.user.id}-${Date.now()}.${ext}`);
   }
 });
 
@@ -63,7 +58,7 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
 });
 
 
-//------------------ **FILTER USER DATA** ------------------//
+
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
   Object.keys(obj).forEach(el => {
@@ -71,7 +66,7 @@ const filterObj = (obj, ...allowedFields) => {
   });
   return newObj;
 };
-//------------------ **GET USER DATA** ------------------//
+
 exports.getMe = (req, res, next) => {
   req.params.id = req.user.id;
   next();
