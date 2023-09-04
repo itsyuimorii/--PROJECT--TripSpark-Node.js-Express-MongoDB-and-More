@@ -1,0 +1,12 @@
+extends base
+
+block content
+  main.main
+    .error
+      .error__title
+        h2.heading-secondary.heading-secondary--error 💥 Something went wrong!  
+        .error__msg= msg 
+        //- img.error__emoji(src="/img/cat-laptop.gif", alt="Emoji GIF")
+        a(class="back_home" href="/") Go back to home page
+   
+
