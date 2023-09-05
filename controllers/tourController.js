@@ -9,10 +9,72 @@
  * @version      1.0.0
  */
 
+const sharp = require('sharp')
+const multer = require('multer')
 const Tour = require('./../models/tourModel');
 const catchAsync = require('./../utils/catchAsync');
 const factory = require('./handlerFactory');
 const AppError = require('./../utils/appError');
+
+
+// Configure storage for uploaded files in memory
+const multerStorage = multer.memoryStorage();
+
+// Define a filter to accept only image files
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    // If the file is an image, accept it
+    cb(null, true);
+  } else {
+    // If the file is not an image, reject it with a 400 (Bad Request) error
+    cb(new AppError('Not an image! Please upload only images.', 400), false);
+  }
+};
+
+// Initialize multer with storage and filter configurations
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter
+});
+
+// Export middleware for uploading a single file named 'photo'
+exports.uploadTourImages = upload.fields([
+  { name: 'imageCover', maxCount: 1 },
+  { name: 'images', maxCount: 3 }
+]);
+// upload.single('image') req.file
+// upload.array('images', 5) req.files
+exports.resizeTourImages = catchAsync(async (req, res, next) => {
+  if (!req.files.imageCover || !req.files.images) return next();
+
+  // 1) Cover image
+  req.body.imageCover = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+  await sharp(req.files.imageCover[0].buffer)
+    .resize(2000, 1333)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/img/tours/${req.body.imageCover}`);
+
+  // 2) Images
+  req.body.images = [];
+
+  await Promise.all(
+    req.files.images.map(async (file, i) => {
+      const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+
+      await sharp(file.buffer)
+        .resize(2000, 1333)
+        .toFormat('jpeg')
+        .jpeg({ quality: 90 })
+        .toFile(`public/img/tours/${filename}`);
+
+      req.body.images.push(filename);
+    })
+  );
+
+  next();
+});
+
 
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
@@ -26,6 +88,9 @@ exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 exports.createTour = factory.createOne(Tour);
 exports.updateTour = factory.updateOne(Tour);
 exports.deleteTour = factory.deleteOne(Tour);
+
+
+
 //------------------ **GET TOUR STATS** ------------------//
 exports.getTourStats = catchAsync(async (req, res, next) => {
   const stats = await Tour.aggregate([
@@ -173,7 +238,7 @@ exports.getDistances = catchAsync(async (req, res, next) => {
   ]);
 
   res.status(200).json({
-    status: 'success', 
+    status: 'success',
     data: {
       data: distances
     }

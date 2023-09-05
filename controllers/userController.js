@@ -9,22 +9,15 @@
  * @version      1.0.0
  */
 
-const sharp = require('sharp')
-const multer = require('multer')
+
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
+const sharp = require('sharp')
+const multer = require('multer')
 
-// const multerStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'public/img/users');
-//   },
-//   filename: (req, file, cb) => {
-//     const ext = file.mimetype.split('/')[1];
-//     cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
-//   }
-// });
+
 // Configure storage for uploaded files in memory
 const multerStorage = multer.memoryStorage();
 
