@@ -9,33 +9,74 @@
  * @version      1.0.0
  */
 
+const sharp = require('sharp')
 const multer = require('multer')
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
 
-
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'public/img/users');
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split('/')[1];
+//     cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
+//   }
+// });
+// Configure storage for uploaded files in memory
 const multerStorage = multer.memoryStorage();
 
+
+
+
+// Define a filter to accept only image files
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
+    // If the file is an image, accept it
     cb(null, true);
   } else {
+    // If the file is not an image, reject it with a 400 (Bad Request) error
     cb(new AppError('Not an image! Please upload only images.', 400), false);
   }
 };
 
+
+
+// Initialize multer with storage and filter configurations
 const upload = multer({
   storage: multerStorage,
   fileFilter: multerFilter
 });
 
-
+// Export middleware for uploading a single file named 'photo'
 exports.uploadUserPhoto = upload.single('photo');
 
 
+//------------------ **RESIZING USERPHOTO** ------------------//
 
+exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
+  if (!req.file) return next();
+
+  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+
+  await sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/img/users/${req.file.filename}`);
+
+  next();
+});
+
+//------------------ **FILTER DATA** ------------------//
+/**
+ * used to filter an object's properties and return a new object containing only the properties that are specified in the allowedFields array. 
+ * @param {*} obj 
+ * @param  {...any} allowedFields 
+ * @returns 
+ */
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
   Object.keys(obj).forEach(el => {
@@ -67,6 +108,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
   // 2) Filtered out unwanted fields names that are not allowed to be updated
   const filteredBody = filterObj(req.body, 'name', 'email');
+  if (req.file) filteredBody.photo = req.file.filename;
 
   // 3) Update user document
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
