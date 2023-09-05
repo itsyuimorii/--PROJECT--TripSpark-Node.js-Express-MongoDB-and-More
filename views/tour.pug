@@ -47,7 +47,7 @@ block content
     .overview-box
       div
         .overview-box__group
-          h2.heading-secondary.ma-bt-lg ✷  Details of the tour
+          h2.heading-secondary ✷  Details of the tour
 
           +overviewBox('Next date', date, 'calendar')
           +overviewBox('Diffculty', difficulty, 'trending-up')
@@ -70,7 +70,7 @@ block content
 
 
     .description-box
-      h2.heading-secondary.ma-bt-lg=` ✷  About ${tour.name} Tour`
+      h2.heading-secondary=` ✷  About ${tour.name} Tour`
       - const paragraphs = tour.description.split('\n');
       each p in paragraphs
         p.description__text= p

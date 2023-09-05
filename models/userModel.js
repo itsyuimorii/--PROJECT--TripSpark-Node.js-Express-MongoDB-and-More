@@ -25,7 +25,10 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email']
   },
-  photo: String,
+  photo: {
+    type: String,
+    default: 'default.jpg'
+  },
   role: {
     type: String,
     enum: ['user', 'guide', 'lead-guide', 'admin'],
@@ -42,7 +45,7 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Please confirm your password'],
     validate: {
       // This only works on CREATE and SAVE!!!
-      validator: function(el) {
+      validator: function (el) {
         return el === this.password;
       },
       message: 'Passwords are not the same!'
@@ -62,7 +65,7 @@ const userSchema = new mongoose.Schema({
 
 
 //----------------**MIDDLEWARE: ENCRYPT PASSWORD**----------------
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   // Only run this function if password was actually modified
   if (!this.isModified('password')) return next();
 
@@ -75,7 +78,7 @@ userSchema.pre('save', async function(next) {
 });
 
 //----------------**MIDDLEWARE: SET PASSWORD CHANGED AT**----------------
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   // Only run this function if password was actually modified
   if (!this.isModified('password') || this.isNew) return next();
   // Set passwordChangedAt to the current time minus 1 second
@@ -83,7 +86,7 @@ userSchema.pre('save', function(next) {
   next();
 });
 //----------------**MIDDLEWARE: FILTER OUT INACTIVE USERS**----------------
-userSchema.pre(/^find/, function(next) {
+userSchema.pre(/^find/, function (next) {
   // this points to the current query
   this.find({ active: { $ne: false } });
   next();
@@ -96,7 +99,7 @@ userSchema.pre(/^find/, function(next) {
  * @param {string} userPassword 
  * @returns  {boolean}
  */
-userSchema.methods.correctPassword = async function(
+userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
 ) {
@@ -107,7 +110,7 @@ userSchema.methods.correctPassword = async function(
  * @param {number} JWTTimestamp 
  * @returns {boolean}
  */
-userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangedAt) {
     //Convert password change times to timestamps
     const changedTimestamp = parseInt(
@@ -126,7 +129,7 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
 /**
  * @returns {string} resetToken
  */
-userSchema.methods.createPasswordResetToken = function() {
+userSchema.methods.createPasswordResetToken = function () {
   // Create a random token
   const resetToken = crypto.randomBytes(32).toString('hex');
   // Encrypt the token and store it in the database
@@ -142,6 +145,6 @@ userSchema.methods.createPasswordResetToken = function() {
   return resetToken;
 };
 
- 
+
 const User = mongoose.model('User', userSchema);
 module.exports = User;

@@ -298,12 +298,18 @@ body {
 
 .btn--green-book {
   margin-top: 3rem;
-  background-color: #f4f4b8;
-  color: #063b3d;
-  padding: 1.7rem 6rem;
+  background-color: #063b3d;
+  color: #f4f4b8;
+  border: 1px solid;
+  padding: 1.7rem 10rem;
   font-family: 'lato', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+.btn--green-book:hover {
+  background-color: #f4f4b8;
+  color: #063b3d;
 }
 
 .btn-login {
@@ -625,7 +631,7 @@ body {
   justify-content: center;
 }
 .overview-box__group:not(:last-child) {
-  margin-bottom: 7rem;
+  margin-bottom: 2rem;
 }
 .overview-box__detail {
   font-size: 1.7rem;
@@ -1578,17 +1584,17 @@ body {
 }
 
 .form__upload + label {
-  color: #55c57a;
+  color: #fcc4c4;
   display: inline-block;
   text-decoration: none;
-  border-bottom: 1px solid #55c57a;
+  border-bottom: 1px solid #fcc4c4;
   padding: 3px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   cursor: pointer;
 }
 .form__upload + label:hover {
-  background-color: #55c57a;
+  background-color: #fcc4c4;
   color: #fff;
   -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
