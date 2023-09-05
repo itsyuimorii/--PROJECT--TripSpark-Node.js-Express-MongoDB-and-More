@@ -145,7 +145,13 @@ const signToken = id => {
 //--------------**CREATE TOKEN & SEND TOKEN*ne*----------------
 /**
  * Creates and sends a JWT token as a cookie in the response.
- * @param {Object} user - The user object.
+ * @param {Object} user - The user object.  const newUser = await User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirm: req.body.passwordConfirm
+  });
+
  * @param {number} statusCode - The HTTP status code.
  * @param {Object} res - The response object. 
 */
@@ -174,7 +180,13 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create(req.body);
+  const newUser = await User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirm: req.body.passwordConfirm
+  });
+
 
   const url = `${req.protocol}://${req.get('host')}/me`;
   console.log(url);
