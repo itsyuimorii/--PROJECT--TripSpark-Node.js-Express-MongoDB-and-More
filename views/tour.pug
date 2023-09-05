@@ -74,8 +74,11 @@ block content
       - const paragraphs = tour.description.split('\n');
       each p in paragraphs
         p.description__text= p
-      button.btn.btn--green-book.span-all-rows Book tour now!
-         
+
+      if user
+        button.btn.btn--green-book.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
+      else 
+        a.btn.btn--green-book.span-all-rows(href='/login') Login to book tour   
  
 
   section.section-map
