@@ -178,6 +178,11 @@ npm i mongoose --legacy-peer-deps
 
 ```
 
+```
+npm run watch:js
+
+```
+
 This command will set the `NODE_ENV` environment variable to `"production"` and then use `nodemon` to run the `server.js` file. Running the server in production mode may involve additional optimizations and configurations specific to your application.
 
 Note that when using `npm run` to execute a script, you need to prefix the script name with `run`.
