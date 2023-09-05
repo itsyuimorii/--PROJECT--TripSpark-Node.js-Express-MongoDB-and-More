@@ -29,8 +29,6 @@ const factory = require('./handlerFactory');
 const multerStorage = multer.memoryStorage();
 
 
-
-
 // Define a filter to accept only image files
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
@@ -41,7 +39,6 @@ const multerFilter = (req, file, cb) => {
     cb(new AppError('Not an image! Please upload only images.', 400), false);
   }
 };
-
 
 
 // Initialize multer with storage and filter configurations
