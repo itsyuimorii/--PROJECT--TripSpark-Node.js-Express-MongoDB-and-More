@@ -25,6 +25,7 @@ const bookingSchema = new mongoose.Schema({
   }
 });
 
+//-- QUERY MIDDLEWARE --//
 bookingSchema.pre(/^find/, function (next) {
   this.populate('user').populate({
     path: 'tour',
