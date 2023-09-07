@@ -81,16 +81,15 @@ app.use(
 
 app.use(compression());
 
-// Serving static files
-app.use(express.static(`${__dirname}/public`));
-
-
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   // console.log(req.cookies);
   next();
 });
+
+// Serving static files
+app.use(express.static(`${__dirname}/public`));
 
 
 // 3) ROUTES
