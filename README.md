@@ -1,6 +1,6 @@
 <div align=center>
     <img src="https://github.com/itsyuimorii/TripSpark-Node.js-Express-MongoDB-and-More/blob/main/public/img/08%20(2).png">
-    <h1> ⛺️ Node.js, Express, MongoDB & More: The Complete Bootcamp 2023 </h1>
+    <h1> ⛺️ TripSpark-Node.js-Express-MongoDB-and-More </h1>
 </div>
 
 <div align=center>
