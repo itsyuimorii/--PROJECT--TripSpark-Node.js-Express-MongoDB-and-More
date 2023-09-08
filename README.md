@@ -1,5 +1,5 @@
 <div align=center>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png">
+    <img src="https://github.com/itsyuimorii/TripSpark-Node.js-Express-MongoDB-and-More/blob/main/public/img/08%20(2).png">
     <h1> ⛺️ Node.js, Express, MongoDB & More: The Complete Bootcamp 2023 </h1>
 </div>
 
